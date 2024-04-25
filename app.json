@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/logs/logs",
+    "pages/home/home",
+    "pages/search/search",
+    "pages/userData/userData",
+    "pages/realName/realName",
+    "pages/askBuy/askBuy",
+    "pages/authentication/authentication",
+    "pages/openVip/openVip"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "找铲车",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

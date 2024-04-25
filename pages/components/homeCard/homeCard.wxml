@@ -1,0 +1,34 @@
+<!--pages/components/homeCard/homeCard.wxml-->
+<view class="card">
+  <image catchtap="toUserInfo" class="avatar" src="/images/background.png" mode="" />
+  <view class="content">
+    <view class="name">宏鑫建材</view>
+    <view class="remark">
+      临工953装载机2022年
+      <span class="price">
+        ¥5.1w
+      </span>
+    </view>
+    <view class="home-card-photo">
+      <image class="photo-item" src="/images/background.png" mode="" />
+      <image class="photo-item" src="/images/background.png" mode="" />
+      <image class="photo-item" src="/images/background.png" mode="" />
+      <image class="photo-item" src="/images/background.png" mode="" />
+      <image class="photo-item" src="/images/background.png" mode="" />
+      <image class="photo-item" src="/images/background.png" mode="" />
+    </view>
+    <view class="Instructions">
+      个人用车，保养及时，全车原版，性能无敌， 车是真好，可随时看车，随便试车...更多
+    </view>
+    <view class="bottom">
+      <view>
+        <view class="address">山东省.章丘区</view>
+        <view class="time">8分钟前</view>
+      </view>
+      <view>
+        <image class="card-telephone" src="/images/telephone.png" mode="" />
+        <image class="card-leave" src="/images/leave.png" mode="" />
+      </view>
+    </view>
+  </view>
+</view>

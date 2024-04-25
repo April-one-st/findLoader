@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-search": "@vant/weapp/search/index",
+    "Card": "/pages/components/card/card"
+  },
+  "navigationBarTitleText": "搜索"
+}

@@ -1,0 +1,53 @@
+<!--pages/search/search.wxml-->
+<view class="search-page">
+    <view class="search-header">
+        <van-search
+            value="{{ value }}"
+            placeholder="请输入搜索关键词"
+            use-action-slot
+            bind:change="onChange"
+            bind:search="onSearch"
+        >
+        <view class="search-btn" slot="action" bind:tap="onClick">搜索</view>
+        </van-search>
+    </view>
+    <view class="search-content">
+        <view class="hot-search">
+            <view class="hot-title">热门搜索</view>
+            <view class="hot-tag">
+                <span class="hot-tag-item">
+                    山东shan是
+                </span>
+                <span class="hot-tag-item">
+                    山东sn是
+                </span>
+                <span class="hot-tag-item">
+                    山东an是
+                </span>
+                <span class="hot-tag-item">
+                    山东sh是
+                </span>
+                <span class="hot-tag-item">
+                    山东sn是
+                </span>
+                <span class="hot-tag-item">
+                    山东sh是
+                </span>
+
+            </view>
+        </view>
+        <view>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+        </view>
+    </view>
+    <view class="bottom"></view>
+</view>

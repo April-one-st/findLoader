@@ -1,0 +1,49 @@
+<!--pages/openVip/openVip.wxml-->
+<view class="open-vip-page">
+  <view class="brief-title">
+    <view class="brief-title-text">
+      <span>会员权益</span>
+    </view>
+  </view>
+  <view class="vip-content">
+    <view class="content-item">1.提前看到所有用户发布最新信息，超快更新</view>
+    <view class="content-item"> 2.发布信息多号分享，多个微信大号同时分享信息到 朋友圈 </view>
+    <view class="content-item">3.刷新在售车辆实现车辆置顶 </view>
+    <view class="content-item">4.关注你的粉丝收到订阅提醒 </view>
+    <view class="content-item">5.发布求购车辆信息 </view>
+    <view class="content-item">6.一定成度的抗禁言，抗举报 </view>
+    <view class="content-item">7.更多会员特权，持续更新</view>
+  </view>
+  <view class="brief-title">
+    <view class="brief-title-text">
+      <span>开通时长</span>
+    </view>
+  </view>
+  <view class="vip-time">
+    <view style="display: flex; justify-content: space-between; align-items: center;">
+      <view class="vip-time-item vip-time-active">12个月</view>
+      <view class="vip-time-item">12个月</view>
+      <view class="vip-time-item">12个月</view>
+      <view class="vip-time-item">12个月</view>
+    </view>
+    <view style="display: flex;margin-top: 20px;">
+      <view class="vip-peice">
+        ￥5.1w
+      </view>
+      <view class="discount">
+        0.35折
+      </view>
+    </view>
+  </view>
+  <view class="form-buttom">
+        <van-button 
+            type="primary" 
+            size="large"
+            color="rgba(0, 71, 159, 1)"
+            style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
+        >微信支付</van-button>
+        <view style="color: rgba(61, 61, 61, 1); font-size: 15px; margin-top: 15px;">
+          当前绑定手机： 15135042951
+        </view>
+  </view>
+</view>

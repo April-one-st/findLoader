@@ -1,0 +1,31 @@
+<!--pages/components/buyCard/buyCard.wxml-->
+<view class="buy-card-page">
+    <Header></Header>
+    <van-dropdown-menu>
+        <van-dropdown-item value="{{ districtValue }}" options="{{ districtOptions }}" />
+        <van-dropdown-item value="{{ brandValue }}" options="{{ brandOptions }}" />
+        <van-dropdown-item value="{{ modelValue }}" options="{{ modelOptions }}" />
+        <van-dropdown-item value="{{ yearValue }}" options="{{ yearOptions }}" />
+    </van-dropdown-menu>
+    <view class="screen">
+        <image class="screen-image" src="/images/screen.png" mode=""/>
+        <view class="screen-item">
+            <van-tag
+                plain
+                closeable
+                size="medium"
+                type="primary"
+                id="primary"
+                bind:close="onClose"
+                >
+                标签
+            </van-tag>
+        </view>
+        <span class="reset">重置</span>
+    </view>
+    <view class="buycard-content">
+        <HomeCard />
+        <HomeCard />
+        <HomeCard />
+    </view>
+</view>

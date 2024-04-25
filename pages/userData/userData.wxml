@@ -1,0 +1,57 @@
+<!--pages/userData/userData.wxml-->
+<view class="user-data-page">
+    <view class="user-data-header">
+        <image class="user-back" src="/images/user-info-back.png" mode=""/>
+        <view class="nav">
+            <view class="back" catchtap="toBack">
+                <van-icon name="arrow-left" />
+            </view>
+            <view class="title">用户资料</view>
+        </view>
+        <view class="user-data">
+            <image class="user-header" src="/images/background.png" mode=""/>
+            <view class="info">
+                <view class="user-name">
+                    测试名称
+                </view>
+                <view class="user-tag">
+                    普通会员
+                </view>
+            </view>
+        </view>
+        <view class="follow-vermicelli">
+            <view class="follow-item">
+                <view class="number">11111</view>
+                <view class="follow-title">粉丝</view>
+            </view>
+            <view class="line"></view>
+            <view class="follow-item">
+                <view class="number">11111</view>
+                <view class="follow-title">关注</view>
+            </view>
+        </view>
+    </view>
+    <view class="user-data-content">
+        <van-tabs active="{{ active }}" bind:change="onChange">
+            <van-tab title="首页">
+                <view style="padding-bottom: 99px; height: calc(100vh - 297px - 99px); overflow: auto;">
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                </view>
+            </van-tab>
+            <van-tab title="求购">求购</van-tab>
+            <van-tab title="简介">简介</van-tab>
+        </van-tabs>
+    </view>
+    <view class="user-data-bottom">
+        <view wx:for="{{btnList}}" class="bottom-item {{item.className}}"  wx:key="{{item.label}}">
+            <image class="btn-icon" src="{{item.icon}}" mode=""/>
+            {{item.label}}
+        </view>
+    </view>
+</view>

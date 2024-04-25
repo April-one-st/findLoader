@@ -1,0 +1,10 @@
+<!--pages/components/card/card.wxml-->
+<view class="card-component">
+    <image class="card-avater" src="/images/background.png" mode=""/>
+    <view class="card-content">
+        <view  class="card-title">其他60以上装载机</view>
+        <view class="address">四川省·市中区青衣路</view>
+        <view class="info">2000年 11分钟前 展现：12533次</view>
+        <view class="pirce">面议</view>
+    </view>
+</view>

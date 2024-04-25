@@ -1,0 +1,75 @@
+/* pages/openVip/openVip.wxss */
+.open-vip-page{
+  background-color: rgba(245, 247, 250, 1);
+  height: 100vh;
+}
+.brief-title{
+  padding: 15px;
+  height: 52px;
+  box-sizing: border-box;
+}
+.brief-title-text{
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 400;
+  height: 14px;
+  border-left: 2px solid rgba(0, 71, 159, 1);
+  color: rgba(51, 51, 51, 1);
+  font-size: 16px;
+  line-height: 16px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.vip-content{
+  background-color: #fff;
+  padding: 15px;
+  color: rgba(51, 51, 51, 1);
+  font-size: 15px;
+}
+.content-item{
+  line-height: 21px;
+  font-family: PingFang SC, PingFang SC;
+}
+.vip-time{
+  padding: 15px;
+  background-color: #fff;
+}
+.vip-time-item {
+  width: 76px;
+  height: 48px;
+  color: rgba(0, 71, 159, 1);
+  border: 1px solid rgba(0, 71, 159, 1);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.vip-time-active {
+  background-color: rgba(0, 71, 159, 1);
+  color: #fff;
+}
+.vip-peice{
+  color: rgba(255, 107, 16, 1);
+  font-size: 18px;
+  margin-right: 15px;
+}
+.discount{
+  width: 59px;
+  height: 25px;
+  color: rgba(246, 119, 34, 1);
+  border: 1px solid rgba(246, 119, 34, 1);
+  border-radius: 4px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-buttom{
+  font-family: PingFang SC, PingFang SC;
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,9 @@
+<!--pages/components/footer/footer.wxml-->
+<view class="footer">
+  <view class="footer-conter">
+    <view class="list-item" wx:for="{{list}}" wx:key="name" data-item="{{item}}" bindtap="change">  
+      <image class="icon" src="{{item.isTrue?item.urlTrue:item.url}}" mode=""/>
+      <view>{{item.name}}</view>
+    </view>
+  </view>
+</view>

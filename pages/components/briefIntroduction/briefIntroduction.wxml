@@ -1,0 +1,44 @@
+<!--pages/components/briefIntroduction/briefIntroduction.wxml-->
+<view class="brief-page">
+<view class="brief-title">
+  <view class="brief-title-text">
+    <span>累计</span>
+  </view>
+</view>
+<view class="brief-shop-card">
+    <view class="brief-shop">
+      <view class="brief-shop-item">
+        <view style="font-size: 20px">0</view>
+        <view class="brief-shop-text">累计发布</view>
+      </view>
+      <view class="brief-shop-left"></view>
+      <view class="brief-shop-item">
+        <view style="font-size: 20px">0</view>
+        <view class="brief-shop-text">累计求购</view>
+      </view>
+    </view>
+  </view>
+<view class="brief-title">
+  <view class="brief-title-text">
+    <span>简介</span>
+    <span class="brief-title-edit">编辑</span>
+  </view>
+</view>
+<view class="brief-text">我是来自河南省驻马店市，我的联系方式是： 12345678910，如有业务请与我联系吧！</view>
+<view class="brief-title">
+  <view class="brief-title-text">
+    <span>图片简介</span>
+    <span class="brief-title-edit">编辑</span>
+  </view>
+</view>
+<view class="brief-image">
+  在这里可以编辑关于诚信的照片（9张）
+</view>
+<view class="brief-title">
+  <view class="brief-title-text">
+    <span>地址</span>
+    <span class="brief-title-edit">编辑</span>
+  </view>
+</view>
+<view>河南省驻马店市</view>
+</view>

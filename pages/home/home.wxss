@@ -1,0 +1,6 @@
+/* pages/home.wxss */
+.home-content{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}

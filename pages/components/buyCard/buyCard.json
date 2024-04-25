@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "Header": "/pages/components/header/header",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "HomeCard": "/pages/components/homeCard/homeCard",
+    "van-tag": "@vant/weapp/tag/index"
+  },
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom"
+}

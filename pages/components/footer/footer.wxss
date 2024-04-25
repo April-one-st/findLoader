@@ -1,0 +1,32 @@
+/* pages/components/footer/footer.wxss */
+.footer {
+  position: fixed;
+  bottom: 0px;
+  padding-bottom: 34px;
+  z-index: 9;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  flex: 1;
+  background-color: #fff;
+}
+.footer-conter {
+  display: flex;
+  justify-content: space-between;
+}
+.list-item {
+  width: 94px;
+  height: 50px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  color: #A7A8AC;
+  margin-top: 7px;
+}
+.icon{
+  width: 28px;
+  height: 28px;
+  margin-bottom: 3px;
+}

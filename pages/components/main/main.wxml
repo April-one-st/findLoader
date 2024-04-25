@@ -1,0 +1,84 @@
+<!--pages/userData/userData.wxml-->
+<view class="user-info-page">
+  <view class="user-info-header">
+    <image class="user-back" src="/images/user-info-back.png" mode="" />
+    <view class="nav">
+      <view class="back" catchtap="toBack">
+        <van-icon name="arrow-left" />
+      </view>
+      <view class="title">我的</view>
+    </view>
+    <view class="user-info">
+      <image class="user-header" src="/images/background.png" mode="" />
+      <view class="info">
+        <view class="user-name">
+          测试名称
+        </view>
+        <view class="user-tag">
+          普通会员
+        </view>
+      </view>
+    </view>
+    <view class="follow-vermicelli">
+      <view class="follow-item">
+        <view class="number">11111</view>
+        <view class="follow-title">粉丝</view>
+      </view>
+      <view class="line"></view>
+      <view class="follow-item">
+        <view class="number">11111</view>
+        <view class="follow-title">关注</view>
+      </view>
+      <view class="line"></view>
+      <view class="share">分享</view>
+    </view>
+  </view>
+  <view class="vip-card">
+    <view class="vip">
+      <view class="vip-left">
+        <view class="open-vip">
+           <image class="vip-icon" src="" mode=""/>
+           <view class="vip-title">开通会员</view>
+        </view>
+        <view class="vip-text" wx:if="{{true}}">开通会员享更多服务</view>
+      </view>
+      <view class="vip-right" bind:tap="openVip">
+        立即开通
+      </view>
+    </view>
+  </view>
+  <view class="shop-card">
+    <view class="shop">
+      <view class="shop-item" bind:tap="toAuthentication">
+        <image class="shop-icon" src="/images/shop-icon.png" mode=""/>
+        <view class="shop-text">成为商家</view>
+      </view>
+      <view class="shop-left"></view>
+      <view class="shop-item">
+        <image class="shop-icon" src="/images/id-icon.png" mode=""/>
+        <view class="shop-text">实名认证</view>
+      </view>
+    </view>
+  </view>
+  <view class="user-info-contet">
+    <van-tabs active="{{ active }}" bind:change="onChange">
+      <van-tab title="首页">
+        <view style="padding-bottom: 92px;height: calc(100vh - 567px); overflow: auto;">
+          <Card />
+          <Card />
+          <Card />
+        </view>
+      </van-tab>
+      <van-tab title="求购">
+        <view style="padding-bottom: 92px;height: calc(100vh - 567px); overflow: auto;">
+          <MainCard></MainCard>
+          <MainCard></MainCard>
+          <MainCard></MainCard>
+        </view>
+      </van-tab>
+      <van-tab title="简介">
+        <briefIntroduction></briefIntroduction>
+      </van-tab>
+    </van-tabs>
+  </view>
+</view>

@@ -1,0 +1,36 @@
+/* pages/components/card/card.wxss */
+.card-component{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-bottom: 1px solid #E4E4E4;
+    background-color: #fff;
+}
+.card-avater {
+    width: 118px;
+    height: 85px;
+    margin-right: 10px;
+}
+.card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+.card-title{
+    font-size: 17px;
+    color: #333333;
+}
+.address{
+    color: #00479F;
+    font-size: 13px;
+    line-height: 18px;
+}
+.info{
+    color: #60666F;
+    font-size: 12px;
+}
+.pirce{
+    color: #FF6B10;
+    font-size: 18px;
+}

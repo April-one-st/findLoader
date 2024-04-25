@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "Footer": "/pages/components/footer/footer",
+    "BuyCard": "/pages/components/buyCard/buyCard",
+    "Publish": "/pages/components/publish/publish",
+    "Information": "/pages/components/information/information",
+    "UserInfo":"/pages/components/main/main"
+  },
+  "navigationStyle": "custom"
+}

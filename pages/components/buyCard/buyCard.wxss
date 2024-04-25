@@ -1,0 +1,39 @@
+/* pages/components/buyCard/buyCard.wxss */
+.buy-card-page{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.screen{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F5F7FA;
+    height: 44px;
+    padding: 11px 15px;
+}
+.reset{
+    padding: 0;
+    color: #333333;
+}
+.screen-image{
+    width: 36px;
+    height: 24px;
+}
+.screen-item{
+    padding: 0 10px;
+    flex: 1;
+    display: flex;
+}
+.van-tag{
+    height: 24px;
+    font-size: 14px;
+    color: #00479F;
+}
+.buycard-content{
+    flex: 1;
+    width: 100%;
+    height: 200px;
+    overflow: auto;
+    padding-bottom: 91px;
+}

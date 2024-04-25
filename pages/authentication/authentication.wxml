@@ -1,0 +1,39 @@
+<!--pages/authentication/authentication.wxml-->
+<view class="authentication-page">
+  <view class="form-title"> 商家信息 </view>
+  <van-field
+        value="{{ remark }}"
+        label="商家名称"
+        border="{{ true }}"
+        placeholder="请输入商家名称"
+        bind:change="onChange"
+    >
+    </van-field>
+    <van-field
+        value="{{ remark }}"
+        label="联系电话"
+        border="{{ true }}"
+        placeholder="请输入联系电话"
+        bind:change="onChange"
+    >
+    </van-field>
+    <view class="form-title"> 资质认证（仅用于平台认证） </view>
+    <view class="license-upLoad">
+      <view class="license-upLoad-title">上传营业执照</view>
+      <view class="license-upLoad-tips">需文字清晰，边框完整，漏出国徽</view>
+      <view class="license-upLoad-example">
+        <image class="example" src="/images/background.png" />
+        <van-uploader class="file-upLoad" file-list="{{ [] }}" bind:after-read="afterRead" />
+      </view>
+    </view>
+    <view class="bottom">
+        <view class="form-buttom">
+        <van-button 
+            type="primary" 
+            size="large"
+            color="rgba(0, 71, 159, 1)"
+            style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
+        >提交审核</van-button>
+    </view>
+    </view>
+</view>

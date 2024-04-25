@@ -1,0 +1,68 @@
+/* pages/components/message/message.wxss */
+.message-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #F5F7FA;
+}
+.page-title{
+  height: 44px;
+  padding-top: 44px;
+  background: #fff;
+}
+.list{
+  padding: 20px 15px;
+  flex: 1;
+  overflow: auto;
+}
+.list-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #F0F0F0;
+  padding: 12px 0;
+}
+.avater {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  flex: 1;
+}
+.content{
+  flex: 1;
+}
+.name{
+  color: #333333;
+  font-size: 17px;
+  line-height: 24px;
+}
+.text {
+  color: #60666F;
+  font-size: 15px;
+  line-height: 21px;
+  white-space: nowrap; /* 防止文本换行 */
+  overflow: hidden; /* 隐藏溢出的文本 */
+  text-overflow: ellipsis; /* 使用省略号表示被截断的文本 */
+}
+.right{
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.time{
+  color: #999999;
+  font-size: 13px;
+}
+.num {
+  margin-top: 6px;
+  background-color: #FA3C3C;
+  border-radius: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+  width: 18px;
+  color: #fff;
+  font-size: 13px;
+}

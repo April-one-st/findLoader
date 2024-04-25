@@ -1,0 +1,53 @@
+<!--pages/realName/realName.wxml-->
+<view class="rela-name-page">
+    <view class="form-title"> 资料上传 </view>
+    <van-field
+        value="{{ remark }}"
+        label="姓名"
+        border="{{ true }}"
+        placeholder="请输入真实姓名"
+        bind:change="onChange"
+    >
+    </van-field>
+    <van-field
+        value="{{ remark }}"
+        label="身份证号"
+        border="{{ true }}"
+        placeholder="请输入身份证号"
+        bind:change="onChange"
+    >
+    </van-field>
+    <view class="form-title"> 上传身份证正反面（仅用于平台认证） </view>
+    <view class="form-upLoad">
+        <view>
+            <view class="label"> 头像面 </view>
+            <view class="placeholder"> 上传您的身份证头像面 </view>
+        </view>
+        <van-uploader 
+        style="width: 172px; height: 115px;"
+        file-list="{{ fileList }}" bind:after-read="afterRead" />
+    </view>
+    <view class="form-upLoad">
+        <view>
+            <view class="label"> 国徽面 </view>
+            <view class="placeholder"> 上传您的身份证国徽面 </view>
+        </view>
+        <van-uploader 
+        style="width: 172px; height: 115px;"
+        file-list="{{ fileList }}" bind:after-read="afterRead" />
+    </view>
+    <view class="remark">
+        <image class="icon" src="/images/secure.png" mode=""/>
+        仅用于认证您的身份，保护您的信息安全
+    </view>
+    <view class="bottom">
+        <view class="form-buttom">
+        <van-button 
+            type="primary" 
+            size="large"
+            color="rgba(0, 71, 159, 1)"
+            style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
+        >发布</van-button>
+    </view>
+    </view>
+</view>
