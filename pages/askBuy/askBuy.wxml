@@ -18,4 +18,5 @@
             bind:tap="submit"
         >发布</van-button>
     </view>
+    <van-toast id="van-toast" />
 </view>

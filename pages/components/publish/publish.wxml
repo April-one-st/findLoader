@@ -1,15 +1,15 @@
 <!--pages/components/publish/publish.wxml-->
 <view class="publish-page">
-    <view class="page-title">
-      卖车
-    </view>
+  <view class="page-title">
+    卖车
+  </view>
   <view class="publish-content">
     <view class="form-title">
       基本信息
     </view>
     <van-field value="{{ brandCode }}" label="品牌型号" clickable border="{{ true }}" placeholder="请选择品牌型号" input-align="right" readonly is-link required error="{{verifyBrandCode}}" bind:click-input="brandCodeChange" />
     <van-field value="{{ vehicleAge }}" label="车龄" input-align="right" clickable border="{{ true }}" placeholder="请选择车龄" readonly is-link required error="{{verifyVehicleAge}}" bind:click-input="carAgeChange" />
-    <van-field value="{{ price }}" label="价格" border="{{ true }}" placeholder="请输入价格" bind:change="onChange" required error="{{verifyPrice}}">
+    <van-field value="{{ price }}" label="价格" border="{{ true }}" placeholder="请输入价格" bind:change="priceChange" required error="{{verifyPrice}}">
       <span slot="button" style="color: rgba(255, 107, 16, 1);font-size: 15px;">
         万元
       </span>
@@ -43,4 +43,5 @@
       <van-area wx:if="{{popupType === 'carAddress'}}" area-list="{{ areaData }}" bind:cancel="addressCancel" bind:confirm="addressOk" />
     </van-popup>
   </view>
+  <van-toast id="van-toast" />
 </view>

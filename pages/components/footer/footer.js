@@ -61,6 +61,20 @@ Component({
             list: _data
         })
         this.triggerEvent('customEvent', data.name);
+    },
+    setPage (value) {
+      console.log(1111111, value);
+      const _data = this.data.list.map(item => {
+        if(item.name === value){
+        item.isTrue = true
+        }else {
+        item.isTrue = false
+        }
+        return item
+    })
+    this.setData({
+        list: _data
+    })
     }
   }
 })

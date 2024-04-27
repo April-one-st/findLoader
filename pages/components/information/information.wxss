@@ -45,6 +45,7 @@
   white-space: nowrap; /* 防止文本换行 */
   overflow: hidden; /* 隐藏溢出的文本 */
   text-overflow: ellipsis; /* 使用省略号表示被截断的文本 */
+  width: 50vw;
 }
 .right{
   margin-left: 20px;
@@ -67,4 +68,8 @@
   width: 18px;
   color: #fff;
   font-size: 13px;
+}
+.num-null{
+  height: 18px;
+  width: 18px;
 }

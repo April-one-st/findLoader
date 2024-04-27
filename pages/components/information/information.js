@@ -1,6 +1,8 @@
 // index.js
+import dayjs from 'dayjs';
 import {newsListUrl} from '../../../utils/api'
-const { fetch } = require("../../../utils/util");
+const { fetch, formatTime } = require("../../../utils/util");
+// const dayjs = require('dayjs')
 
 Component({
   /**
@@ -19,7 +21,7 @@ Component({
    */
   data: {
     // 这里是组件内部数据的定义
-    count: 0
+    list: [],
   },
 
   /**
@@ -34,6 +36,7 @@ Component({
    */
   attached() {
     console.log('Component attached');
+    this.getList()
   },
 
   /**
@@ -63,8 +66,24 @@ Component({
   methods: {
     // 获取消息列表
     getList() {
-      const params = {}
-      fetch(newsListUrl, params).then().catch()
-    }
+      fetch.get(newsListUrl).then(res => {
+        console.log(res);
+        if(res.statusCode === 200) {
+          const {data} = res;
+          const list = data.data.map(item => {
+            return {
+              ...item,
+              time: dayjs(item.time).format('YYYY-MM-DD')
+            }
+          })
+          console.log(123, list);
+          this.setData({
+            list:list
+          })
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    },
   }
 });

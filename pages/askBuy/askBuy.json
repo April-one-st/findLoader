@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-toast": "@vant/weapp/toast/index"
   },
   "navigationBarTitleText": "发布求购信息"
 }

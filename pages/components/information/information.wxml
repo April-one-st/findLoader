@@ -4,15 +4,16 @@
     消息中心
   </view>
   <view class="list">
-    <view wx:for="{{[1,2,3,4,5,6,7,8,9,7,8]}}" class="list-item">
-      <image class="avater" src="/images/background.png" mode=""/>
+    <view wx:for="{{list}}" wx:key="index"  class="list-item">
+      <image class="avater" src="{{item.chat_account.avatar || '/images/logo.png'}}" mode=""/>
       <view class="content">
-       <view class="name">宏鑫建材</view>
-       <view class="text">临工953装载机2022年 临工机械...</view>
+       <view class="name">{{item.chat_account.nick_name}}</view>
+       <view class="text">{{item.news_list[0].text}}</view>
       </view>
       <view class="right">
-        <view class="time">14:29</view>
-        <view class="num">1</view>
+        <view class="time">{{item.time}}</view>
+        <view class="num" wx-if="{{item.chat_account.not_read}}">{{item.chat_account.not_read}}</view>
+        <view class="num-null" wx-else></view>
       </view>
     </view>
   </view>

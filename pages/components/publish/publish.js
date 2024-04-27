@@ -19,6 +19,12 @@ const areaData = {
     },
 };
 Component({
+  properties: {
+    getCurrentPage: {
+        type: Function,
+        value: function() {}
+    }
+  },
     /**
      * 页面的初始数据
      */
@@ -122,6 +128,13 @@ Component({
             console.log(err);
           })
         },
+         // 价格
+         priceChange(e) {
+          this.setData({
+            price: e.detail,
+            verifyPrice: false
+          })
+        },
         // 描述
         remarkChange(e) {
           this.setData({
@@ -133,13 +146,13 @@ Component({
           this.setData({
             showPopup: true,
             popupType: 'carAddress',
-            // column:['1', '2', '3', '4', '5']
           })
         },
         // 手机号码
         telephoneChange(e) {
           this.setData({
-            telephone: e.detail
+            telephone: e.detail,
+            verifyTelephone: false
           })
         },
         // 点击品牌型号
@@ -179,14 +192,16 @@ Component({
             const value = e.detail?.value.map(item => item.text);
             this.setData({
               brandCode: value.join('/'),
-              showPopup: false
+              showPopup: false,
+              verifyBrandCode: false
             })
           }
           if(type === 'carAge') {
             console.log(e)
             this.setData({
               vehicleAge: e.detail.value,
-              showPopup: false
+              showPopup: false,
+              verifyVehicleAge: false
             })
           }
         },
@@ -207,7 +222,8 @@ Component({
           const value = e.detail.values
           this.setData({
             address: value.map(item => item.name),
-            showPopup: false
+            showPopup: false,
+            verifyAddress: false
           })
         },
         // 删除图片
@@ -228,8 +244,8 @@ Component({
           const params ={
             brand: data.brandCode.split('/')[0],
             brand_type: data.brandCode.split('/')[1],
-            year: data.vehicleAge,
-            price: data.price,
+            year: data.vehicleAge * 1,
+            price: data.price === '面议'? 0 : data.price,
             desc: data.remark,
             province: data.address[0],
             city: data.address[1],
@@ -238,7 +254,14 @@ Component({
             image_desc: data.fileList.map(item => item.id),
           }
           fetch.post(publishUrl, params).then(res => {
-            console.log(res);
+            if(res.statusCode === 200) {
+              Toast({
+                context: this,
+                type: 'success',
+                message: '发布成功'
+              });
+              this.triggerEvent('customEvent', '买车');
+            }
           }).catch(err => {
             console.log(err);
           })
@@ -256,8 +279,11 @@ Component({
             };
           let result = true
           if(data.fileList.length < 4 || data.fileList.length > 18) {
-            // TODO: Toast 弹不出来
-            Toast.fail('图片数量请保持在4-18之间');
+            Toast({
+              context: this,
+              type: 'error',
+              message: '图片数量请保持在4-18之间'
+            });
           }
           if(!data.brandCode) {
             verify.brandCode = true;
