@@ -484,6 +484,7 @@ const fomatFloat = (num, n) => {
 
 module.exports = {
   fetch,
+  fetchDiy,
   login,
   formatTime,
   fomatFloat,
