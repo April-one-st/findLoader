@@ -8,10 +8,12 @@ Page({
       currentPage: '买车'
   },
   getCurrentPage(e) {
-    console.log(e.detail)
     this.setData({
         currentPage: e.detail
     })
+    const footerObj = this.selectComponent('.footer-current');
+    console.log(333333, footerObj)
+    footerObj.setPage(e.detail)
   },
 
   /**
