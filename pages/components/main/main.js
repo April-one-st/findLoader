@@ -1,84 +1,86 @@
 // pages/userData/userData.js
-Page({
+import {getHomeListUlr} from '../../../utils/api'
+const { fetch } = require("../../../utils/util");
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    // 这里是组件属性的定义
+    text: {
+      type: String,
+      value: 'default text'
+    }
+  },
 
   /**
-   * 页面的初始数据
+   * 组件的初始数据
    */
   data: {
-      btnList: [
-          {label: '关注', className: "add", icon: "/images/add.png"},
-          {label: '消息', className: "leave", icon: "/images/leave-false.png"},
-          {label: '呼叫', className: "telephone", icon: "/images/telephone-false.png"},
-      ]
-  },
-  toBack() {
-    wx.navigateBack({
-        delta: 1 // 返回的页面数，1表示返回上一页，2表示返回上两页，以此类推
-    })
-  },
-  toAuthentication(){
-    wx.navigateTo({
-      url: '/pages/authentication/authentication'
-    })
-  },
-  openVip(){
-    wx.navigateTo({
-      url: '/pages/openVip/openVip'
-    })
-  },
-   /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
+    // 这里是组件内部数据的定义
+    count: 0
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 组件生命周期函数-在组件实例刚刚被创建时执行
    */
-  onReady() {
-
+  created() {
+    console.log('Component created');
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 组件生命周期函数-在组件实例进入页面节点树时执行
    */
-  onShow() {
-
+  attached() {
+    console.log('Component attached');
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * 组件生命周期函数-在组件布局完成后执行，此时可以获取节点信息
    */
-  onHide() {
-
+  ready() {
+    console.log('Component ready');
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * 组件生命周期函数-在组件实例被移动到节点树另一个位置时执行
    */
-  onUnload() {
-
+  moved() {
+    console.log('Component moved');
   },
 
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * 组件生命周期函数-在组件实例被从页面节点树移除时执行
    */
-  onPullDownRefresh() {
-
+  detached() {
+    console.log('Component detached');
   },
 
   /**
-   * 页面上拉触底事件的处理函数
+   * 组件的方法列表
    */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  methods: {
+    // 获取首页列表
+    getHomeList(){
+      const params = {};
+      fetch.get(getHomeListUlr, params).then().catch()
+    },
+    // 获取求购列表
+    getBuyList() {
+      const params = {};
+      fetch.get(bugListUrl, params).then().catch()
+    },
+    // 跳转商户认证
+    toAuthentication(){
+      wx.navigateTo({
+        url: '/pages/authentication/authentication'
+      })
+    },
+    // 跳转开通vip
+    openVip(){
+      wx.navigateTo({
+        url: '/pages/openVip/openVip'
+      })
+    },
   }
-})
+});

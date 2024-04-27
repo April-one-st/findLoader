@@ -1,4 +1,5 @@
 // pages/home.js
+const { fetch } = require("../../utils/util");
 Page({
 
   /**

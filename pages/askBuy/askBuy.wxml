@@ -15,6 +15,7 @@
             size="large"
             color="rgba(0, 71, 159, 1)"
             style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
+            bind:tap="submit"
         >发布</van-button>
     </view>
 </view>

@@ -1,7 +1,8 @@
 // pages/components/publish/publish.js
-import Toast from "/@vant/weapp/toast/toast"; //引入vant提示插件
+import Toast from '@vant/weapp/toast/toast';
+import {getBrandCodeUrl, fileUpLoadUrl,publishUrl} from '../../../utils/api'
+const { fetch } = require("../../../utils/util");
 // import { areaList } from '@vant/area-data';
-const api = require("../../../api"); //引入同意管理的接口js
 const app = getApp(); //引入全局对象
 const areaData = {
     province_list: {
@@ -65,8 +66,7 @@ Component({
             const param = {
                 p_id: id,
             };
-            api.getBrand(param)
-                .then(({statusCode, data}) => {
+            fetch.get(getBrandCodeUrl, param).then(({statusCode, data}) => {
                   if(statusCode === 200) {
                     console.log(data);
                     const _data = this.data.column
@@ -102,10 +102,9 @@ Component({
             }
           }
           const fileList = this.data.fileList
-          api.fileUpLoad(params).then(res => {
+          fetch.upload(fileUpLoadUrl, params).then(res => {
             const baseUrl = 'http://118.24.150.23:9000/car'
             const {data} = JSON.parse(res.data)
-            console.log(3333, data)
             const obj = {
               url: baseUrl + data[0].file_path,
               name: data[0].file_name,
@@ -212,6 +211,8 @@ Component({
         sumbit() {
           console.log(this.formVerify(), 1111)
           if(!this.formVerify()) return
+          const params ={}
+          fetch.post(publishUrl, params).thsn().catch()
         },
         // 表单校验
         formVerify(){
@@ -225,6 +226,10 @@ Component({
               telephone: false,
             };
           let result = true
+          if(data.fileList.length < 4 || data.fileList.length > 18) {
+            // TODO: Toast 弹不出来
+            Toast.fail('图片数量请保持在4-18之间');
+          }
           if(!data.brandCode) {
             verify.brandCode = true;
             result = false

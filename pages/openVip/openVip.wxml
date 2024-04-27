@@ -41,6 +41,7 @@
             size="large"
             color="rgba(0, 71, 159, 1)"
             style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
+            bind:tap="submit"
         >微信支付</van-button>
         <view style="color: rgba(61, 61, 61, 1); font-size: 15px; margin-top: 15px;">
           当前绑定手机： 15135042951

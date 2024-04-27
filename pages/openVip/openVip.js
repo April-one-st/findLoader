@@ -1,4 +1,6 @@
 // pages/openVip/openVip.js
+import {openVipUrl} from '../../utils/api'
+const { fetch } = require("../../utils/util");
 Page({
 
   /**
@@ -13,6 +15,11 @@ Page({
    */
   onLoad(options) {
 
+  },
+  // 开通vip
+  submit() {
+    const params = {};
+     fetch.post(openVipUrl, params).then().catch()
   },
 
   /**
