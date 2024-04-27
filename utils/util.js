@@ -1,4 +1,4 @@
-const baseUrl = 'https://www.qixinban.cn/jeecgboot'  //  服务器地址
+const baseUrl = 'https://abc.frezz.top'  //  服务器地址
 
 
 // 标准带报错提示请求
