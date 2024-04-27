@@ -1,12 +1,8 @@
 // pages/components/publish/publish.js
+import Toast from "/@vant/weapp/toast/toast"; //引入vant提示插件
+// import { areaList } from '@vant/area-data';
 const api = require("../../../api"); //引入同意管理的接口js
 const app = getApp(); //引入全局对象
-import Toast from "/@vant/weapp/toast/toast"; //引入vant提示插件
-const carAgecolumns = ['杭州', '宁波', '温州', '嘉兴', '湖州'];
-// const citys = {
-//   浙江: ['杭州', '宁波', '温州', '嘉兴', '湖州'],
-//   福建: ['福州', '厦门', '莆田', '三明', '泉州'],
-// };
 const areaData = {
     province_list: {
         110000: "北京市",
@@ -28,16 +24,16 @@ Component({
     data: {
         brandCode: "",
         vehicleAge: "",
-        price: "",
+        price: "面议",
         fileList: [],
         remark: "",
-        address: "",
+        address: [],
         telephone: "",
         showPopup: false,
         popupType: '', //弹出框类型 brand：品牌型号， carAge: 车龄， carAddress：车辆位置
-        areaData,
+        areaData: areaData,
         column: [],
-        carAgecolumns,
+        carAgecolumns: [],
         actions: [
             {
                 name: "选项1",
@@ -52,6 +48,11 @@ Component({
                 value: "2",
             },
         ],
+        verifyBrandCode: false,
+        verifyVehicleAge: false,
+        verifyPrice: false,
+        verifyAddress: false,
+        verifyTelephone: false,
     },
     lifetimes: {
         attached() {
@@ -102,7 +103,7 @@ Component({
           }
           const fileList = this.data.fileList
           api.fileUpLoad(params).then(res => {
-            const baseUrl = 'https://abc.frezz.top/'
+            const baseUrl = 'http://118.24.150.23:9000/car'
             const {data} = JSON.parse(res.data)
             console.log(3333, data)
             const obj = {
@@ -118,6 +119,26 @@ Component({
             console.log(1111, JSON.parse(res.data));
           }).catch(err => {
             console.log(err);
+          })
+        },
+        // 描述
+        remarkChange(e) {
+          this.setData({
+            remark: e.detail
+          })
+        },
+        // 车辆位置
+        addressChange(e) {
+          this.setData({
+            showPopup: true,
+            popupType: 'carAddress',
+            // column:['1', '2', '3', '4', '5']
+          })
+        },
+        // 手机号码
+        telephoneChange(e) {
+          this.setData({
+            telephone: e.detail
           })
         },
         // 点击品牌型号
@@ -167,6 +188,71 @@ Component({
               showPopup: false
             })
           }
+        },
+        // 弹出层取消
+        popupClose() {
+          this.setData({
+            showPopup: false
+          })
+        },
+        // 地址取消
+        addressCancel() {
+          this.setData({
+            showPopup: false
+          })
+        },
+        // 地址确认
+        addressOk(e) {
+          const value = e.detail.values
+          this.setData({
+            address: value
+          })
+        },
+        // 表单提交
+        sumbit() {
+          console.log(this.formVerify(), 1111)
+          if(!this.formVerify()) return
+        },
+        // 表单校验
+        formVerify(){
+          const data = this.data;
+          const verify = {
+              brandCode: false,
+              vehicleAge: false,
+              price: false,
+              remark: false,
+              address: false,
+              telephone: false,
+            };
+          let result = true
+          if(!data.brandCode) {
+            verify.brandCode = true;
+            result = false
+          }
+          if(!data.vehicleAge) {
+            verify.vehicleAge = true;
+            result = false
+          }
+          if(!data.price) {
+            verify.price = true;
+            result = false
+          }
+          if(!data.address.length) {
+            verify.address = true;
+            result = false
+          }
+          if(!data.telephone) {
+            verify.telephone = true;
+            result = false
+          }
+          this.setData({
+            verifyBrandCode: verify.brandCode,
+            verifyVehicleAge: verify.vehicleAge,
+            verifyPrice: verify.price,
+            verifyAddress: verify.address,
+            verifyTelephone: verify.telephone,
+          })
+          return result
         },
         //   实名认证页面
         toRealNamePage() {
