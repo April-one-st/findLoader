@@ -2,8 +2,15 @@
 .publish-page{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 92px);
     background-color: rgba(245, 247, 250, 1);
+    font-family: PingFang SC, PingFang SC;
+}
+.publish-content{
+  height: calc(100vh - 150px);
+  flex: 1;
+  overflow: scroll;
+  padding-bottom: 20px;
 }
 .page-title{
     width: 100%;
@@ -23,7 +30,8 @@
     justify-content: space-between;
 }
 .form-photo {
-    width: 100%;
+    width: 100vw;
+    box-sizing: border-box;
     background-color: #fff;
     padding: 10px 15px;
     display: flex;

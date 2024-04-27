@@ -103,13 +103,15 @@ Component({
           }
           const fileList = this.data.fileList
           fetch.upload(fileUpLoadUrl, params).then(res => {
-            const baseUrl = 'http://118.24.150.23:9000/car'
+            const baseUrl = 'http://118.24.150.23:9000/car/'
             const {data} = JSON.parse(res.data)
+            console.log(data);
             const obj = {
               url: baseUrl + data[0].file_path,
               name: data[0].file_name,
               isImage: true,
-              deletable: true
+              deletable: true,
+              id: data[0].id
             }
             fileList.push(obj);
             this.setData({
@@ -204,15 +206,42 @@ Component({
         addressOk(e) {
           const value = e.detail.values
           this.setData({
-            address: value
+            address: value.map(item => item.name),
+            showPopup: false
+          })
+        },
+        // 删除图片
+        delFileList(key){
+          console.log(key);
+          const detail = key.detail
+          const data = this.data.fileList
+          const list = data.filter((item, index) => index !== detail.index)
+          this.setData({
+            fileList: list
           })
         },
         // 表单提交
         sumbit() {
-          console.log(this.formVerify(), 1111)
           if(!this.formVerify()) return
-          const params ={}
-          fetch.post(publishUrl, params).thsn().catch()
+          const data = this.data
+          console.log(data.fileList)
+          const params ={
+            brand: data.brandCode.split('/')[0],
+            brand_type: data.brandCode.split('/')[1],
+            year: data.vehicleAge,
+            price: data.price,
+            desc: data.remark,
+            province: data.address[0],
+            city: data.address[1],
+            position: data.address[2],
+            phone: data.telephone,
+            image_desc: data.fileList.map(item => item.id),
+          }
+          fetch.post(publishUrl, params).then(res => {
+            console.log(res);
+          }).catch(err => {
+            console.log(err);
+          })
         },
         // 表单校验
         formVerify(){

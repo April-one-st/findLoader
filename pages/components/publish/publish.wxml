@@ -1,128 +1,46 @@
 <!--pages/components/publish/publish.wxml-->
 <view class="publish-page">
     <view class="page-title">
-        卖车
+      卖车
     </view>
+  <view class="publish-content">
     <view class="form-title">
-        基本信息
+      基本信息
     </view>
-    <van-field
-        value="{{ brandCode }}"
-        label="品牌型号"
-        clickable
-        border="{{ true }}"
-        placeholder="请选择品牌型号"
-        input-align="right"
-        readonly
-        is-link
-        required
-        error="{{verifyBrandCode}}"
-        bind:click-input="brandCodeChange"
-    />
-    <van-field
-        value="{{ vehicleAge }}"
-        label="车龄"
-        input-align="right"
-        clickable
-        border="{{ true }}"
-        placeholder="请选择车龄"
-        readonly
-        is-link
-        required
-        error="{{verifyVehicleAge}}"
-        bind:click-input="carAgeChange"
-    />
-    <van-field
-        value="{{ price }}"
-        label="价格"
-        border="{{ true }}"
-        placeholder="请输入价格"
-        bind:change="onChange"
-        required
-        error="{{verifyPrice}}"
-    >
-        <span slot="button" style="color: rgba(255, 107, 16, 1);font-size: 15px;">
-            万元
-        </span>
+    <van-field value="{{ brandCode }}" label="品牌型号" clickable border="{{ true }}" placeholder="请选择品牌型号" input-align="right" readonly is-link required error="{{verifyBrandCode}}" bind:click-input="brandCodeChange" />
+    <van-field value="{{ vehicleAge }}" label="车龄" input-align="right" clickable border="{{ true }}" placeholder="请选择车龄" readonly is-link required error="{{verifyVehicleAge}}" bind:click-input="carAgeChange" />
+    <van-field value="{{ price }}" label="价格" border="{{ true }}" placeholder="请输入价格" bind:change="onChange" required error="{{verifyPrice}}">
+      <span slot="button" style="color: rgba(255, 107, 16, 1);font-size: 15px;">
+        万元
+      </span>
     </van-field>
     <view class="form-title">
-        <view>
-            上传图片（4-18张）
-        </view>
-        <view>
-            0/18
-        </view>
+      <view>
+        上传图片（4-18张）
+      </view>
+      <view>
+        0/18
+      </view>
     </view>
     <view class="form-photo">
-        <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+      <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="{{18}}" bind:delete="delFileList" />
     </view>
-    <van-field
-        value="{{ remark }}"
-        label="描述"
-        border="{{ true }}"
-        placeholder="描述（可不填）"
-        bind:change="remarkChange"
-    >
+    <van-field value="{{ remark }}" label="描述" border="{{ true }}" placeholder="描述（可不填）" bind:change="remarkChange">
     </van-field>
-    <van-field
-        value="{{ address }}"
-        label="车辆位置"
-        clickable
-        border="{{ true }}"
-        placeholder="请选择"
-        readonly
-        is-link
-        bind:click-input="addressChange"
-        required
-        error="{{verifyAddress}}"
-    />
-    <van-field
-        value="{{ telephone }}"
-        label="手机号码"
-        border="{{ true }}"
-        placeholder="请输入手机号码"
-        bind:change="telephoneChange"
-        required
-        error="{{verifyTelephone}}"
-    >
+    <van-field value="{{ address }}" label="车辆位置" clickable border="{{ true }}" placeholder="请选择" readonly is-link bind:click-input="addressChange" required error="{{verifyAddress}}" />
+    <van-field value="{{ telephone }}" label="手机号码" border="{{ true }}" placeholder="请输入手机号码" bind:change="telephoneChange" required error="{{verifyTelephone}}">
     </van-field>
     <view class="form-buttom">
-        <van-button 
-            type="primary" 
-            size="large"
-            color="rgba(0, 71, 159, 1)"
-            style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
-            bind:tap="sumbit"
-        >发布</van-button>
+      <van-button type="primary" size="large" color="rgba(0, 71, 159, 1)" style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;" bind:tap="sumbit">发布</van-button>
     </view>
     <view class="ask-buy" bindtap="toAskBuyPage">
-        求购
+      求购
     </view>
-    <van-dialog
-        title="实名认证"
-        message="您还未实名，请先进行实名认证"
-        show="{{ false }}"
-        showConfirmButton
-        showCancelButton
-        confirm-button-color="rgba(0, 71, 159, 1)"
-        custom-class="my-custom-class"
-        bind:confirm="toRealNamePage"
-    />
-    <van-action-sheet
-      show="{{ show }}"
-      actions="{{ actions }}"
-      cancel-text="取消"
-      bind:close="onClose"
-      bind:select="onSelect"
-    />
-    <van-popup
-      show="{{ showPopup }}"
-      position="bottom"
-      custom-style="height: 40%;"
-      bind:close="popupClose"
-    >
+    <van-dialog title="实名认证" message="您还未实名，请先进行实名认证" show="{{ false }}" showConfirmButton showCancelButton confirm-button-color="rgba(0, 71, 159, 1)" custom-class="my-custom-class" bind:confirm="toRealNamePage" />
+    <van-action-sheet show="{{ show }}" actions="{{ actions }}" cancel-text="取消" bind:close="onClose" bind:select="onSelect" />
+    <van-popup show="{{ showPopup }}" position="bottom" custom-style="height: 40%;" bind:close="popupClose">
       <van-picker wx:if="{{popupType !== 'carAddress'}}" columns="{{ column }}" bind:change="pickerChange" show-toolbar bind:confirm="pickerOk" bind:cancel="pickerCancel" />
-      <van-area wx:if="{{popupType === 'carAddress'}}" area-list="{{ areaData }}" bind:cancel="addressCancel" 
-      bind:confirm="addressOk" />
+      <van-area wx:if="{{popupType === 'carAddress'}}" area-list="{{ areaData }}" bind:cancel="addressCancel" bind:confirm="addressOk" />
     </van-popup>
+  </view>
 </view>

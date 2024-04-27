@@ -4,6 +4,7 @@
   flex-direction: column;
   height: 100vh;
   background-color: rgba(245, 247, 250, 1);
+  font-family: PingFang SC, PingFang SC;
 }
 .form-title{
   height: 46px;

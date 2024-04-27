@@ -8,6 +8,7 @@
   box-sizing: border-box;
   border-bottom: 1px solid rgba(243, 243, 243, 1);
   background: #fff;
+  font-family: PingFang SC, PingFang SC;
 }
 .main-card-avater{
   width: 50px;

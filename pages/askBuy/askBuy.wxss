@@ -1,6 +1,7 @@
 /* pages/askBuy/askBuy.wxss */
 .ask-buy-page{
     padding: 15px;
+    font-family: PingFang SC, PingFang SC;
 }
 .remark-content{
     display: flex;

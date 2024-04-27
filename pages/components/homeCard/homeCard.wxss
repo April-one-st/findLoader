@@ -3,6 +3,7 @@
     display: flex;
     padding: 13px 15px 11px 15px;
     border-bottom: 1px solid #F3F3F3;
+    font-family: PingFang SC, PingFang SC;
 }
 .avatar{
     width: 50px;

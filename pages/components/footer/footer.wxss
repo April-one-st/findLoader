@@ -8,6 +8,7 @@
   border-top: 1px solid #ccc;
   flex: 1;
   background-color: #fff;
+  font-family: PingFang SC, PingFang SC;
 }
 .footer-conter {
   display: flex;

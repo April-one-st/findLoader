@@ -2,6 +2,7 @@
 .open-vip-page{
   background-color: rgba(245, 247, 250, 1);
   height: 100vh;
+  font-family: PingFang SC, PingFang SC;
 }
 .brief-title{
   padding: 15px;

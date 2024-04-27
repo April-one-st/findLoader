@@ -4,6 +4,7 @@
   height: calc(100vh - 567px); 
   overflow: auto;
   background: #fff;
+  font-family: PingFang SC, PingFang SC;
 }
 .brief-title{
   padding: 15px;

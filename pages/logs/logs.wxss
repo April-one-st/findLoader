@@ -3,6 +3,7 @@ page {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: PingFang SC, PingFang SC;
 }
 .scrollarea {
   flex: 1;

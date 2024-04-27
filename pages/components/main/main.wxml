@@ -7,6 +7,7 @@
         <van-icon name="arrow-left" />
       </view>
       <view class="title">我的</view>
+      <view class="nav-right"></view>
     </view>
     <view class="user-info">
       <image class="user-header" src="/images/background.png" mode="" />

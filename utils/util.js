@@ -10,10 +10,7 @@ const fetch = {
             wx.request({
                 url: baseUrl + url,
                 method: method,
-                data:
-                method == "GET"
-                        ? data
-                        : JSON.stringify(data), // header这里根据业务情况自行选择需要还是不需要
+                data: method == "GET" ? data : JSON.stringify(data), // header这里根据业务情况自行选择需要还是不需要
                 header: header,
                 success: (res) => {
                     if (res.data.code == 500) {
@@ -145,100 +142,126 @@ const fetch = {
     delete(url, data, header) {
         return this.http(url, "DELETE", data, header);
     },
-    upload(url, filePath, formData, header = {}) {
+    upload(
+        url,
+        data,
+        header = {
+            "Content-Type": "multipart/form-data", // 设置请求头
+        }
+    ) {
         return new Promise((resolve, reject) => {
-            const token = wx.getStorageSync("token");
-            if (token) {
-                Object.assign(header, {
-                    "X-Access-Token": token,
-                });
-                wx.uploadFile({
-                    url: baseUrl + url,
-                    filePath: filePath,
-                    name: "file",
-                    header: header,
-                    formData: formData,
-                    success(res) {
-                        let uploadres = JSON.parse(res.data);
-                        if (uploadres.code === 200) {
-                            resolve(uploadres);
-                        } else if (uploadres.code === 401) {
-                            wx.showModal({
-                                title: "提示",
-                                content: "登录已过期，请重新登录",
-                                showCancel: false,
-                                confirmText: "确定",
-                                success(res) {
-                                    if (res.confirm) {
-                                        // token 已经失效，需要重新执行登录流程
-                                        wx.reLaunch({
-                                            url: "/pages/index/index",
-                                        });
-                                    }
-                                },
-                            });
-                        } else {
-                            wx.showToast({
-                                title: uploadres.message,
-                                icon: "none",
-                                duration: 3000,
-                            });
-                        }
-                    },
-                    fail(err) {
-                        reject(err);
-                    },
-                });
-            } else {
-                wx.checkSession({
-                    success() {
-                        //session_key 未过期，并且在本生命周期一直有效
-                        wx.uploadFile({
-                            url: baseUrl + url,
-                            filePath: filePath,
-                            name: "file",
-                            header: header,
-                            formData: formData,
-                            success(res) {
-                                let uploadres = JSON.parse(res.data);
-                                if (uploadres.code === 200) {
-                                    resolve(uploadres);
-                                } else if (uploadres.code === 401) {
-                                    wx.showModal({
-                                        title: "提示",
-                                        content: "登录已过期，请重新登录",
-                                        showCancel: false,
-                                        confirmText: "确定",
-                                        success(res) {
-                                            if (res.confirm) {
-                                                // token 已经失效，需要重新执行登录流程
-                                                wx.reLaunch({
-                                                    url: "/pages/index/index",
-                                                });
-                                            }
-                                        },
-                                    });
-                                } else {
-                                    wx.showToast({
-                                        title: uploadres.message,
-                                        icon: "none",
-                                        duration: 3000,
-                                    });
-                                }
-                            },
-                            fail(err) {
-                                reject(err);
-                            },
-                        });
-                    },
-                    fail() {
-                        // session_key 已经失效，需要重新执行登录流程
-                        wx.reLaunch({
-                            url: "/pages/index/index",
-                        });
-                    },
-                });
-            }
+            wx.uploadFile({
+                url: baseUrl + url, // 上传接口地址
+                filePath: data.filePath, // 要上传的文件路径
+                name: "file", // 服务器端接收文件的字段名
+                formData: data.formData,
+                header,
+                success: function (res) {
+                    // 上传成功后的处理逻辑
+                    if (res.data.code == 500) {
+                        Toast(res.data.msg);
+                        reject(res.data.msg);
+                    } else {
+                        resolve(res);
+                    }
+                },
+                fail: function (error) {
+                    // 上传失败后的处理逻辑
+                    console.error("上传失败", error);
+                },
+            });
+            // const token = wx.getStorageSync("token");
+            // if (token) {
+            //     Object.assign(header, {
+            //         "X-Access-Token": token,
+            //     });
+            //     wx.uploadFile({
+            //         url: baseUrl + url,
+            //         filePath: filePath,
+            //         name: "file",
+            //         header: header,
+            //         formData: formData,
+            //         success(res) {
+            //             let uploadres = JSON.parse(res.data);
+            //             if (uploadres.code === 200) {
+            //                 resolve(uploadres);
+            //             } else if (uploadres.code === 401) {
+            //                 wx.showModal({
+            //                     title: "提示",
+            //                     content: "登录已过期，请重新登录",
+            //                     showCancel: false,
+            //                     confirmText: "确定",
+            //                     success(res) {
+            //                         if (res.confirm) {
+            //                             // token 已经失效，需要重新执行登录流程
+            //                             wx.reLaunch({
+            //                                 url: "/pages/index/index",
+            //                             });
+            //                         }
+            //                     },
+            //                 });
+            //             } else {
+            //                 wx.showToast({
+            //                     title: uploadres.message,
+            //                     icon: "none",
+            //                     duration: 3000,
+            //                 });
+            //             }
+            //         },
+            //         fail(err) {
+            //             reject(err);
+            //         },
+            //     });
+            // } else {
+            //     wx.checkSession({
+            //         success() {
+            //             //session_key 未过期，并且在本生命周期一直有效
+            //             wx.uploadFile({
+            //                 url: baseUrl + url,
+            //                 filePath: filePath,
+            //                 name: "file",
+            //                 header: header,
+            //                 formData: formData,
+            //                 success(res) {
+            //                     let uploadres = JSON.parse(res.data);
+            //                     if (uploadres.code === 200) {
+            //                         resolve(uploadres);
+            //                     } else if (uploadres.code === 401) {
+            //                         wx.showModal({
+            //                             title: "提示",
+            //                             content: "登录已过期，请重新登录",
+            //                             showCancel: false,
+            //                             confirmText: "确定",
+            //                             success(res) {
+            //                                 if (res.confirm) {
+            //                                     // token 已经失效，需要重新执行登录流程
+            //                                     wx.reLaunch({
+            //                                         url: "/pages/index/index",
+            //                                     });
+            //                                 }
+            //                             },
+            //                         });
+            //                     } else {
+            //                         wx.showToast({
+            //                             title: uploadres.message,
+            //                             icon: "none",
+            //                             duration: 3000,
+            //                         });
+            //                     }
+            //                 },
+            //                 fail(err) {
+            //                     reject(err);
+            //                 },
+            //             });
+            //         },
+            //         fail() {
+            //             // session_key 已经失效，需要重新执行登录流程
+            //             wx.reLaunch({
+            //                 url: "/pages/index/index",
+            //             });
+            //         },
+            //     });
+            // }
         });
     },
 };
@@ -360,92 +383,121 @@ const fetchDiy = {
         return this.http(url, "DELETE", data, header);
     },
 
-    upload(url, filePath, formData, header = {}) {
+    upload(
+        url,
+        data,
+        header = {
+            "Content-Type": "multipart/form-data", // 设置请求头
+        }
+    ) {
         return new Promise((resolve, reject) => {
-            const token = wx.getStorageSync("token");
-            if (token) {
-                Object.assign(header, {
-                    "X-Access-Token": token,
-                });
-                wx.uploadFile({
-                    url: baseUrl + url,
-                    filePath: filePath,
-                    name: "file",
-                    header: header,
-                    formData: formData,
-                    success(res) {
-                        let uploadres = JSON.parse(res.data);
-                        if (uploadres.code === 200) {
-                            resolve(uploadres);
-                        } else if (uploadres.code === 401) {
-                            wx.showModal({
-                                title: "提示",
-                                content: "登录已过期，请重新登录",
-                                showCancel: false,
-                                confirmText: "确定",
-                                success(res) {
-                                    if (res.confirm) {
-                                        // token 已经失效，需要重新执行登录流程
-                                        wx.reLaunch({
-                                            url: "/pages/index/index",
-                                        });
-                                    }
-                                },
-                            });
-                        } else {
-                            resolve(uploadres);
-                        }
-                    },
-                    fail(err) {
-                        reject(err);
-                    },
-                });
-            } else {
-                wx.checkSession({
-                    success() {
-                        //session_key 未过期，并且在本生命周期一直有效
-                        wx.uploadFile({
-                            url: baseUrl + url,
-                            filePath: filePath,
-                            name: "file",
-                            header: header,
-                            formData: formData,
-                            success(res) {
-                                let uploadres = JSON.parse(res.data);
-                                if (uploadres.code === 200) {
-                                    resolve(uploadres);
-                                } else if (uploadres.code === 401) {
-                                    wx.showModal({
-                                        title: "提示",
-                                        content: "登录已过期，请重新登录",
-                                        showCancel: false,
-                                        confirmText: "确定",
-                                        success(res) {
-                                            if (res.confirm) {
-                                                // token 已经失效，需要重新执行登录流程
-                                                wx.reLaunch({
-                                                    url: "/pages/index/index",
-                                                });
-                                            }
-                                        },
-                                    });
-                                } else {
-                                    resolve(uploadres);
-                                }
-                            },
-                            fail(err) {
-                                reject(err);
-                            },
-                        });
-                    },
-                    fail() {
-                        // session_key 已经失效，需要重新执行登录流程
-                        wx.reLaunch({
-                            url: "/pages/index/index",
-                        });
-                    },
-                });
-            }
+            wx.uploadFile({
+                url: baseUrl + url, // 上传接口地址
+                filePath: data.filePath, // 要上传的文件路径
+                name: "file", // 服务器端接收文件的字段名
+                formData: data.formData,
+                header: {
+                    "Content-Type": "multipart/form-data", // 设置请求头
+                },
+                success: function (res) {
+                    // 上传成功后的处理逻辑
+                    if (res.data.code == 500) {
+                        Toast(res.data.msg);
+                        reject(res.data.msg);
+                    } else {
+                        resolve(res);
+                    }
+                },
+                fail: function (error) {
+                    // 上传失败后的处理逻辑
+                    console.error("上传失败", error);
+                },
+            });
+            // const token = wx.getStorageSync("token");
+            // if (token) {
+            //     Object.assign(header, {
+            //         "X-Access-Token": token,
+            //     });
+            //     wx.uploadFile({
+            //         url: baseUrl + url,
+            //         filePath: filePath,
+            //         name: "file",
+            //         header: header,
+            //         formData: formData,
+            //         success(res) {
+            //           resolve(res)
+            //             // let uploadres = JSON.parse(res.data);
+            //             // if (uploadres.code === 200) {
+            //             //     resolve(uploadres);
+            //             // } else if (uploadres.code === 401) {
+            //             //     wx.showModal({
+            //             //         title: "提示",
+            //             //         content: "登录已过期，请重新登录",
+            //             //         showCancel: false,
+            //             //         confirmText: "确定",
+            //             //         success(res) {
+            //             //             if (res.confirm) {
+            //             //                 // token 已经失效，需要重新执行登录流程
+            //             //                 wx.reLaunch({
+            //             //                     url: "/pages/index/index",
+            //             //                 });
+            //             //             }
+            //             //         },
+            //             //     });
+            //             // } else {
+            //             //     resolve(uploadres);
+            //             // }
+            //         },
+            //         fail(err) {
+            //             reject(err);
+            //         },
+            //     });
+            // } else {
+            //     wx.checkSession({
+            //         success() {
+            //             //session_key 未过期，并且在本生命周期一直有效
+            //             wx.uploadFile({
+            //                 url: baseUrl + url,
+            //                 filePath: filePath,
+            //                 name: "file",
+            //                 header: header,
+            //                 formData: formData,
+            //                 success(res) {
+            //                     let uploadres = JSON.parse(res.data);
+            //                     if (uploadres.code === 200) {
+            //                         resolve(uploadres);
+            //                     } else if (uploadres.code === 401) {
+            //                         wx.showModal({
+            //                             title: "提示",
+            //                             content: "登录已过期，请重新登录",
+            //                             showCancel: false,
+            //                             confirmText: "确定",
+            //                             success(res) {
+            //                                 if (res.confirm) {
+            //                                     // token 已经失效，需要重新执行登录流程
+            //                                     wx.reLaunch({
+            //                                         url: "/pages/index/index",
+            //                                     });
+            //                                 }
+            //                             },
+            //                         });
+            //                     } else {
+            //                         resolve(uploadres);
+            //                     }
+            //                 },
+            //                 fail(err) {
+            //                     reject(err);
+            //                 },
+            //             });
+            //         },
+            //         fail() {
+            //             // session_key 已经失效，需要重新执行登录流程
+            //             wx.reLaunch({
+            //                 url: "/pages/index/index",
+            //             });
+            //         },
+            //     });
+            // }
         });
     },
 };

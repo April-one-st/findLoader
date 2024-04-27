@@ -5,6 +5,7 @@
     padding: 12px 15px;
     border-bottom: 1px solid #E4E4E4;
     background-color: #fff;
+    font-family: PingFang SC, PingFang SC;
 }
 .card-avater {
     width: 118px;
@@ -16,6 +17,7 @@
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
+    font-family: PingFang SC, PingFang SC;
 }
 .card-title{
     font-size: 17px;
