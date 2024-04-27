@@ -24,8 +24,6 @@
         <span class="reset">重置</span>
     </view>
     <view class="buycard-content">
-        <HomeCard />
-        <HomeCard />
-        <HomeCard />
+      <HomeCard wx:for="{{ cardList }}" wx:key="index" info="{{ item }}"/>
     </view>
 </view>

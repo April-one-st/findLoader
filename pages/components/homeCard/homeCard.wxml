@@ -22,11 +22,11 @@
     </view>
     <view class="bottom">
       <view>
-        <view class="address">山东省.章丘区</view>
+        <view class="address">{{info.province}}.{{info.position}}</view>
         <view class="time">8分钟前</view>
       </view>
       <view>
-        <image class="card-telephone" src="/images/telephone.png" mode="" />
+        <image class="card-telephone" src="/images/telephone.png" mode="" bindtap="toCallPhone" data-phonenum="{{ info.phone }}" />
         <image class="card-leave" src="/images/leave.png" mode="" />
       </view>
     </view>

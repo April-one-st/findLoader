@@ -1,9 +1,6 @@
 // pages/components/buyCard/buyCard.js
-// pages/components/publish/publish.js
 import {getHomeListUlr, fileUpLoadUrl,publishUrl} from '../../../utils/api'
 const { fetch } = require("../../../utils/util");
-
-// index.js
 
 Component({
   /**
@@ -38,7 +35,8 @@ Component({
     districtValue: 'all',
     brandValue: 'all',
     modelValue: 'all',
-    yearValue: 'all'
+    yearValue: 'all',
+    cardList: []
   },
 
   /**
@@ -53,6 +51,7 @@ Component({
    */
   attached() {
     console.log('Component attached');
+    this.getDataList();
   },
 
   /**
@@ -83,7 +82,11 @@ Component({
     // 这里是自定义方法的定义
     getDataList() {
       const params = {}
-      fetch.get(getHomeListUlr, params).then().catch()
+      fetch.get(getHomeListUlr, params).then(res =>{
+        this.setData({
+          cardList: res.data.data.list
+        })
+      }).catch()
     }
   }
 });
