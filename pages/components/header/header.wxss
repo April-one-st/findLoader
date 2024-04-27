@@ -1,6 +1,6 @@
 /* pages/components/header/header.wxss */
 .header{
-  width: 100%;
+  width: calc(100% - 15px) ;
   height: 183px;
   padding: 44px 15px 15px 0px;
   position: relative;
