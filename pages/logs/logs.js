@@ -10,7 +10,8 @@ Page({
     },
     hasUserInfo: false,
     canIUseGetUserProfile: wx.canIUse('getUserProfile'),
-    canIUseNicknameComp: wx.canIUse('input.type.nickname')
+    canIUseNicknameComp: wx.canIUse('input.type.nickname'),
+    isRead: false
   },
   bindViewTap() {
     wx.redirectTo({
@@ -21,11 +22,13 @@ Page({
     // 点击后更换图片地址
     if(this.data.imageUrl === '/images/radio-false.png') {
       this.setData({
-        imageUrl: '/images/radio-true.png' // 更换后的图片地址
+        imageUrl: '/images/radio-true.png', // 更换后的图片地址
+        isRead: true
       });
     }else{
       this.setData({
-        imageUrl: '/images/radio-false.png' // 更换后的图片地址
+        imageUrl: '/images/radio-false.png', // 更换后的图片地址
+        isRead: false
       });
     }
   },
@@ -63,5 +66,52 @@ Page({
         })
       }
     })
+  },
+  
+  toAgreeAgreement() {
+    if(!this.data.isRead) {
+      wx.showToast({
+        title: '请阅读并勾选用户协议',
+        icon: 'none'
+      });
+      return
+    };
+  },
+  //绑定手机
+  getPhoneNumber: function (e) {
+    console.log(e);
+    this.logo();
+    //  需要做配置；涉及购买次数等。详情见--->  手机号快速验证组件 （微信官方文档）
+    // if(!e.detail.code) return;
+    // fetch.get('/wechat/minapp/getPhoneNumber', {
+    //   jsCode: e.detail.code ? e.detail.code : ''
+    // }).then(resolve => {
+    //   if(resolve.success) {
+    //     wx.login({
+    //       success: (res) => {
+    //         if(res.code) {
+    //           fetch.post('/wechat/minapp/login/phone', {
+    //             phoneNumber: resolve.result ? resolve.result : '',
+    //             jsCode: res.code
+    //           }).then(data => {
+    //             wx.removeStorageSync('token');
+    //             wx.showLoading({
+    //               title: '登录中，请稍后',
+    //             });
+    //             wx.setStorageSync('token', data.result);
+    //             this.getLoginUserInfo();
+    //           });
+    //         };
+    //       },
+    //     });
+    //   } else {
+    //     wx.showModal({
+    //       title: "错误",
+    //       content: resolve.message,
+    //       showCancel: false,
+    //       confirmText: "确定"
+    //     });
+    //   };
+    // });
   },
 })

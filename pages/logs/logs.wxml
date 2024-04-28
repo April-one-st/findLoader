@@ -5,7 +5,11 @@
       <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
         <image class="avatar" src="/images/logo.png"></image>
         <view>
-          <button class="login-btn" bindtap="logo">
+          <button wx:if="{{ !isRead }}" class="login-btn" bindtap="toAgreeAgreement">
+            <image style="width: 24px; height: 24px; margin-right: 7px;" src="/images/weixin-icon.png" alt=""/>
+            微信授权登录
+          </button>
+          <button wx:else class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
             <image style="width: 24px; height: 24px; margin-right: 7px;" src="/images/weixin-icon.png" alt=""/>
             微信授权登录
           </button>

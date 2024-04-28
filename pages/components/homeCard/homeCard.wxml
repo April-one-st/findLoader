@@ -4,9 +4,12 @@
   <view class="content">
     <view class="name">{{info.account.nick_name}}</view>
     <view class="remark">
-      {{info.brand}} {{info.brand_type}}
-      <span class="price">
-        ¥{{info.price}}w
+      {{ info.brand }}{{ info.brand_type }}{{ info.year }}年
+      <span wx:if="{{ info.price === 0 }}" class="price">
+        面议
+      </span>
+      <span wx:else="" class="price">
+        ¥{{ info.price }}w
       </span>
     </view>
     <view class="home-card-photo">
