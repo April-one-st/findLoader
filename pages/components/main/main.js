@@ -1,5 +1,5 @@
 // pages/userData/userData.js
-import {getHomeListUlr} from '../../../utils/api'
+import {getHomeListUrl, getUserInfoUrl, buyListUrl} from '../../../utils/api'
 const { fetch } = require("../../../utils/util");
 Component({
   /**
@@ -18,7 +18,23 @@ Component({
    */
   data: {
     // 这里是组件内部数据的定义
-    count: 0
+    count: 0,
+    userInfo: {
+        nick_name: '测试',
+        avatar: '../../../images/logo.png',
+        vip_time_str: '2024-05-01',
+        is_vip: true,
+        merchant: false,
+        phone: 110,
+        desc: '测试数据',
+        fans_count: '999',
+        follow_count: '999',
+        release_count: '999',
+        buy_message_count: '999',
+        is_follow: false
+    },
+    homeList: [],
+    buyCardList: []
   },
 
   /**
@@ -33,6 +49,7 @@ Component({
    */
   attached() {
     console.log('Component attached');
+    this.getUserInfo()
   },
 
   /**
@@ -60,15 +77,51 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 获取用户信息
+    getUserInfo(){
+        const params = {account_id: ''}
+        fetch.get(getUserInfoUrl, params).then(res => {
+            if(res.statusCode === 200){
+                // this.setData({
+                //     userInfo: res.data.data
+                // })
+                this.getHomeList(res.data.data)
+                this.getBuyList(res.data.data)
+            }
+        }).catch(err => {
+            console.log(err);
+        })
+    },
     // 获取首页列表
-    getHomeList(){
-      const params = {};
-      fetch.get(getHomeListUlr, params).then().catch()
+    getHomeList(data){
+      const params = {
+        account_id: data.id || ''
+      };
+      fetch.get(getHomeListUrl, params).then(res => {
+        if(res.statusCode === 200){
+            this.setData({
+                homeList: res.data.data.list
+            })
+        }
+      }).catch(err=>{
+          console.log(err);
+      })
     },
     // 获取求购列表
-    getBuyList() {
-      const params = {};
-      fetch.get(bugListUrl, params).then().catch()
+    getBuyList(data) {
+      const params = {
+        account_id: data.id
+      };
+      fetch.get(buyListUrl, params).then(res => {
+        if(res.statusCode === 200){
+            console.log('======>1', res);
+            this.setData({
+                buyCardList: res.data.data.list
+            })
+        }
+      }).catch(err => {
+          console.log(err);
+      })
     },
     // 跳转商户认证
     toAuthentication(){

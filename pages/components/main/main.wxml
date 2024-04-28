@@ -13,21 +13,24 @@
       <image class="user-header" src="/images/background.png" mode="" />
       <view class="info">
         <view class="user-name">
-          测试名称
+          {{userInfo.nick_name}}
         </view>
         <view class="user-tag">
-          普通会员
+          <image class="tag-vip" wx:if="{{userInfo.is_vip}}" src="/images/vip-true.png" alt=""/>
+          <image class="tag-vip"  wx:else src="/images/vip-false.png" alt=""/>
+          <image class="tag-merchant"  wx:if="{{userInfo.merchant}}" src="/images/merchant-true.png" alt=""/>
+          <image class="tag-merchant"  wx:else src="/images/merchant-false.png" alt=""/>
         </view>
       </view>
     </view>
     <view class="follow-vermicelli">
       <view class="follow-item">
-        <view class="number">11111</view>
+        <view class="number">{{userInfo.fans_count || '--'}}</view>
         <view class="follow-title">粉丝</view>
       </view>
       <view class="line"></view>
       <view class="follow-item">
-        <view class="number">11111</view>
+        <view class="number">{{userInfo.follow_count || '--'}}</view>
         <view class="follow-title">关注</view>
       </view>
       <view class="line"></view>
@@ -39,12 +42,12 @@
       <view class="vip-left">
         <view class="open-vip">
            <image class="vip-icon" src="" mode=""/>
-           <view class="vip-title">开通会员</view>
+           <view class="vip-title">{{userInfo.is_vip ? "续费会员" :"开通会员"}}</view>
         </view>
-        <view class="vip-text" wx:if="{{true}}">开通会员享更多服务</view>
+        <view class="vip-text" wx:if="{{true}}">{{userInfo.is_vip? "会员到期时间" + userInfo.vip_time_str :"开通会员享更多服务"}}</view>
       </view>
       <view class="vip-right" bind:tap="openVip">
-        立即开通
+        {{ userInfo.is_vip ? "立即续费" :"立即开通"}}
       </view>
     </view>
   </view>
@@ -64,21 +67,19 @@
   <view class="user-info-contet">
     <van-tabs active="{{ active }}" bind:change="onChange">
       <van-tab title="首页">
-        <view style="padding-bottom: 92px;height: calc(100vh - 567px); overflow: auto;">
-          <Card />
-          <Card />
-          <Card />
+        <view style="margin-bottom: 92px;height: calc(100vh - 603px); overflow: auto;">
+          <Card wx:for="{{ homeList }}" wx:key="index" info="{{ item }}" />
         </view>
       </van-tab>
       <van-tab title="求购">
-        <view style="padding-bottom: 92px;height: calc(100vh - 567px); overflow: auto;">
-          <MainCard></MainCard>
+        <view style="padding-bottom: 92px;height: calc(100vh - 603px); overflow: auto;">
+          <MainCard wx:for="{{ buyCardList }}" wx:key="index" info="{{ item }}"></MainCard>
           <MainCard></MainCard>
           <MainCard></MainCard>
         </view>
       </van-tab>
       <van-tab title="简介">
-        <briefIntroduction></briefIntroduction>
+        <briefIntroduction info="{{ item }}" ></briefIntroduction>
       </van-tab>
     </van-tabs>
   </view>

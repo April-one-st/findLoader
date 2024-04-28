@@ -1,10 +1,10 @@
 <!--pages/components/card/card.wxml-->
 <view class="card-component">
-    <image class="card-avater" src="/images/background.png" mode=""/>
+    <image class="card-avater" src="{{info.image_desc[0].url}}" mode=""/>
     <view class="card-content">
-        <view  class="card-title">其他60以上装载机</view>
-        <view class="address">四川省·市中区青衣路</view>
-        <view class="info">2000年 11分钟前 展现：12533次</view>
-        <view class="pirce">面议</view>
+        <view  class="card-title">{{info.brand}} {{info.brand_type}}</view>
+        <view class="address">{{info.province}}.{{info.city}}.{{info.position}}</view>
+        <view class="info">{{info.release_time}} 展现：{{"111"}} 次</view>
+        <view class="pirce">{{info.price}}</view>
     </view>
 </view>

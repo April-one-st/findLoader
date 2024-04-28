@@ -1,5 +1,5 @@
 // pages/components/buyCard/buyCard.js
-import {getHomeListUlr, fileUpLoadUrl,publishUrl} from '../../../utils/api'
+import {getHomeListUrl, fileUpLoadUrl,publishUrl} from '../../../utils/api'
 const { fetch } = require("../../../utils/util");
 
 Component({
@@ -82,7 +82,7 @@ Component({
     // 这里是自定义方法的定义
     getDataList() {
       const params = {}
-      fetch.get(getHomeListUlr, params).then(res =>{
+      fetch.get(getHomeListUrl, params).then(res =>{
         this.setData({
           cardList: res.data.data.list
         })

@@ -1,7 +1,7 @@
 /* pages/components/briefIntroduction/briefIntroduction.wxss */
 .brief-page{
   padding-bottom: 92px;
-  height: calc(100vh - 567px); 
+  height: calc(100vh - 610px); 
   overflow: auto;
   background: #fff;
   font-family: PingFang SC, PingFang SC;
@@ -67,6 +67,11 @@
   color: rgba(102, 102, 102, 1);
   font-size: 15px;
   line-height: 21px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3; /* 控制显示的行数 */
+  word-wrap: break-word;
 }
 .brief-image{
   padding: 0 15px;
@@ -77,4 +82,8 @@
   background-color: rgba(249, 249, 249, 1);
   color: rgba(102, 102, 102, 1);
   font-size: 15px;
+}
+.brief-image-item{
+    width: 100%;
+    height: 195px;
 }

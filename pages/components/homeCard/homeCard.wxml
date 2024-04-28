@@ -2,11 +2,11 @@
 <view class="card">
   <image catchtap="toUserInfo" class="avatar" src="/images/background.png" mode="" />
   <view class="content">
-    <view class="name">宏鑫建材</view>
+    <view class="name">{{info.account.nick_name}}</view>
     <view class="remark">
-      临工953装载机2022年
+      {{info.brand}} {{info.brand_type}}
       <span class="price">
-        ¥5.1w
+        ¥{{info.price}}w
       </span>
     </view>
     <view class="home-card-photo">
@@ -18,12 +18,12 @@
       <image class="photo-item" src="/images/background.png" mode="" />
     </view>
     <view class="Instructions">
-      个人用车，保养及时，全车原版，性能无敌， 车是真好，可随时看车，随便试车...更多
+      {{info.desc}}
     </view>
     <view class="bottom">
       <view>
-        <view class="address">{{info.province}}.{{info.position}}</view>
-        <view class="time">8分钟前</view>
+        <view class="address">{{info.province}}.{{info.city}}.{{info.position}}</view>
+        <view class="time">{{info.account.UpdatedAt}}</view>
       </view>
       <view>
         <image class="card-telephone" src="/images/telephone.png" mode="" bindtap="toCallPhone" data-phonenum="{{ info.phone }}" />

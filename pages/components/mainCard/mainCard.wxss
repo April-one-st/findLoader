@@ -34,7 +34,14 @@
 .main-card-text{
   color: rgba(51, 51, 51, 1);
   font-size: 14px;
+  line-height: 16px;
   width: 280px;
+  /* height: 50px; */
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3; /* 控制显示的行数 */
 }
 .main-card-time{
   color: rgba(51, 51, 51, 1);

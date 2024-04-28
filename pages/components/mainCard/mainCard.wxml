@@ -4,7 +4,7 @@
   <view class="main-card-content">
     <view class="main-card-title">找铲车</view>
     <view class="main-card-tag">#求购需求</view>
-    <view class="main-card-text">个人用车，保养及时，全车原版，性能无敌， 车是真好，可随时看车，随便试车...更多</view>
-    <view class="main-card-time">8分钟前</view>
+    <view class="main-card-text">{{info.text}}</view>
+    <view class="main-card-time">{{info.updated_at}}</view>
   </view>
 </view>
