@@ -4,9 +4,12 @@
   <view class="content">
     <view class="name">宏鑫建材</view>
     <view class="remark">
-      临工953装载机2022年
-      <span class="price">
-        ¥5.1w
+      {{ info.brand }}{{ info.brand_type }}{{ info.year }}年
+      <span wx:if="{{ info.price === 0 }}" class="price">
+        面议
+      </span>
+      <span wx:else="" class="price">
+        ¥{{ info.price }}w
       </span>
     </view>
     <view class="home-card-photo">
@@ -18,12 +21,12 @@
       <image class="photo-item" src="/images/background.png" mode="" />
     </view>
     <view class="Instructions">
-      个人用车，保养及时，全车原版，性能无敌， 车是真好，可随时看车，随便试车...更多
+      {{ info.desc }}
     </view>
     <view class="bottom">
       <view>
         <view class="address">{{info.province}}.{{info.position}}</view>
-        <view class="time">8分钟前</view>
+        <view class="time">{{ info.created_at }}</view>
       </view>
       <view>
         <image class="card-telephone" src="/images/telephone.png" mode="" bindtap="toCallPhone" data-phonenum="{{ info.phone }}" />

@@ -1,6 +1,6 @@
 // pages/components/buyCard/buyCard.js
 import {getHomeListUlr, fileUpLoadUrl,publishUrl} from '../../../utils/api'
-const { fetch } = require("../../../utils/util");
+const { fetch, formatTime } = require("../../../utils/util");
 
 Component({
   /**
@@ -82,7 +82,10 @@ Component({
     // 这里是自定义方法的定义
     getDataList() {
       const params = {}
-      fetch.get(getHomeListUlr, params).then(res =>{
+      fetch.get(getHomeListUlr, params).then(res => {
+        res.data.data.list.forEach(el => {
+          el.created_at = formatTime(new Date(el.created_at))
+        });
         this.setData({
           cardList: res.data.data.list
         })
