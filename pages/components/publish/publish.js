@@ -2,6 +2,7 @@
 import Toast from '@vant/weapp/toast/toast';
 import {getBrandCodeUrl, fileUpLoadUrl,publishUrl} from '../../../utils/api'
 const { fetch } = require("../../../utils/util");
+const {areaList} = require("../../../utils/areaList")
 // import { areaList } from '@vant/area-data';
 const app = getApp(); //引入全局对象
 const areaData = {
@@ -38,7 +39,7 @@ Component({
         telephone: "",
         showPopup: false,
         popupType: '', //弹出框类型 brand：品牌型号， carAge: 车龄， carAddress：车辆位置
-        areaData: areaData,
+        areaData: areaList,
         column: [],
         carAgecolumns: [],
         actions: [
