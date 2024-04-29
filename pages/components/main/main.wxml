@@ -58,7 +58,7 @@
         <view class="shop-text">成为商家</view>
       </view>
       <view class="shop-left"></view>
-      <view class="shop-item">
+      <view class="shop-item" bind:tap="toRealName">
         <image class="shop-icon" src="/images/id-icon.png" mode=""/>
         <view class="shop-text">实名认证</view>
       </view>

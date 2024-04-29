@@ -6,7 +6,7 @@
         label="姓名"
         border="{{ true }}"
         placeholder="请输入真实姓名"
-        bind:change="onChange"
+        bind:change="nameChange"
     >
     </van-field>
     <van-field
@@ -14,7 +14,7 @@
         label="身份证号"
         border="{{ true }}"
         placeholder="请输入身份证号"
-        bind:change="onChange"
+        bind:change="idChange"
     >
     </van-field>
     <view class="form-title"> 上传身份证正反面（仅用于平台认证） </view>
@@ -24,9 +24,13 @@
             <view class="placeholder"> 上传您的身份证头像面 </view>
         </view>
         <van-uploader 
-        style="width: 172px; height: 115px;"
+        preview-size="115px"
         max-count="{{1}}"
-        file-list="{{ fileList }}" bind:after-read="afterRead" />
+        file-list="{{ isFileList }}" 
+        data-extra-param="is"
+        bind:after-read="afterRead"
+        bind:delete="delFileList"
+        />
     </view>
     <view class="form-upLoad">
         <view>
@@ -34,9 +38,13 @@
             <view class="placeholder"> 上传您的身份证国徽面 </view>
         </view>
         <van-uploader 
-        style="width: 172px; height: 115px;"
+        preview-size="115px"
         max-count="{{1}}"
-        file-list="{{ fileList }}" bind:after-read="afterRead" />
+        file-list="{{ theFileList }}" 
+        data-extra-param="the"
+        bind:after-read="afterRead" 
+        bind:delete="delFileList"
+        />
     </view>
     <view class="remark">
         <image class="icon" src="/images/secure.png" mode=""/>
@@ -49,6 +57,7 @@
             size="large"
             color="rgba(0, 71, 159, 1)"
             style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
+            bind:tap="submit"
         >发布</van-button>
     </view>
     </view>

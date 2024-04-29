@@ -23,8 +23,7 @@
       <view class="license-upLoad-tips">需文字清晰，边框完整，漏出国徽</view>
       <view class="license-upLoad-example">
         <image class="example" src="/images/shili.png" />
-        <van-uploader class="file-upLoad" file-list="{{ fileList }} "
-        max-count="{{2}}" bind:after-read="afterRead" bind:delete="delFileList" />
+        <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="{{1}}" bind:delete="delFileList" preview-size="115px" />
       </view>
     </view>
     <view class="bottom">

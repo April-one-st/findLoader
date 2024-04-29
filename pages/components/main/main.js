@@ -129,6 +129,12 @@ Component({
         url: '/pages/authentication/authentication'
       })
     },
+    // 跳转实名认证
+    toRealName() {
+        wx.navigateTo({
+            url: '/pages/realName/realName'
+          })
+    },
     // 跳转开通vip
     openVip(){
       wx.navigateTo({

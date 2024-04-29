@@ -60,3 +60,9 @@
     justify-content: center;
     align-items: center;
 }
+
+.van-uploader__preview-image {
+    width: 175px !important;
+    height: 115px !important;
+    object-fit: cover; /* 或者其他填充方式，如 contain */
+  }
