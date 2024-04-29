@@ -41,7 +41,7 @@
     <view class="vip">
       <view class="vip-left">
         <view class="open-vip">
-           <image class="vip-icon" src="" mode=""/>
+           <image class="vip-icon" src="/images/vip-icon.png" mode=""/>
            <view class="vip-title">{{userInfo.is_vip ? "续费会员" :"开通会员"}}</view>
         </view>
         <view class="vip-text" wx:if="{{true}}">{{userInfo.is_vip? "会员到期时间" + userInfo.vip_time_str :"开通会员享更多服务"}}</view>
@@ -74,12 +74,12 @@
       <van-tab title="求购">
         <view style="padding-bottom: 92px;height: calc(100vh - 603px); overflow: auto;">
           <MainCard wx:for="{{ buyCardList }}" wx:key="index" info="{{ item }}"></MainCard>
-          <MainCard></MainCard>
-          <MainCard></MainCard>
         </view>
       </van-tab>
       <van-tab title="简介">
-        <briefIntroduction info="{{ item }}" ></briefIntroduction>
+        <view style="padding-bottom: 92px;height: calc(100vh - 603px); overflow: auto;">
+            <briefIntroduction info="{{ item }}" ></briefIntroduction>
+        </view>
       </van-tab>
     </van-tabs>
   </view>

@@ -1,27 +1,34 @@
 <!--pages/components/buyCard/buyCard.wxml-->
 <view class="buy-card-page">
     <Header></Header>
-    <van-dropdown-menu>
-        <van-dropdown-item value="{{ districtValue }}" options="{{ districtOptions }}" />
-        <van-dropdown-item value="{{ brandValue }}" options="{{ brandOptions }}" />
-        <van-dropdown-item value="{{ modelValue }}" options="{{ modelOptions }}" />
-        <van-dropdown-item value="{{ yearValue }}" options="{{ yearOptions }}" />
+    <van-dropdown-menu >
+        <van-dropdown-item title="{{areaTitle}}" toggle="{{false}}" id="gender">
+            <view style="padding-top: 20px;">
+                <van-area area-list="{{ areaList }}" bind:cancel="addressCancel" bind:confirm="addressOk" />
+            </view>
+        </van-dropdown-item>
+        <van-dropdown-item title="品牌" value="{{ brandValue }}" options="{{ brandOptions }}" bind:change="brandChange"/>
+        <van-dropdown-item title="型号" value="{{ modelValue }}" options="{{ modelOptions}}" bind:change="modelChange" />
+        <van-dropdown-item title="年限" value="{{ yearValue }}" options="{{ yearOptions }}" bind:change="yearValueChange" />
     </van-dropdown-menu>
-    <view class="screen">
+    <view class="screen" wx:if="{{tagList.length}}">
         <image class="screen-image" src="/images/screen.png" mode=""/>
         <view class="screen-item">
             <van-tag
+                style="margin: 0 5px;"
+                wx:for="{{tagList}}"
+                wx:key="{{item.id}}"
                 plain
                 closeable
                 size="medium"
                 type="primary"
-                id="primary"
-                bind:close="onClose"
+                id="{{item.id}}"
+                bind:close="tagClose"
                 >
-                标签
+                {{item.name}}
             </van-tag>
         </view>
-        <span class="reset">重置</span>
+        <span class="reset" bind:tap="reset">重置</span>
     </view>
     <view class="buycard-content">
       <HomeCard wx:for="{{ cardList }}" wx:key="index" info="{{ item }}"/>

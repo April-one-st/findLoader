@@ -57,8 +57,9 @@ Component({
    */
   methods: {
     toUserInfo() {
+        console.log(this.properties.info.account.id);
       wx.navigateTo({
-          url: '/pages/userData/userData'
+          url: '/pages/userData/userData?id=' + this.properties.info.account.id
         })
     },
     toCallPhone(e) {

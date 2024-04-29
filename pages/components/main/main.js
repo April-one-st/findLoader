@@ -82,9 +82,9 @@ Component({
         const params = {account_id: ''}
         fetch.get(getUserInfoUrl, params).then(res => {
             if(res.statusCode === 200){
-                // this.setData({
-                //     userInfo: res.data.data
-                // })
+                this.setData({
+                    userInfo: res.data.data
+                })
                 this.getHomeList(res.data.data)
                 this.getBuyList(res.data.data)
             }

@@ -153,10 +153,12 @@
 }
 .open-vip{
   display: flex;
+  align-items: center;
 }
 .vip-icon{
   width: 25px;
   height: 23px;
+  margin-right: 5px;
 }
 .vip-title{
   font-family: Alimama ShuHeiTi, Alimama ShuHeiTi;

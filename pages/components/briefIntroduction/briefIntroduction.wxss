@@ -1,7 +1,7 @@
 /* pages/components/briefIntroduction/briefIntroduction.wxss */
 .brief-page{
   padding-bottom: 92px;
-  height: calc(100vh - 610px); 
+  /* height: calc(100vh - 610px);  */
   overflow: auto;
   background: #fff;
   font-family: PingFang SC, PingFang SC;

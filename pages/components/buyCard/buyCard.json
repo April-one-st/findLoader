@@ -4,7 +4,9 @@
     "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
     "van-dropdown-item": "@vant/weapp/dropdown-item/index",
     "HomeCard": "/pages/components/homeCard/homeCard",
-    "van-tag": "@vant/weapp/tag/index"
+    "van-tag": "@vant/weapp/tag/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-popup": "@vant/weapp/popup/index"
   },
   "navigationBarTitleText": "",
   "navigationStyle": "custom"

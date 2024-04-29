@@ -3,22 +3,6 @@ import Toast from '@vant/weapp/toast/toast';
 import {getBrandCodeUrl, fileUpLoadUrl,publishUrl} from '../../../utils/api'
 const { fetch } = require("../../../utils/util");
 const {areaList} = require("../../../utils/areaList")
-// import { areaList } from '@vant/area-data';
-const app = getApp(); //引入全局对象
-const areaData = {
-    province_list: {
-        110000: "北京市",
-        // 其他省份...
-    },
-    city_list: {
-        110100: "北京市",
-        // 其他城市...
-    },
-    county_list: {
-        110101: "东城区",
-        // 其他区县...
-    },
-};
 Component({
   properties: {
     getCurrentPage: {

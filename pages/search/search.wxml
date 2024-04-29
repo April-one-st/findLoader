@@ -5,14 +5,13 @@
             value="{{ value }}"
             placeholder="请输入搜索关键词"
             use-action-slot
-            bind:change="onChange"
-            bind:search="onSearch"
+            bind:change="searchChange"
         >
         <view class="search-btn" slot="action" bind:tap="onClick">搜索</view>
         </van-search>
     </view>
     <view class="search-content">
-        <view class="hot-search">
+        <!-- <view class="hot-search">
             <view class="hot-title">热门搜索</view>
             <view class="hot-tag">
                 <span class="hot-tag-item">
@@ -35,18 +34,9 @@
                 </span>
 
             </view>
-        </view>
+        </view> -->
         <view>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <Card wx:for="{{ cardList }}" wx:key="index" info="{{ item }}" />
         </view>
     </view>
     <view class="bottom"></view>

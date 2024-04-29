@@ -22,8 +22,9 @@
       <view class="license-upLoad-title">上传营业执照</view>
       <view class="license-upLoad-tips">需文字清晰，边框完整，漏出国徽</view>
       <view class="license-upLoad-example">
-        <image class="example" src="/images/background.png" />
-        <van-uploader class="file-upLoad" file-list="{{ [] }}" bind:after-read="afterRead" />
+        <image class="example" src="/images/shili.png" />
+        <van-uploader class="file-upLoad" file-list="{{ [] }} "
+        max-count="{{1}}" bind:after-read="afterRead" />
       </view>
     </view>
     <view class="bottom">
