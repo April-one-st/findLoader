@@ -245,7 +245,9 @@ Component({
                 type: 'success',
                 message: '发布成功'
               });
-              this.triggerEvent('customEvent', '买车');
+              setTimeout(() => {
+                  this.triggerEvent('customEvent', '买车');
+              }, 1000)
             }
           }).catch(err => {
             console.log(err);

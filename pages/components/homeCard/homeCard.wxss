@@ -53,6 +53,16 @@
 }
 .address {
     color: #00479f;
+    width: 130px;
+    white-space: nowrap; /* 文本不换行 */
+    overflow: hidden; /* 溢出部分隐藏 */
+    text-overflow: ellipsis; /* 显示省略号 */
+}
+.time {
+    width: 130px;
+    white-space: nowrap; /* 文本不换行 */
+    overflow: hidden; /* 溢出部分隐藏 */
+    text-overflow: ellipsis; /* 显示省略号 */
 }
 .card-telephone {
     width: 63px;

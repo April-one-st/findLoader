@@ -23,7 +23,7 @@
       </view>
     </view>
     <view class="form-photo">
-      <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="{{18}}" bind:delete="delFileList" />
+      <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="{{18}}" bind:delete="delFileList"  multiple />
     </view>
     <van-field value="{{ remark }}" label="描述" border="{{ true }}" placeholder="描述（可不填）" bind:change="remarkChange">
     </van-field>

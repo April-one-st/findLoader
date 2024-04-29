@@ -18,9 +18,11 @@ Page({
               type: 'success',
               message: '发布成功'
             });
-            wx.redirectTo({
-              url: '/pages/home/home'
-            })
+            setTimeout(() => {
+                wx.redirectTo({
+                  url: '/pages/home/home'
+                })
+            }, 1000)
           }
         }).catch(err => {
           console.log(err);
