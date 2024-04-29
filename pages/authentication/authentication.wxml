@@ -2,19 +2,19 @@
 <view class="authentication-page">
   <view class="form-title"> 商家信息 </view>
   <van-field
-        value="{{ remark }}"
+        value="{{ name }}"
         label="商家名称"
         border="{{ true }}"
         placeholder="请输入商家名称"
-        bind:change="onChange"
+        bind:change="inputName"
     >
     </van-field>
     <van-field
-        value="{{ remark }}"
+        value="{{ phone }}"
         label="联系电话"
         border="{{ true }}"
         placeholder="请输入联系电话"
-        bind:change="onChange"
+        bind:change="inputPhone"
     >
     </van-field>
     <view class="form-title"> 资质认证（仅用于平台认证） </view>
@@ -23,8 +23,8 @@
       <view class="license-upLoad-tips">需文字清晰，边框完整，漏出国徽</view>
       <view class="license-upLoad-example">
         <image class="example" src="/images/shili.png" />
-        <van-uploader class="file-upLoad" file-list="{{ [] }} "
-        max-count="{{1}}" bind:after-read="afterRead" />
+        <van-uploader class="file-upLoad" file-list="{{ fileList }} "
+        max-count="{{2}}" bind:after-read="afterRead" bind:delete="delFileList" />
       </view>
     </view>
     <view class="bottom">
@@ -34,6 +34,7 @@
             size="large"
             color="rgba(0, 71, 159, 1)"
             style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
+            bindtap="submit"
         >提交审核</van-button>
     </view>
     </view>
