@@ -10,5 +10,6 @@ module.exports = {
   newsListUrl: '/api/v1/news/list',
   newsReadUrl: '/api/v1/news/red/{id}',
   openVipUrl: '/api/v1/vip',
-  buyListUrl: '/api/v1/buy_message/list'
+  buyListUrl: '/api/v1/buy_message/list',
+  
 };

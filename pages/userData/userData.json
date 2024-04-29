@@ -5,7 +5,8 @@
     "van-tabs": "@vant/weapp/tabs/index",
     "Card": "/pages/components/card/card",
     "MainCard":"/pages/components/mainCard/mainCard",
-    "briefIntroduction":"/pages/components/briefIntroduction/briefIntroduction"
+    "briefIntroduction":"/pages/components/briefIntroduction/briefIntroduction",
+    "van-toast": "@vant/weapp/toast/index"
   },
   "navigationBarTitleText": "",
   "navigationStyle": "custom"

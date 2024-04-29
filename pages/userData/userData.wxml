@@ -54,9 +54,10 @@
         </van-tabs>
     </view>
     <view class="user-data-bottom">
-        <view wx:for="{{btnList}}" class="bottom-item {{item.className}}"  wx:key="{{item.label}}">
-            <image class="btn-icon" src="{{item.icon}}" mode=""/>
+        <view wx:for="{{btnList}}" class="bottom-item {{item.className}}"  wx:key="{{item.label}}" bind:tap="btnClick" data-id="{{item.label}}" data-phonenum="{{ userInfo.phone }}" >
+            <image wx:if="{{!!item.icon}}" class="btn-icon" src="{{item.icon}}" mode=""/>
             {{item.label}}
         </view>
     </view>
+    <van-toast id="van-toast" />
 </view>

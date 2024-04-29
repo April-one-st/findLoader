@@ -1,5 +1,11 @@
 // pages/userData/userData.js
-import { getHomeListUrl, getUserInfoUrl, buyListUrl } from "../../utils/api";
+import Toast from '@vant/weapp/toast/toast';
+import {
+    getHomeListUrl,
+    getUserInfoUrl,
+    buyListUrl,
+    setFollowStateUrl,
+} from "../../utils/api";
 const { fetch } = require("../../utils/util");
 Page({
     /**
@@ -43,9 +49,17 @@ Page({
             .get(getUserInfoUrl, params)
             .then((res) => {
                 if (res.statusCode === 200) {
-                    this.setData({
-                        userInfo: res.data.data
+                    const _data = this.data.btnList.map(item => {
+                        if(item.className === 'add' && !res.data.data.is_follow){
+                            return {label: "取消关注", className: "add", icon: "" }
+                        }else{
+                            return item
+                        }
                     })
+                    this.setData({
+                        userInfo: res.data.data,
+                        btnList: _data
+                    });
                     this.getHomeList(res.data.data);
                     this.getBuyList(res.data.data);
                 }
@@ -91,10 +105,68 @@ Page({
                 console.log(err);
             });
     },
+    // 返回上一页
     toBack() {
         wx.navigateBack({
             delta: 1, // 返回的页面数，1表示返回上一页，2表示返回上两页，以此类推
         });
+    },
+    // 按钮事件
+    btnClick(e) {
+        const data = e.target.dataset;
+        const name = data.id;
+        const phone = data.phpne;
+        if (name === "消息") {
+            wx.redirectTo({
+                url: "/pages/home/home?page=消息",
+            });
+        }
+        if (name === "关注" || name==="取消关注") {
+            fetch.post(setFollowStateUrl, {
+                target_account_id: this.data.userInfo.id,
+                state: this.data.userInfo.is_follow ? 1 : 2,
+            }).then(res => {
+                console.log(res);
+                if(res.statusCode === 200) {
+                    Toast({
+                      context: this,
+                      type: 'success',
+                      message: res.data.data
+                    });
+                    if(res.data.data === '已取消关注') {
+                        const _data = this.data.btnList.map(item => {
+                            if(item.className === 'add'){
+                                return {label: "关注", className: "add", icon: "/images/add.png" }
+                            }else{
+                                return item
+                            }
+                        })
+                        console.log(111, _data);
+                        this.setData({
+                            btnList: _data
+                        });
+                    }else{
+                        const _data = this.data.btnList.map(item => {
+                            if(item.className === 'add'){
+                                return {label: "取消关注", className: "add", icon: "" }
+                            }else{
+                                return item
+                            }
+                        })
+                        this.setData({
+                            btnList: _data
+                        });
+                    }
+                  }
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+        if (name === "呼叫") {
+            wx.makePhoneCall({
+                phoneNumber: phone,
+            });
+        }
     },
     /**
      * 生命周期函数--监听页面加载

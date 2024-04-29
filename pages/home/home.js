@@ -12,7 +12,6 @@ Page({
         currentPage: e.detail
     })
     const footerObj = this.selectComponent('.footer-current');
-    console.log(333333, footerObj)
     footerObj.setPage(e.detail)
   },
 
@@ -20,6 +19,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+      const page = options.page
+      this.setData({
+        currentPage: page
+      })
+      const footerObj = this.selectComponent('.footer-current');
+        footerObj.setPage(page)
   },
 
   /**
