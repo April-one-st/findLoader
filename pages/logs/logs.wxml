@@ -9,7 +9,7 @@
             <image style="width: 24px; height: 24px; margin-right: 7px;" src="/images/weixin-icon.png" alt=""/>
             微信授权登录
           </button>
-          <button wx:else class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+          <button wx:else class="login-btn" open-type="getPhoneNumber" bindtap="getUserInfo">
             <image style="width: 24px; height: 24px; margin-right: 7px;" src="/images/weixin-icon.png" alt=""/>
             微信授权登录
           </button>

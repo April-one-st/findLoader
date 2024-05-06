@@ -1,0 +1,29 @@
+<!--pages/realName/realName.wxml-->
+<view class="rela-name-page">
+    <van-field
+        value="{{ photo }}"
+        label="头像"
+        border="{{ true }}"
+        disabled
+        bind:change="nameChange"
+    >
+        <van-uploader max-count="{{1}}" slot="button" size="small" type="primary" file-list="{{ fileList }}" bind:after-read="afterRead" bind:delete="delFileList"  />
+    </van-field>
+    <van-field
+        value="{{ name }}"
+        label="昵称"
+        border="{{ true }}"
+        placeholder="请输入昵称"
+        bind:change="idChange"
+    >
+    </van-field>
+    <view class="form-buttom">
+        <van-button 
+            type="primary" 
+            size="large"
+            color="rgba(0, 71, 159, 1)"
+            style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
+            bind:tap="submit"
+        >保存</van-button>
+    </view>
+</view>

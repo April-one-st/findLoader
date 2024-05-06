@@ -10,6 +10,7 @@ Page({
         thsFileList: [],
         name: "",
         id: "",
+        isReal: false
     },
     //   姓名
     nameChange(e) {
@@ -157,7 +158,15 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {},
+    onLoad(options) {
+      let card = wx.getStorageSync("card");
+      console.log(card);
+      if (card) {
+          this.setData({
+              isReal: true,
+          });
+      }
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

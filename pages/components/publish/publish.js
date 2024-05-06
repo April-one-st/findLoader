@@ -45,10 +45,18 @@ Component({
         verifyPrice: false,
         verifyAddress: false,
         verifyTelephone: false,
+        showReal: false
     },
     lifetimes: {
         attached() {
           this.getBrand('one')
+          let card = wx.getStorageSync("card");
+          console.log(card);
+          if(!card) {
+            this.setData({
+              showReal: true
+            })
+          }
         },
     },
     methods: {
@@ -87,7 +95,7 @@ Component({
           console.log(e);
           const file = e.detail.file
           const params = {
-            filePath: file.url,
+            filePath: file[0].url,
             formData: {
               file: file
             }

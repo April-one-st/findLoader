@@ -34,9 +34,7 @@ Page({
   },
   // 登录
   logo() {
-    wx.redirectTo({
-      url: '/pages/home/home'
-    });
+    
   },
   onChooseAvatar(e) {
     const { avatarUrl } = e.detail
@@ -54,20 +52,6 @@ Page({
       hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
     })
   },
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-  },
-  
   toAgreeAgreement() {
     if(!this.data.isRead) {
       wx.showToast({
@@ -77,10 +61,52 @@ Page({
       return
     };
   },
+  getUserInfo: function(e) {
+    wx.showModal({
+      title: '提示',
+      content: '申请获取并验证您的个人信息！',
+      showCancel: true,
+      success: (res) => {
+        if (res.confirm) {
+          wx.getUserInfo({
+            success: (res) => {
+              this.handlerLogin(res.userInfo);
+            }
+          })
+        }
+      }
+    });
+  },
+  handlerLogin(info){
+    let that = this
+    wx.login({
+      success: res => {
+        //获取code
+        const code = res.code
+        console.log(res);
+        //将code发给后端请求token
+        wx.request({
+          url: 'https://abc.frezz.top/api/v1/login',
+          data:{ code, nice_name: info.nickName },
+          method:'post',
+          success:(res) =>{
+            const token = res.data.data.token
+            console.log(res.data.data.card);
+            wx.setStorageSync('card', res.data.data.card)
+            //将token保存本地
+            wx.setStorageSync('token', token)
+            wx.redirectTo({
+              url: '/pages/home/home'
+            });
+          }
+        })
+      }
+    })
+  },
   //绑定手机
   getPhoneNumber: function (e) {
-    console.log(e);
-    this.logo();
+    // this.getUserInfo();
+    // this.handlerLogin();
     //  需要做配置；涉及购买次数等。详情见--->  手机号快速验证组件 （微信官方文档）
     // if(!e.detail.code) return;
     // fetch.get('/wechat/minapp/getPhoneNumber', {

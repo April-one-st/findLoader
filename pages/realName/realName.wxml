@@ -1,24 +1,26 @@
 <!--pages/realName/realName.wxml-->
 <view class="rela-name-page">
-    <view class="form-title"> 资料上传 </view>
+    <view class="form-title" wx:if="{{!isReal}}"> 资料上传 </view>
     <van-field
-        value="{{ remark }}"
+        value="{{ name }}"
         label="姓名"
         border="{{ true }}"
         placeholder="请输入真实姓名"
         bind:change="nameChange"
+        disabled="{{isReal}}"
     >
     </van-field>
     <van-field
-        value="{{ remark }}"
+        value="{{ id }}"
         label="身份证号"
         border="{{ true }}"
         placeholder="请输入身份证号"
         bind:change="idChange"
+        disabled="{{isReal}}"
     >
     </van-field>
-    <view class="form-title"> 上传身份证正反面（仅用于平台认证） </view>
-    <view class="form-upLoad">
+    <view class="form-title" wx:if="{{!isReal}}"> 上传身份证正反面（仅用于平台认证） </view>
+    <view class="form-upLoad" wx:if="{{!isReal}}">
         <view>
             <view class="label"> 头像面 </view>
             <view class="placeholder"> 上传您的身份证头像面 </view>
@@ -32,7 +34,7 @@
         bind:delete="delFileList"
         />
     </view>
-    <view class="form-upLoad">
+    <view class="form-upLoad" wx:if="{{!isReal}}">
         <view>
             <view class="label"> 国徽面 </view>
             <view class="placeholder"> 上传您的身份证国徽面 </view>
@@ -46,11 +48,11 @@
         bind:delete="delFileList"
         />
     </view>
-    <view class="remark">
+    <view class="remark" wx:if="{{!isReal}}">
         <image class="icon" src="/images/secure.png" mode=""/>
         仅用于认证您的身份，保护您的信息安全
     </view>
-    <view class="bottom">
+    <view class="bottom" wx:if="{{!isReal}}">
         <view class="form-buttom">
         <van-button 
             type="primary" 

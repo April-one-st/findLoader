@@ -37,4 +37,5 @@
         >提交审核</van-button>
     </view>
     </view>
+    <van-dialog title="实名认证" message="您还未实名，请先进行实名认证" show="{{ showReal }}" showConfirmButton showCancelButton confirm-button-color="rgba(0, 71, 159, 1)" custom-class="my-custom-class" bind:confirm="toRealNamePage" />
 </view>

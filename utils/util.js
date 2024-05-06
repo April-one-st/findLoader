@@ -11,7 +11,7 @@ const fetch = {
                 url: baseUrl + url,
                 method: method,
                 data: method == "GET" ? data : JSON.stringify(data), // header这里根据业务情况自行选择需要还是不需要
-                header: header,
+                header: {'wx-token':token ,...header},
                 success: (res) => {
                     if (res.data.code == 500) {
                         Toast(res.data.msg);
@@ -150,12 +150,13 @@ const fetch = {
         }
     ) {
         return new Promise((resolve, reject) => {
+          let token = wx.getStorageSync("token");
             wx.uploadFile({
                 url: baseUrl + url, // 上传接口地址
                 filePath: data.filePath, // 要上传的文件路径
                 name: "file", // 服务器端接收文件的字段名
                 formData: data.formData,
-                header,
+                header: {'wx-token':token ,...header},
                 success: function (res) {
                     // 上传成功后的处理逻辑
                     if (res.data.code == 500) {

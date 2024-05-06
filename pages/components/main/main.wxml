@@ -10,7 +10,7 @@
       <view class="nav-right"></view>
     </view>
     <view class="user-info">
-      <image class="user-header" src="/images/background.png" mode="" />
+      <image class="user-header" src="/images/background.png" mode="" bind:tap="toPersonal" />
       <view class="info">
         <view class="user-name">
           {{userInfo.nick_name}}

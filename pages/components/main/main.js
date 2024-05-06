@@ -36,7 +36,6 @@ Component({
     homeList: [],
     buyCardList: []
   },
-
   /**
    * 组件生命周期函数-在组件实例刚刚被创建时执行
    */
@@ -77,6 +76,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    toPersonal() {
+      wx.navigateTo({
+        url: '/pages/personal/personal',
+      })
+    },
     // 获取用户信息
     getUserInfo(){
         const params = {account_id: ''}

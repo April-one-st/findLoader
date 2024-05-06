@@ -36,7 +36,7 @@
     <view class="ask-buy" bindtap="toAskBuyPage">
       求购
     </view>
-    <van-dialog title="实名认证" message="您还未实名，请先进行实名认证" show="{{ false }}" showConfirmButton showCancelButton confirm-button-color="rgba(0, 71, 159, 1)" custom-class="my-custom-class" bind:confirm="toRealNamePage" />
+    <van-dialog title="实名认证" message="您还未实名，请先进行实名认证" show="{{ showReal }}" showConfirmButton showCancelButton confirm-button-color="rgba(0, 71, 159, 1)" custom-class="my-custom-class" bind:confirm="toRealNamePage" />
     <van-action-sheet show="{{ show }}" actions="{{ actions }}" cancel-text="取消" bind:close="onClose" bind:select="onSelect" />
     <van-popup show="{{ showPopup }}" position="bottom" custom-style="height: 40%;" bind:close="popupClose">
       <van-picker wx:if="{{popupType !== 'carAddress'}}" columns="{{ column }}" bind:change="pickerChange" show-toolbar bind:confirm="pickerOk" bind:cancel="pickerCancel" />

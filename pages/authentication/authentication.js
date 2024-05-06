@@ -10,6 +10,7 @@ Page({
         name: "",
         phone: "",
         fileList: [],
+        showReal: false,
     },
 
     inputName(e) {
@@ -23,7 +24,12 @@ Page({
             phone: e.detail,
         });
     },
-
+    //   实名认证页面
+    toRealNamePage() {
+        wx.navigateTo({
+            url: "/pages/realName/realName",
+        });
+    },
     // 文件上传
     afterRead(e) {
         const file = e.detail.file;
@@ -55,7 +61,6 @@ Page({
                 throw err;
             });
     },
-
     // 删除图片
     delFileList(key) {
         const detail = key.detail;
@@ -65,7 +70,6 @@ Page({
             fileList: list,
         });
     },
-
     checkPhone(str) {
         const reg = /^1[3456789]\d{9}$/;
         if (reg.test(str)) {
@@ -134,7 +138,15 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {},
+    onLoad(options) {
+        let card = wx.getStorageSync("card");
+        console.log(card);
+        if (!card) {
+            this.setData({
+                showReal: true,
+            });
+        }
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
