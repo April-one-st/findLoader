@@ -1,0 +1,24 @@
+<!--pages/fans/fans.wxml-->
+<view class="page-fans">
+  <view class="page-title">
+    <view class="tabs">
+      <van-tabs active="{{ active }}" bind:change="onChange" color="#003372">
+        <van-tab title="关注">
+        </van-tab>
+        <van-tab title="粉丝">
+        </van-tab>
+      </van-tabs>
+    </view>
+  </view>
+  <view class="fans-list">
+    <view wx:if="{{!list.length}}" style="text-align: center; color: rgba(102, 102, 102, 1);">没有更多数据啦！</view>
+    <view class="fans-item" wx:for="{{list}}" wx:key="{{index}}">
+      <image class="fans-avatar" src="{{item.avatar}}" mode=""/>
+      <view class="fans-name">{{item.nick_name}}</view>
+      <view class="fans-icon" wx:if="{{active == 0 || item.is_follow}}">
+        已关注
+      </view>
+      <view class="fans-icon" wx:else>回关</view>
+    </view>
+  </view>
+</view>

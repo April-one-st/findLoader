@@ -129,6 +129,11 @@ Page({
                     title: "提交成功",
                     icon: "success",
                 });
+                setTimeout(() => {
+                  wx.navigateTo({
+                    url: '/pages/audit/audit'
+                  })
+                }, 1000)
             })
             .catch((err) => {
                 throw err;
@@ -140,7 +145,6 @@ Page({
      */
     onLoad(options) {
         let card = wx.getStorageSync("card");
-        console.log(card);
         if (!card) {
             this.setData({
                 showReal: true,

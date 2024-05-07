@@ -24,12 +24,12 @@
       </view>
     </view>
     <view class="follow-vermicelli">
-      <view class="follow-item">
+      <view class="follow-item" bind:tap="toFans">
         <view class="number">{{userInfo.fans_count || '--'}}</view>
         <view class="follow-title">粉丝</view>
       </view>
       <view class="line"></view>
-      <view class="follow-item">
+      <view class="follow-item" bind:tap="toAttention">
         <view class="number">{{userInfo.follow_count || '--'}}</view>
         <view class="follow-title">关注</view>
       </view>
@@ -65,7 +65,7 @@
     </view>
   </view>
   <view class="user-info-contet">
-    <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tabs active="{{ active }}" bind:change="onChange" color="#003372">
       <van-tab title="首页">
         <view style="margin-bottom: 92px;height: calc(100vh - 603px); overflow: auto;">
           <Card wx:for="{{ homeList }}" wx:key="index" info="{{ item }}" />

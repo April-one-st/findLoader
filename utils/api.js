@@ -11,5 +11,8 @@ module.exports = {
   newsReadUrl: '/api/v1/news/red/{id}',
   openVipUrl: '/api/v1/vip',
   buyListUrl: '/api/v1/buy_message/list',
-  merchantUrl: '/api/v1/audit/info'
+  merchantUrl: '/api/v1/audit/info',
+  UpUserInfoUrl:'/api/v1/account',
+  fansUrl: '/api/v1/fans',
+  followUrl: '/api/v1/follow'
 };

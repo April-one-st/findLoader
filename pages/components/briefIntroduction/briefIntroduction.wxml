@@ -21,14 +21,14 @@
 <view class="brief-title">
   <view class="brief-title-text">
     <span>简介</span>
-    <span class="brief-title-edit">编辑</span>
+    <span class="brief-title-edit" bind:tap="toIntroduction">编辑</span>
   </view>
 </view>
 <view class="brief-text">{{info.desc}}</view>
 <view class="brief-title">
   <view class="brief-title-text">
     <span>图片简介</span>
-    <span class="brief-title-edit">编辑</span>
+    <span class="brief-title-edit" bind:tap="toPhotoedit">编辑</span>
   </view>
 </view>
 <view class="brief-image">

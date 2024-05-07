@@ -130,8 +130,17 @@ Component({
     // 跳转商户认证
     toAuthentication(){
       wx.navigateTo({
-        url: '/pages/authentication/authentication'
+        url: '/pages/audit/audit'
       })
+      let card = wx.getStorageSync("card");
+        if (!card) {
+          wx.navigateTo({
+            url: '/pages/authentication/authentication'
+          })
+        }else{
+
+        }
+      
     },
     // 跳转实名认证
     toRealName() {
@@ -144,6 +153,18 @@ Component({
       wx.navigateTo({
         url: '/pages/openVip/openVip'
       })
+    },
+    // 粉丝页
+    toFans() {
+      wx.navigateTo({
+        url: '/pages/fans/fans?type=粉丝'
+      });
+    },
+    // 关注页
+    toAttention() {
+      wx.navigateTo({
+        url: '/pages/fans/fans?type=关注'
+      });
     },
   }
 });

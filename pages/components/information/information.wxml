@@ -16,5 +16,6 @@
         <view class="num-null" wx-else></view>
       </view>
     </view>
+    <view wx:if="{{!list.length}}" style="text-align: center; color: rgba(102, 102, 102, 1);">没有更多数据啦！</view>
   </view>
 </view> 

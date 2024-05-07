@@ -226,3 +226,6 @@
   font-size: 15px;
   line-height: 22px;
 }
+.van-tabs__line{
+  background-color: #003372 !important;
+}

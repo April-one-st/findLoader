@@ -1,5 +1,5 @@
 // pages/personal/personal.js
-import { fileUpLoadUrl, merchantUrl } from "../../utils/api";
+import { fileUpLoadUrl, UpUserInfoUrl } from "../../utils/api";
 const { fetch } = require("../../utils/util");
 Page({
     /**
@@ -47,7 +47,31 @@ Page({
             fileList: [],
         });
     },
-
+    nameChange(e) {
+      console.log(e.detail)
+      this.setData({
+        name: e.detail
+      })
+    },
+    // 表单提交
+    submit() {
+      const params = {
+        nick_name: this.data.name,
+        avatar: this.data.fileList[0].url
+      }
+      fetch.post(UpUserInfoUrl, params).then(res => {
+        wx.showToast({
+          title: '保存成功',
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          });
+      }, 1000)
+      }).catch(err => {
+        console.log(err);
+      })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

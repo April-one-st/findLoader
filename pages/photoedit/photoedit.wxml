@@ -1,0 +1,16 @@
+<!--pages/askBuy/askBuy.wxml-->
+<view class="ask-buy-page">
+    <view class="remark-content">
+      <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="{{6}}" bind:delete="delFileList"  multiple />
+    </view>
+    <view class="form-buttom">
+        <van-button 
+            type="primary" 
+            size="large"
+            color="rgba(0, 71, 159, 1)"
+            style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
+            bind:tap="submit"
+        >保存</van-button>
+    </view>
+    <van-toast id="van-toast" />
+</view>

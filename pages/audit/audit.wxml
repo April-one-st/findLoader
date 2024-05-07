@@ -1,0 +1,14 @@
+<!--pages/realName/realName.wxml-->
+<view class="rela-name-page">
+    <van-field
+        label="{{name}}"
+        border="{{ true }}"
+        input-align="right"
+        placeholder="{{value}}"
+        disabled
+    >
+      <view wx:if="{{status}}" slot="button" style="color: rgba(246, 119, 34, 1);" bind:tap="submit">
+        重新审核
+      </view>
+    </van-field>
+</view>
