@@ -3,8 +3,7 @@
   <view class="user-info-header">
     <image class="user-back" src="/images/user-info-back.png" mode="" />
     <view class="nav">
-      <view class="back" catchtap="toBack">
-        <van-icon name="arrow-left" />
+      <view class="back">
       </view>
       <view class="title">我的</view>
       <view class="nav-right"></view>
@@ -78,7 +77,7 @@
       </van-tab>
       <van-tab title="简介">
         <view style="padding-bottom: 92px;height: calc(100vh - 603px); overflow: auto;">
-            <briefIntroduction info="{{ item }}" ></briefIntroduction>
+            <briefIntroduction info="{{ userInfo }}" ></briefIntroduction>
         </view>
       </van-tab>
     </van-tabs>

@@ -18,9 +18,9 @@
           <image style="width: 14px; height: 14px; margin-right: 5px;"  src="{{imageUrl}}"  bindtap="changeImage" alt="" />
           <view>
           我已同意阅读并同意
-          <view class="agreement-file">《用户协议》</view>
+          <view class="agreement-file" bind:tap="toAgreement">《用户协议》</view>
           和
-          <view class="agreement-file">《隐私政策》</view>
+          <view class="agreement-file" bind:tap="toPrivacy">《隐私政策》</view>
           </view>
         </view>
 

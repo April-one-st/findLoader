@@ -14,7 +14,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    let status = false;
+    let name = '审核中'
+    if(options.state === 2) {
+      name = '审核通过'
+    }
+    if(options.state === 3) {
+      name = '审核拒绝'
+      status = true;
+    }
+    this.setData({
+      name: options.name,
+      status: status,
+      value: name
+    })
   },
   submit() {
     wx.navigateTo({

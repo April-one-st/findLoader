@@ -38,7 +38,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    console.log(45465456456)
+    this.childComponent = this.selectComponent('#main');
+    this.childComponent.getUserInfo();
   },
 
   /**

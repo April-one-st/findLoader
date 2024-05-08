@@ -1,4 +1,6 @@
 // pages/components/homeCard/homeCard.js
+import { UpUserInfoUrl } from "../utils/api";
+const { fetch } = require("../utils/util");
 Component({
     /**
      * 组件的属性列表
@@ -9,12 +11,33 @@ Component({
             type: Object,
             value: null,
         },
+        isDisable: {
+          type: Boolean,
+          value: false,
+        }
     },
 
     /**
      * 组件的初始数据
      */
-    data: {},
+    data: {
+      markers: [{
+        id: 1,
+        latitude: 39.90469,
+        longitude: 116.40717,
+        title: '这里是标题',
+        callout: {
+          content: '这是一个标记',
+          color: '#ffffff',
+          fontSize: 14,
+          borderRadius: 5,
+          bgColor: '#ff0000',
+          padding: 10,
+          display: 'ALWAYS',
+          textAlign: 'center'
+        }
+      }],
+    },
 
     /**
      * 组件生命周期函数-在组件实例刚刚被创建时执行
@@ -59,6 +82,21 @@ Component({
             wx.navigateTo({
                 url: "/pages/introduction/introduction",
             });
+        },
+        onMapTap: function(event) {
+          console.log('地图被点击了:', event);
+          const latitude = event.detail.latitude;
+          const longitude = event.detail.longitude;
+          console.log('点击位置的经度:', longitude);
+          console.log('点击位置的纬度:', latitude);
+          const params = {
+            x: latitude,
+            y: longitude
+          }
+          fetch.post(UpUserInfoUrl, params).then(res => {
+          }).catch(err => {
+            console.log(err);
+          })
         },
         toPhotoedit() {
           wx.navigateTo({

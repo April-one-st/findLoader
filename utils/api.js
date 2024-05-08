@@ -14,5 +14,6 @@ module.exports = {
   merchantUrl: '/api/v1/audit/info',
   UpUserInfoUrl:'/api/v1/account',
   fansUrl: '/api/v1/fans',
-  followUrl: '/api/v1/follow'
+  followUrl: '/api/v1/follow',
+  auditInfoUrl: '/api/v1/audit/info'
 };

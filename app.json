@@ -12,7 +12,9 @@
     "pages/audit/audit",
     "pages/fans/fans",
     "pages/introduction/introduction",
-    "pages/photoedit/photoedit"
+    "pages/photoedit/photoedit",
+    "pages/agreement/agreement",
+    "pages/privacy/privacy"
   ],
   "window": {
     "navigationBarTextStyle": "black",

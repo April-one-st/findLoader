@@ -1,35 +1,18 @@
-// pages/openVip/openVip.js
-import {openVipUrl} from '../../utils/api'
-const { fetch } = require("../../utils/util");
+// pages/privacy/privacy.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    phone: '',
-    active: 3,
-    timeList: [3,6,9,12]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({
-      phone: options.id
-    })
-  },
-  onChange(e) {
-    const data = e.currentTarget.dataset.item;
-    this.setData({
-      active: data
-    })
-  },
-  // 开通vip
-  submit() {
-    const params = {};
-     fetch.post(openVipUrl, params).then().catch()
+
   },
 
   /**

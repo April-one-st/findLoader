@@ -21,10 +21,7 @@
   </view>
   <view class="vip-time">
     <view style="display: flex; justify-content: space-between; align-items: center;">
-      <view class="vip-time-item vip-time-active">12个月</view>
-      <view class="vip-time-item">12个月</view>
-      <view class="vip-time-item">12个月</view>
-      <view class="vip-time-item">12个月</view>
+      <view class="vip-time-item {{active === item? 'vip-time-active': ''}} " wx:for="{{timeList}}" wx:key="index" bind:tap="onChange" data-item="{{item}}" >{{item}}个月</view>
     </view>
     <view style="display: flex;margin-top: 20px;">
       <view class="vip-peice">
@@ -36,15 +33,9 @@
     </view>
   </view>
   <view class="form-buttom">
-        <van-button 
-            type="primary" 
-            size="large"
-            color="rgba(0, 71, 159, 1)"
-            style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;"
-            bind:tap="submit"
-        >微信支付</van-button>
-        <view style="color: rgba(61, 61, 61, 1); font-size: 15px; margin-top: 15px;">
-          当前绑定手机： 15135042951
-        </view>
+    <van-button type="primary" size="large" color="rgba(0, 71, 159, 1)" style="border-radius: 22px; width: 345px; height: 44px; overflow: hidden;line-height: 44px;" bind:tap="submit">微信支付</van-button>
+    <view style="color: rgba(61, 61, 61, 1); font-size: 15px; margin-top: 15px;">
+      当前绑定手机： {{phone}}
+    </view>
   </view>
 </view>

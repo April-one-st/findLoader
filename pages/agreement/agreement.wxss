@@ -1,0 +1,5 @@
+/* pages/agreement/agreement.wxss */
+.text{
+  padding: 50px 20px;
+  font-family: PingFang SC, PingFang SC;
+}

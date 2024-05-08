@@ -37,6 +37,11 @@ Page({
       console.log(err)
     })
   },
+  toBack(){
+    wx.navigateBack({
+      delta: 1 // 返回上一页，默认为1，可以根据需要调整
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

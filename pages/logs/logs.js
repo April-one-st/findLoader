@@ -62,6 +62,7 @@ Page({
     };
   },
   getUserInfo: function(e) {
+    let that = this
     wx.showModal({
       title: '提示',
       content: '申请获取并验证您的个人信息！',
@@ -70,7 +71,7 @@ Page({
         if (res.confirm) {
           wx.getUserInfo({
             success: (res) => {
-              this.handlerLogin(res.userInfo);
+              that.handlerLogin(res.userInfo);
             }
           })
         }
@@ -83,7 +84,6 @@ Page({
       success: res => {
         //获取code
         const code = res.code
-        console.log(res);
         //将code发给后端请求token
         wx.request({
           url: 'https://abc.frezz.top/api/v1/login',
@@ -91,7 +91,7 @@ Page({
           method:'post',
           success:(res) =>{
             const token = res.data.data.token
-            console.log(res.data.data.card);
+            console.log(11111, token);
             wx.setStorageSync('card', res.data.data.card)
             //将token保存本地
             wx.setStorageSync('token', token)
@@ -140,4 +140,15 @@ Page({
     //   };
     // });
   },
+  // 用户协议
+  toAgreement() {
+    wx.navigateTo({
+      url: '/pages/agreement/agreement'
+    })
+  },
+  toPrivacy() {
+    wx.navigateTo({
+      url: '/pages/privacy/privacy'
+    })
+  }
 })

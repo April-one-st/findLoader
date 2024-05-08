@@ -1,11 +1,11 @@
 <!--pages/components/briefIntroduction/briefIntroduction.wxml-->
 <view class="brief-page">
-<view class="brief-title">
-  <view class="brief-title-text">
-    <span>累计</span>
+  <view class="brief-title">
+    <view class="brief-title-text">
+      <span>累计</span>
+    </view>
   </view>
-</view>
-<view class="brief-shop-card">
+  <view class="brief-shop-card">
     <view class="brief-shop">
       <view class="brief-shop-item">
         <view style="font-size: 20px">{{info.release_count || '--'}}</view>
@@ -18,32 +18,33 @@
       </view>
     </view>
   </view>
-<view class="brief-title">
-  <view class="brief-title-text">
-    <span>简介</span>
-    <span class="brief-title-edit" bind:tap="toIntroduction">编辑</span>
-  </view>
-</view>
-<view class="brief-text">{{info.desc}}</view>
-<view class="brief-title">
-  <view class="brief-title-text">
-    <span>图片简介</span>
-    <span class="brief-title-edit" bind:tap="toPhotoedit">编辑</span>
-  </view>
-</view>
-<view class="brief-image">
-    <view wx:if="{{info.image_files.length}}">在这里可以编辑关于诚信的照片（9张）</view>
-    <view style="width: 100%;" wx:else>
-        <image class="brief-image-item" wx:for="{{info.image_files}}" wx:key="{{item.id}}"  src="/images/logo.png" mode=""/>
+  <view class="brief-title">
+    <view class="brief-title-text">
+      <span>简介</span>
+      <span class="brief-title-edit" bind:tap="toIntroduction" wx:if="{{!isDisable}}">编辑</span>
     </view>
-</view>
-<view class="brief-title">
-  <view class="brief-title-text">
-    <span>地址</span>
-    <span class="brief-title-edit">编辑</span>
   </view>
-</view>
-<view style="padding: 0 20px;">
-    <map  style="width:100%;height: 390rpx;" />
-</view>
+  <view class="brief-text">{{info.desc}}</view>
+  <view class="brief-title">
+    <view class="brief-title-text">
+      <span>图片简介</span>
+      <span class="brief-title-edit" bind:tap="toPhotoedit" wx:if="{{!isDisable}}">编辑</span>
+    </view>
+  </view>
+  <view class="brief-image">
+    <view wx:if="{{!info.image_files.length}}">在这里可以编辑关于诚信的照片（9张）</view>
+    <view style="width: 100%;" wx:else>
+      <image class="brief-image-item" src="{{'http://118.24.150.23:9000/car/'+info.image_files[0].file_path}}" mode="" />
+    </view>
+  </view>
+  <view class="brief-title">
+    <view class="brief-title-text">
+      <span>地址</span>
+      <span class="brief-title-edit" wx:if="{{!isDisable}}">编辑</span>
+    </view>
+  </view>
+  <view style="padding: 0 20px;">
+    <view style="padding-bottom: 10px;">{{info.position}}</view>
+    <map id="myMap" latitude="{{info.x}}" longitude="{{info.y}}" style="width:100%;height: 390rpx;" bindtap="onMapTap" />
+  </view>
 </view>

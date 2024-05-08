@@ -1,5 +1,5 @@
 // pages/userData/userData.js
-import {getHomeListUrl, getUserInfoUrl, buyListUrl} from '../../../utils/api'
+import {getHomeListUrl, getUserInfoUrl, buyListUrl, auditInfoUrl} from '../../../utils/api'
 const { fetch } = require("../../../utils/util");
 Component({
   /**
@@ -31,7 +31,9 @@ Component({
         follow_count: '999',
         release_count: '999',
         buy_message_count: '999',
-        is_follow: false
+        is_follow: false,
+        auditSatate: '',
+        auditName: ''
     },
     homeList: [],
     buyCardList: []
@@ -42,14 +44,16 @@ Component({
   created() {
     console.log('Component created');
   },
+  lifetimes: {
+    /**
+     * 组件生命周期函数-在组件实例进入页面节点树时执行
+     */
+    attached() {
+      this.getUserInfo();
+      this.getAuditInfo();
+    },
+},
 
-  /**
-   * 组件生命周期函数-在组件实例进入页面节点树时执行
-   */
-  attached() {
-    console.log('Component attached');
-    this.getUserInfo()
-  },
 
   /**
    * 组件生命周期函数-在组件布局完成后执行，此时可以获取节点信息
@@ -127,18 +131,30 @@ Component({
           console.log(err);
       })
     },
+    getAuditInfo() {
+      console.log(11111, auditInfoUrl)
+      fetch.get(auditInfoUrl, {audit_type: 2}).then(res => {
+        console.log(res);
+        const data = res.data.data
+        this.setData({
+          auditSatate: data.state,
+          auditName: data.name
+        })
+      }).catch(err => {
+        console.log(err);
+      })
+    },
     // 跳转商户认证
     toAuthentication(){
-      wx.navigateTo({
-        url: '/pages/audit/audit'
-      })
       let card = wx.getStorageSync("card");
         if (!card) {
           wx.navigateTo({
             url: '/pages/authentication/authentication'
           })
         }else{
-
+          wx.navigateTo({
+            url: `/pages/audit/audit?name=${this.data.auditName}&state=${this.data.auditSatate}`
+          })
         }
       
     },
@@ -151,7 +167,7 @@ Component({
     // 跳转开通vip
     openVip(){
       wx.navigateTo({
-        url: '/pages/openVip/openVip'
+        url: `/pages/openVip/openVip?id=${this.data.userInfo.phone}`
       })
     },
     // 粉丝页

@@ -48,7 +48,7 @@
             </van-tab>
             <van-tab title="简介">
                 <view style="height: calc(100vh - 297px - 99px); overflow: auto;">
-                    <briefIntroduction  info="{{ item }}" ></briefIntroduction>
+                    <briefIntroduction  info="{{ userInfo }}" isDisable="{{true}}"></briefIntroduction>
                 </view>
             </van-tab>
         </van-tabs>

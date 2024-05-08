@@ -115,6 +115,12 @@ Page({
     },
 
     submit() {
+        let card = wx.getStorageSync("card");
+        if(!card) {
+          this.setData({
+            showReal: true
+          })
+        }
         if (!this.checkForm()) return;
         const params = {
             audit_type: 2,
