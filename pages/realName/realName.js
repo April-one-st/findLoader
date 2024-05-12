@@ -167,7 +167,7 @@ Page({
       console.log(card);
       if (card) {
           this.setData({
-              isReal: true,
+              isReal: false,
           });
       }
     },

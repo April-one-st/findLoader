@@ -38,7 +38,7 @@
                     bindtap="toCallPhone"
                     data-phonenum="{{ info.phone }}"
                 />
-                <image class="card-leave" src="/images/leave.png" mode="" />
+                <image class="card-leave" src="/images/leave.png" bindtap="toInformation" mode="" />
             </view>
         </view>
     </view>

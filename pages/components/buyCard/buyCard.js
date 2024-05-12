@@ -19,6 +19,10 @@ Component({
             value: "default text",
             areaData: areaList,
         },
+        getCurrentPage: {
+            type: Function,
+            value: function () {},
+        },
     },
 
     /**
@@ -84,23 +88,27 @@ Component({
      * 组件的方法列表
      */
     methods: {
+      toCurrentPage(value) {
+        console.log(value.detail)
+        this.triggerEvent('customEvent', value.detail);
+      },
         // 重置
-        reset(){
+        reset() {
             this.setData({
                 districtValue: [],
-                brandValue: '',
-                modelValue: '',
-                tagList: []
-            })
-            this.getDataList()
+                brandValue: "",
+                modelValue: "",
+                tagList: [],
+            });
+            this.getDataList();
         },
         // 获取list数据
         getDataList() {
-            let province = ''
-            let city = ''
-            if(this.data.districtValue.length){
-                province = this.data.districtValue[0].name
-                city = this.data.districtValue[1].name
+            let province = "";
+            let city = "";
+            if (this.data.districtValue.length) {
+                province = this.data.districtValue[0].name;
+                city = this.data.districtValue[1].name;
             }
             const params = {
                 province,
@@ -115,7 +123,7 @@ Component({
                         cardList: res.data.data.list,
                     });
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
                 });
         },
@@ -194,7 +202,7 @@ Component({
                 brandValue: e.detail,
             });
             this.getBrand("two", e.detail[0]);
-            this.getDataList()
+            this.getDataList();
         },
         // 型号change
         modelChange(e) {
@@ -205,7 +213,7 @@ Component({
             this.setData({
                 modelValue: e.detail,
             });
-            this.getDataList()
+            this.getDataList();
         },
         // 更改年限
         yearValueChange(e) {
@@ -216,7 +224,7 @@ Component({
             this.setData({
                 yearValue: e.detail,
             });
-            this.getDataList()
+            this.getDataList();
         },
         // 标签关闭
         tagClose(e) {
