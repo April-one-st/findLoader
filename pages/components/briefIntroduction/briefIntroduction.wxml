@@ -34,7 +34,13 @@
   <view class="brief-image">
     <view wx:if="{{!info.image_files.length}}">在这里可以编辑关于诚信的照片（9张）</view>
     <view style="width: 100%;" wx:else>
-      <image class="brief-image-item" src="{{'http://118.24.150.23:9000/car/'+info.image_files[0].file_path}}" mode="" />
+      <swiper class="brief-image-item" indicator-dots autoplay interval="{{3000}}" duration="{{1000}}" circular vertical="{{fasle}}">
+    <block wx:for="{{info.image_files}}" wx:key="index">
+      <swiper-item>
+        <image src="{{'http://118.24.150.23:9000/car/' +item.file_path}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
     </view>
   </view>
   <view class="brief-title">

@@ -9,11 +9,12 @@ module.exports = {
   buyMessageUrl: '/api/v1/buy_message',
   newsListUrl: '/api/v1/news/list',
   newsReadUrl: '/api/v1/news/red/{id}',
-  openVipUrl: '/api/v1/vip',
   buyListUrl: '/api/v1/buy_message/list',
   merchantUrl: '/api/v1/audit/info',
   UpUserInfoUrl:'/api/v1/account',
   fansUrl: '/api/v1/fans',
   followUrl: '/api/v1/follow',
-  auditInfoUrl: '/api/v1/audit/info'
+  auditInfoUrl: '/api/v1/audit/info',
+  openVipUrl: '/api/v1/account/vip',
+  priceUrl:'/api/v1/account/vip/price'
 };

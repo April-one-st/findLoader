@@ -1,10 +1,16 @@
 <!--pages/components/card/card.wxml-->
 <view class="card-component">
-    <image class="card-avater" src="{{'http://118.24.150.23:9000/car/' +info.image_files[0].file_path}}" mode=""/>
-    <view class="card-content">
-        <view  class="card-title">{{info.brand}} {{info.brand_type}}</view>
-        <view class="address">{{info.province}}.{{info.city}}.{{info.position}}</view>
-        <view class="info">{{info.release_time}} 展现：{{"111"}} 次</view>
-        <view class="pirce">{{info.price}}</view>
-    </view>
+  <swiper class="card-avater" indicator-dots autoplay interval="{{3000}}" duration="{{1000}}" circular vertical="{{fasle}}">
+    <block wx:for="{{info.image_files}}" wx:key="index">
+      <swiper-item>
+        <image src="{{'http://118.24.150.23:9000/car/' +item.file_path}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="card-content">
+    <view class="card-title">{{info.brand}} {{info.brand_type}}</view>
+    <view class="address">{{info.province}}.{{info.city}}.{{info.position}}</view>
+    <view class="info">{{info.release_time}} 展现：{{"111"}} 次</view>
+    <view class="pirce">{{info.price}}</view>
+  </view>
 </view>

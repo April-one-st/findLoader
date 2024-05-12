@@ -80,6 +80,26 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onShareAppMessage () {
+      console.log(11111)
+      return {
+        title: '分享标题',
+        path: '/pages/index', // 分享路径，通常是当前页面路径
+        imageUrl: '/images/share.png', // 分享图片，可以是本地路径或者远程路径
+        success: function (res) {
+          // 分享成功
+        },
+        fail: function (res) {
+          // 分享失败
+        }
+      }
+    },
+    onShare() {
+      console.log(11111)
+      wx.showShareMenu({
+        withShareTicket: true // 是否使用带 shareTicket 的转发
+      })
+    },
     toPersonal() {
       wx.navigateTo({
         url: '/pages/personal/personal',
@@ -90,6 +110,7 @@ Component({
         const params = {account_id: ''}
         fetch.get(getUserInfoUrl, params).then(res => {
             if(res.statusCode === 200){
+              console.log(res)
                 this.setData({
                     userInfo: res.data.data
                 })

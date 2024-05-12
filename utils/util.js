@@ -1,4 +1,4 @@
-const baseUrl = "https://abc.frezz.top"; //  服务器地址
+const baseUrl = "https://www.zhaochanche.net"; //  服务器地址
 
 // 标准带报错提示请求
 const fetch = {
@@ -13,8 +13,12 @@ const fetch = {
                 data: method == "GET" ? data : JSON.stringify(data), // header这里根据业务情况自行选择需要还是不需要
                 header: {'wx-token':token ,...header},
                 success: (res) => {
-                    if (res.data.code == 500) {
-                        Toast(res.data.msg);
+                  console.log('res111', res)
+                    if (res.data.code == 7) {
+                        wx.showToast({
+                          title: res.data.data.msg,
+                          icon: 'error'
+                        })
                         reject(res.data.msg);
                     } else {
                         resolve(res);
@@ -24,110 +28,6 @@ const fetch = {
                     reject(err);
                 },
             });
-            // if(token) {
-            //   Object.assign(header, {
-            //     'X-Access-Token': token
-            //   })
-            //   // header.token = token;
-            //   wx.request({
-            //     url: baseUrl + url,
-            //     method,
-            //     data,
-            //     header,
-            //     success(res) {
-            //       console.log('请求结果--->：', res);
-            //       resolve(res)
-            //       // if(res.data.code === 200) {
-            //       //   resolve(res.data);
-            //       // } else if(res.data.code === 401) {
-            //       //   const pages = getCurrentPages()[0].route;
-            //       //   if(pages == 'pages/index/index') return
-            //       //   wx.showModal({
-            //       //     title: '提示',
-            //       //     content: '登录已过期，请重新登录',
-            //       //     showCancel: false,
-            //       //     confirmText: '确定',
-            //       //     success (res) {
-            //       //       if(res.confirm) {
-            //       //         // token 已经失效，需要重新执行登录流程
-            //       //         wx.reLaunch({
-            //       //           url: '/pages/index/index',
-            //       //         });
-            //       //       };
-            //       //     }
-            //       //   });
-            //       // } else {
-            //       //   resolve(res.data);
-            //       //   wx.showToast({
-            //       //     title: res.data.message,
-            //       //     // icon: 'error',
-            //       //     icon: 'none',
-            //       //     duration: 3000
-            //       //   });
-            //       // }
-            //     },
-            //     fail(err) {
-            //       reject(err);
-            //     },
-            //     complete: (datas) => {
-            //       wx.hideLoading();
-            //     }
-            //   })
-            // } else {
-            //   wx.checkSession({
-            //     success () {
-            //       //session_key 未过期，并且在本生命周期一直有效
-            //       wx.request({
-            //         url: baseUrl + url,
-            //         method,
-            //         data,
-            //         header,
-            //         success(res) {
-            //           if(res.data.code === 200) {
-            //             resolve(res.data);
-            //           } else if(res.data.code === 401) {
-            //             const pages = getCurrentPages()[0].route;
-            //             if(pages == 'pages/index/index') return
-            //             wx.showModal({
-            //               title: '提示',
-            //               content: '登录已过期，请重新登录',
-            //               showCancel: false,
-            //               confirmText: '确定',
-            //               success (res) {
-            //                 if(res.confirm) {
-            //                   // token 已经失效，需要重新执行登录流程
-            //                   wx.reLaunch({
-            //                     url: '/pages/index/index',
-            //                   });
-            //                 };
-            //               }
-            //             });
-            //           } else {
-            //             resolve(res.data);
-            //             wx.showToast({
-            //               title: res.data.message,
-            //               // icon: 'error',
-            //               icon: 'none',
-            //               duration: 3000
-            //             });
-            //           }
-            //         },
-            //         fail(err) {
-            //           reject(err);
-            //         },
-            //         complete: () => {
-            //           wx.hideLoading();
-            //         }
-            //       })
-            //     },
-            //     fail () {
-            //       // session_key 已经失效，需要重新执行登录流程
-            //       wx.reLaunch({
-            //         url: '/pages/index/index',
-            //       })
-            //     }
-            //   })
-            // }
         });
     },
     get(url, data, header) {
@@ -159,7 +59,7 @@ const fetch = {
                 header: {'wx-token':token ,...header},
                 success: function (res) {
                     // 上传成功后的处理逻辑
-                    if (res.data.code == 500) {
+                    if (res.data.code == 7) {
                         Toast(res.data.msg);
                         reject(res.data.msg);
                     } else {
@@ -171,98 +71,6 @@ const fetch = {
                     console.error("上传失败", error);
                 },
             });
-            // const token = wx.getStorageSync("token");
-            // if (token) {
-            //     Object.assign(header, {
-            //         "X-Access-Token": token,
-            //     });
-            //     wx.uploadFile({
-            //         url: baseUrl + url,
-            //         filePath: filePath,
-            //         name: "file",
-            //         header: header,
-            //         formData: formData,
-            //         success(res) {
-            //             let uploadres = JSON.parse(res.data);
-            //             if (uploadres.code === 200) {
-            //                 resolve(uploadres);
-            //             } else if (uploadres.code === 401) {
-            //                 wx.showModal({
-            //                     title: "提示",
-            //                     content: "登录已过期，请重新登录",
-            //                     showCancel: false,
-            //                     confirmText: "确定",
-            //                     success(res) {
-            //                         if (res.confirm) {
-            //                             // token 已经失效，需要重新执行登录流程
-            //                             wx.reLaunch({
-            //                                 url: "/pages/index/index",
-            //                             });
-            //                         }
-            //                     },
-            //                 });
-            //             } else {
-            //                 wx.showToast({
-            //                     title: uploadres.message,
-            //                     icon: "none",
-            //                     duration: 3000,
-            //                 });
-            //             }
-            //         },
-            //         fail(err) {
-            //             reject(err);
-            //         },
-            //     });
-            // } else {
-            //     wx.checkSession({
-            //         success() {
-            //             //session_key 未过期，并且在本生命周期一直有效
-            //             wx.uploadFile({
-            //                 url: baseUrl + url,
-            //                 filePath: filePath,
-            //                 name: "file",
-            //                 header: header,
-            //                 formData: formData,
-            //                 success(res) {
-            //                     let uploadres = JSON.parse(res.data);
-            //                     if (uploadres.code === 200) {
-            //                         resolve(uploadres);
-            //                     } else if (uploadres.code === 401) {
-            //                         wx.showModal({
-            //                             title: "提示",
-            //                             content: "登录已过期，请重新登录",
-            //                             showCancel: false,
-            //                             confirmText: "确定",
-            //                             success(res) {
-            //                                 if (res.confirm) {
-            //                                     // token 已经失效，需要重新执行登录流程
-            //                                     wx.reLaunch({
-            //                                         url: "/pages/index/index",
-            //                                     });
-            //                                 }
-            //                             },
-            //                         });
-            //                     } else {
-            //                         wx.showToast({
-            //                             title: uploadres.message,
-            //                             icon: "none",
-            //                             duration: 3000,
-            //                         });
-            //                     }
-            //                 },
-            //                 fail(err) {
-            //                     reject(err);
-            //                 },
-            //             });
-            //         },
-            //         fail() {
-            //             // session_key 已经失效，需要重新执行登录流程
-            //             wx.reLaunch({
-            //                 url: "/pages/index/index",
-            //             });
-            //         },
-            //     });
-            // }
         });
     },
 };

@@ -36,3 +36,7 @@
     color: #FF6B10;
     font-size: 18px;
 }
+.slide-image{
+  width: 100%;
+  height: 100%;
+}

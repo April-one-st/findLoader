@@ -25,10 +25,10 @@
     </view>
     <view style="display: flex;margin-top: 20px;">
       <view class="vip-peice">
-        ￥5.1w
+        ￥{{price}}
       </view>
       <view class="discount">
-        0.35折
+        {{discount}}折
       </view>
     </view>
   </view>

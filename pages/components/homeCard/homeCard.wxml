@@ -16,7 +16,7 @@
         <view class="home-card-photo">
             <image
                 wx:for="{{info.image_files}}"
-                wx:key="{{info.id}}"
+                wx:key="index"
                 class="photo-item"
                 src="{{'http://118.24.150.23:9000/car/' + item.file_path}}"
                 mode=""

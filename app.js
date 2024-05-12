@@ -15,6 +15,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    baseUrl: 'https://abc.frezz.top'
+    baseUrl: 'https://www.zhaochanche.net'
   }
 })

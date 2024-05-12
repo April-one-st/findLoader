@@ -1,10 +1,10 @@
 <!--pages/components/mianCard/mainCard.wxml-->
 <view class="main-card-page">
-  <image class="main-card-avater" src="/images/logo.png" mode=""/>
+  <image class="main-card-avater" src="{{info.avatar}}" mode=""/>
   <view class="main-card-content">
     <view class="main-card-title">找铲车</view>
     <view class="main-card-tag">#求购需求</view>
     <view class="main-card-text">{{info.text}}</view>
-    <view class="main-card-time">{{info.updated_at}}</view>
+    <view class="main-card-time">{{info.updated_at.split('T')[0]}}</view>
   </view>
 </view>

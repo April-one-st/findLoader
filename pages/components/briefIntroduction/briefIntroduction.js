@@ -1,6 +1,6 @@
 // pages/components/homeCard/homeCard.js
-import { UpUserInfoUrl } from "../utils/api";
-const { fetch } = require("../utils/util");
+import { UpUserInfoUrl } from "../../../utils/api";
+const { fetch } = require("../../../utils/util");
 Component({
     /**
      * 组件的属性列表

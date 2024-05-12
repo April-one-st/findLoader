@@ -19,8 +19,11 @@ const request = function (url, options) {
                 Authorization: "Bearer " + app.globalData.token,
             },
             success: (res) => {
-                if (res.data.code == 500) {
-                    Toast(res.data.msg);
+                if (res.data.code == 7) {
+                    wx.showToast({
+                      title: res.data.msg,
+                      icon: 'error',
+                    })
                     reject(res.data.msg);
                 } else {
                     resolve(res);

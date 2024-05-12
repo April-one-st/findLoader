@@ -8,6 +8,7 @@ Page({
     userInfo: {
       nickName: '',
     },
+    wxUserInfo: {},
     hasUserInfo: false,
     canIUseGetUserProfile: wx.canIUse('getUserProfile'),
     canIUseNicknameComp: wx.canIUse('input.type.nickname'),
@@ -61,85 +62,83 @@ Page({
       return
     };
   },
-  getUserInfo: function(e) {
-    let that = this
-    wx.showModal({
-      title: '提示',
-      content: '申请获取并验证您的个人信息！',
-      showCancel: true,
+  onGetPhoneNumber() {
+    wx.getUserInfo({
       success: (res) => {
-        if (res.confirm) {
-          wx.getUserInfo({
-            success: (res) => {
-              that.handlerLogin(res.userInfo);
-            }
-          })
-        }
+        console.log('userInfo', res)
+        this.handlerLogin(res.userInfo)
       }
-    });
+    })
   },
   handlerLogin(info){
-    let that = this
     wx.login({
       success: res => {
         //获取code
         const code = res.code
+        wx.setStorageSync('code', res.code)
+        console.log('params', { code, nick_name: info.nickName })
         //将code发给后端请求token
         wx.request({
-          url: 'https://abc.frezz.top/api/v1/login',
-          data:{ code, nice_name: info.nickName },
+          url: 'https://www.zhaochanche.net/api/v1/login',
+          data:{ code, nick_name: info.nickName },
           method:'post',
           success:(res) =>{
-            const token = res.data.data.token
-            console.log(11111, token);
-            wx.setStorageSync('card', res.data.data.card)
-            //将token保存本地
-            wx.setStorageSync('token', token)
-            wx.redirectTo({
-              url: '/pages/home/home'
-            });
+            console.log('res', res)
+            if(res.data.code === 0) {
+              const token = res.data.data.token
+              wx.setStorageSync('card', res.data.data.card)
+              //将token保存本地
+              wx.setStorageSync('token', token)
+              wx.redirectTo({
+                url: '/pages/home/home'
+              });
+            }else{
+              wx.showToast({
+                title: '业务错误',
+                icon: 'error',
+              })
+            }
           }
         })
       }
     })
   },
   //绑定手机
-  getPhoneNumber: function (e) {
-    // this.getUserInfo();
-    // this.handlerLogin();
-    //  需要做配置；涉及购买次数等。详情见--->  手机号快速验证组件 （微信官方文档）
-    // if(!e.detail.code) return;
-    // fetch.get('/wechat/minapp/getPhoneNumber', {
-    //   jsCode: e.detail.code ? e.detail.code : ''
-    // }).then(resolve => {
-    //   if(resolve.success) {
-    //     wx.login({
-    //       success: (res) => {
-    //         if(res.code) {
-    //           fetch.post('/wechat/minapp/login/phone', {
-    //             phoneNumber: resolve.result ? resolve.result : '',
-    //             jsCode: res.code
-    //           }).then(data => {
-    //             wx.removeStorageSync('token');
-    //             wx.showLoading({
-    //               title: '登录中，请稍后',
-    //             });
-    //             wx.setStorageSync('token', data.result);
-    //             this.getLoginUserInfo();
-    //           });
-    //         };
-    //       },
-    //     });
-    //   } else {
-    //     wx.showModal({
-    //       title: "错误",
-    //       content: resolve.message,
-    //       showCancel: false,
-    //       confirmText: "确定"
-    //     });
-    //   };
-    // });
-  },
+  // getPhoneNumber: function (e) {
+  //   this.handlerLogin(this.data.wxUserInfo);
+  //   //  需要做配置；涉及购买次数等。详情见--->  手机号快速验证组件 （微信官方文档）
+  //   // if(!e.detail.code) return;
+  //   // fetch.get('/wechat/minapp/getPhoneNumber', {
+  //   //   jsCode: e.detail.code ? e.detail.code : ''
+  //   // }).then(resolve => {
+  //   //   if(resolve.success) {
+  //   //     wx.login({
+  //   //       success: (res) => {
+  //   //         if(res.code) {
+  //   //           fetch.post('/wechat/minapp/login/phone', {
+  //   //             phoneNumber: resolve.result ? resolve.result : '',
+  //   //             jsCode: res.code
+  //   //           }).then(data => {
+  //   //             wx.removeStorageSync('token');
+  //   //             wx.showLoading({
+  //   //               title: '登录中，请稍后',
+  //   //             });
+  //   //             wx.setStorageSync('token', data.result);
+  //   //             this.getLoginUserInfo();
+  //   //           });
+  //   //         };
+  //   //       },
+  //   //     });
+  //   //   } else {
+  //   //     wx.showModal({
+  //   //       title: "错误",
+  //   //       content: resolve.message,
+  //   //       showCancel: false,
+  //   //       confirmText: "确定"
+  //   //     });
+  //   //   };
+  //   // });
+  // },
   // 用户协议
   toAgreement() {
     wx.navigateTo({

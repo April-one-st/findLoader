@@ -9,7 +9,7 @@
       <view class="nav-right"></view>
     </view>
     <view class="user-info">
-      <image class="user-header" src="/images/background.png" mode="" bind:tap="toPersonal" />
+      <image class="user-header" src="{{userInfo.avatar}}" mode="" bind:tap="toPersonal" />
       <view class="info">
         <view class="user-name">
           {{userInfo.nick_name}}
@@ -33,7 +33,7 @@
         <view class="follow-title">关注</view>
       </view>
       <view class="line"></view>
-      <view class="share">分享</view>
+      <button  class="share" open-type="share" id="share-btn">分享</button >
     </view>
   </view>
   <view class="vip-card">

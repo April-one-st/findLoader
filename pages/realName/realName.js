@@ -40,6 +40,7 @@ Page({
             .upload(fileUpLoadUrl, params)
             .then((res) => {
                 const baseUrl = "http://118.24.150.23:9000/car/";
+                console.log(res)
                 const { data } = JSON.parse(res.data);
                 const obj = {
                     url: baseUrl + data[0].file_path,
@@ -146,6 +147,9 @@ Page({
         fetch
             .post(merchantUrl, params)
             .then((res) => {
+                wx.navigateBack({
+                  delta: 1 // 返回的页面数，1表示返回上一页，2表示返回上两页，依此类推
+                })
                 wx.showToast({
                     title: "提交成功",
                     icon: "success",

@@ -40,7 +40,7 @@ Page({
   onShow() {
     console.log(45465456456)
     this.childComponent = this.selectComponent('#main');
-    this.childComponent.getUserInfo();
+    this.childComponent?.getUserInfo();
   },
 
   /**
