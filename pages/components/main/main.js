@@ -81,7 +81,6 @@ Component({
    */
   methods: {
     onShareAppMessage () {
-      console.log(11111)
       return {
         title: '分享标题',
         path: '/pages/index', // 分享路径，通常是当前页面路径
@@ -95,7 +94,6 @@ Component({
       }
     },
     onShare() {
-      console.log(11111)
       wx.showShareMenu({
         withShareTicket: true // 是否使用带 shareTicket 的转发
       })
@@ -110,7 +108,7 @@ Component({
         const params = {account_id: ''}
         fetch.get(getUserInfoUrl, params).then(res => {
             if(res.statusCode === 200){
-              console.log(res)
+              console.log(111222,res)
                 this.setData({
                     userInfo: res.data.data
                 })

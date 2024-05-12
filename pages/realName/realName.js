@@ -164,10 +164,14 @@ Page({
      */
     onLoad(options) {
       let card = wx.getStorageSync("card");
-      console.log(card);
+      let name = wx.getStorageSync('name')
+      let id = wx.getStorageSync('id')
+      console.log(card, name, id);
       if (card) {
           this.setData({
-              isReal: false,
+              isReal: true,
+              name,
+              id
           });
       }
     },

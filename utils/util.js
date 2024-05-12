@@ -16,7 +16,7 @@ const fetch = {
                   console.log('res111', res)
                     if (res.data.code == 7) {
                         wx.showToast({
-                          title: res.data.data.msg,
+                          title: res.data.msg,
                           icon: 'error'
                         })
                         reject(res.data.msg);
@@ -60,7 +60,6 @@ const fetch = {
                 success: function (res) {
                     // 上传成功后的处理逻辑
                     if (res.data.code == 7) {
-                        Toast(res.data.msg);
                         reject(res.data.msg);
                     } else {
                         resolve(res);

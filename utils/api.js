@@ -16,5 +16,6 @@ module.exports = {
   followUrl: '/api/v1/follow',
   auditInfoUrl: '/api/v1/audit/info',
   openVipUrl: '/api/v1/account/vip',
-  priceUrl:'/api/v1/account/vip/price'
+  priceUrl:'/api/v1/account/vip/price',
+  leaveUrl: 'api/v1/news'
 };

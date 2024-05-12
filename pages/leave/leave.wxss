@@ -1,0 +1,20 @@
+/* pages/askBuy/askBuy.wxss */
+.ask-buy-page{
+  padding: 15px;
+  font-family: PingFang SC, PingFang SC;
+}
+.remark-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.remark{
+  background-color: rgba(246, 246, 246, 1);
+  padding: 10px;
+}
+.form-buttom{
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

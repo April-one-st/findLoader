@@ -87,6 +87,8 @@ Page({
             if(res.data.code === 0) {
               const token = res.data.data.token
               wx.setStorageSync('card', res.data.data.card)
+              wx.setStorageSync('name', res.data.data.nick_name)
+              wx.setStorageSync('id', res.data.data.card_number)
               //将token保存本地
               wx.setStorageSync('token', token)
               wx.redirectTo({

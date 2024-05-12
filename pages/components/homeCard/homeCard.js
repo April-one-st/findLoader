@@ -75,8 +75,10 @@ Component({
             });
         },
         toInformation() {
-            console.log(11111);
-            this.triggerEvent('customEvent', '消息');
+          const id = this.data.info.account_id;
+          wx.navigateTo({
+            url: `/pages/leave/leave?id=${id}`
+          });
         },
     },
 });
