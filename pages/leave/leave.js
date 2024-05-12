@@ -27,7 +27,7 @@ Page({
                     Toast({
                         context: this,
                         type: "success",
-                        message: "保存成功",
+                        message: "发送成功",
                     });
                     setTimeout(() => {
                         wx.navigateBack({
