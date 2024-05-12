@@ -1,5 +1,5 @@
 // pages/realName/realName.js
-import { fileUpLoadUrl, merchantUrl } from "../../utils/api";
+import { fileUpLoadUrl, aduitUrl } from "../../utils/api";
 const { fetch } = require("../../utils/util");
 Page({
     /**
@@ -145,7 +145,7 @@ Page({
             ),
         };
         fetch
-            .post(merchantUrl, params)
+            .post(aduitUrl, params)
             .then((res) => {
                 wx.navigateBack({
                   delta: 1 // 返回的页面数，1表示返回上一页，2表示返回上两页，依此类推
