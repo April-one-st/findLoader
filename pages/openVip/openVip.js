@@ -7,8 +7,8 @@ Page({
      */
     data: {
         phone: "",
-        active: 1,
-        timeList: [1, 6, 9, 12],
+        active: 3,
+        timeList: [3, 6, 9, 12],
         price: '',
         discount: ''
     },
