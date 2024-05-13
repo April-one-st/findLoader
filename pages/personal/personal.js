@@ -55,6 +55,20 @@ Page({
     },
     // 表单提交
     submit() {
+      if(!this.data.fileList.length) {
+        wx.showToast({
+          title: '请上传头像',
+          icon: 'error'
+        })
+        return
+      }
+      if(!this.data.name) {
+        wx.showToast({
+          title: '请输入昵称',
+          icon: 'error'
+        })
+        return
+      }
       const params = {
         nick_name: this.data.name,
         avatar: this.data.fileList[0].url
