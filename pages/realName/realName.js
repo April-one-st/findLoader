@@ -1,5 +1,5 @@
 // pages/realName/realName.js
-import { fileUpLoadUrl, aduitUrl } from "../../utils/api";
+import { fileUpLoadUrl, aduitUrl, auditInfoUrl } from "../../utils/api";
 const { fetch } = require("../../utils/util");
 Page({
     /**
@@ -10,7 +10,17 @@ Page({
         thsFileList: [],
         name: "",
         id: "",
-        isReal: false
+        isReal: false,
+        state: 0,
+        stateName: ''
+    },
+    getAuditInfo() {
+      fetch.get(auditInfoUrl, {audit_type: 1}).then(res => {
+        wx.setStorageSync('card', res.data?.data?.card)
+        wx.setStorageSync('cardState', res.data?.data?.state)
+      }).catch(err => {
+        console.log(err);
+      })
     },
     //   姓名
     nameChange(e) {
@@ -154,6 +164,7 @@ Page({
                     title: "提交成功",
                     icon: "success",
                 });
+                this.getAuditInfo()
             })
             .catch((err) => {
                 throw err;
@@ -164,14 +175,18 @@ Page({
      */
     onLoad(options) {
       let card = wx.getStorageSync("card");
-      let name = wx.getStorageSync('name')
-      let id = wx.getStorageSync('id')
+      let name = wx.getStorageSync('name');
+      let id = wx.getStorageSync('id');
+      let state = wx.getStorageSync('cardState') || 0;
+      const arr = ['', '审核中', '审核通过', '审核拒绝'];
       console.log(card, name, id);
-      if (card) {
+      if (state) {
           this.setData({
               isReal: true,
               name,
-              id
+              id: card,
+              state,
+              stateName: arr[Number(state)]
           });
       }
     },

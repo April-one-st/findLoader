@@ -16,7 +16,7 @@ Component({
     data: {
         brandCode: "",
         vehicleAge: "",
-        price: "面议",
+        price: "",
         fileList: [],
         remark: "",
         address: [],
@@ -254,7 +254,7 @@ Component({
                 brand: data.brandCode.split("/")[0],
                 brand_type: data.brandCode.split("/")[1],
                 year: data.vehicleAge * 1,
-                price: data.price === "面议" ? 0 : data.price,
+                price: !data.price ? 0 : Number(data.price),
                 desc: data.remark,
                 province: data.address[0],
                 city: data.address[1],

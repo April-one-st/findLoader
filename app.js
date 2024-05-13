@@ -1,6 +1,12 @@
 // app.js
 App({
   onLaunch() {
+    // const token = wx.getStorageSync('token')
+    // if(token) {
+    //   wx.redirectTo({
+    //     url: '/pages/home/home'
+    //   });
+    // }
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

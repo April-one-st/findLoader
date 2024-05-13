@@ -67,6 +67,21 @@ Page({
       success: (res) => {
         console.log('userInfo', res)
         this.handlerLogin(res.userInfo)
+      },
+      fail(err) {
+        // 用户拒绝授权或其他原因导致获取用户信息失败
+        console.error('获取用户信息失败：', err);
+        if (err.errMsg.includes('deny')) {
+          // 用户拒绝授权的处理逻辑
+          console.log('用户拒绝了授权请求');
+          wx.showToast({
+            title: '您拒绝了授权',
+            icon: 'none'
+          });
+        } else {
+          // 其他错误处理逻辑
+          console.error('其他错误：', err);
+        }
       }
     })
   },

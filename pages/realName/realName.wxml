@@ -19,6 +19,14 @@
         disabled="{{isReal}}"
     >
     </van-field>
+    <van-field
+        wx:if="{{isReal}}"
+        label="审核状态"
+        border="{{ true }}"
+        placeholder="{{stateName}}"
+        disabled="{{isReal}}"
+    >
+    </van-field>
     <view class="form-title" wx:if="{{!isReal}}"> 上传身份证正反面（仅用于平台认证） </view>
     <view class="form-upLoad" wx:if="{{!isReal}}">
         <view>

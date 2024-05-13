@@ -76,8 +76,8 @@
         </view>
       </van-tab>
       <van-tab title="简介">
-        <view style="padding-bottom: 92px;height: calc(100vh - 603px); overflow: auto;">
-            <briefIntroduction info="{{ userInfo }}" ></briefIntroduction>
+        <view style="padding-bottom: 92px;">
+            <briefIntroduction wx:if="{{active == '2'}}" info="{{ userInfo }}" ></briefIntroduction>
         </view>
       </van-tab>
     </van-tabs>

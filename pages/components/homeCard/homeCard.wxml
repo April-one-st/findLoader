@@ -28,7 +28,7 @@
                 <view class="address"
                     >{{info.province}}.{{info.city}}.{{info.position}}</view
                 >
-                <view class="time">{{info.updated_at}}</view>
+                <view class="time">{{info.release_time_str}}</view>
             </view>
             <view>
                 <image

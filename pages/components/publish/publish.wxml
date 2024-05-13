@@ -9,7 +9,7 @@
     </view>
     <van-field value="{{ brandCode }}" label="品牌型号" clickable border="{{ true }}" placeholder="请选择品牌型号" input-align="right" readonly is-link required error="{{verifyBrandCode}}" bind:click-input="brandCodeChange" />
     <van-field value="{{ vehicleAge }}" label="车龄" input-align="right" clickable border="{{ true }}" placeholder="请选择车龄" readonly is-link required error="{{verifyVehicleAge}}" bind:click-input="carAgeChange" />
-    <van-field value="{{ price }}" label="价格" border="{{ true }}" placeholder="请输入价格" bind:change="priceChange" required error="{{verifyPrice}}">
+    <van-field value="{{ price }}" label="价格" input-align="right" border="{{ true }}" placeholder="面议" bind:change="priceChange" required error="{{verifyPrice}}">
       <span slot="button" style="color: rgba(255, 107, 16, 1);font-size: 15px;">
         万元
       </span>

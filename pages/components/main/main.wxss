@@ -1,7 +1,7 @@
 /* pages/userData/userData.wxss */
 .user-info-page{
   /* height: 100vh; */
-  height: calc(100vh - 92px) !important;
+  height: auto;
   background-color: rgba(246, 249, 252, 1);
   overflow: hidden;
   font-family: PingFang SC, PingFang SC;

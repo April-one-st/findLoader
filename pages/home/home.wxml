@@ -1,6 +1,6 @@
 <!--pages/home.wxml-->
 <view class="home-content">
-    <BuyCard wx:if="{{currentPage === '买车'}}" bind:customEvent="getCurrentPage" />
+    <BuyCard wx:if="{{currentPage === '买车'}}" bind:customEvent="getCurrentPage" class="buy-current" />
     <Publish wx:if="{{currentPage === '发布'}}" bind:customEvent="getCurrentPage" />
     <Information wx:if="{{currentPage === '消息'}}" bind:customEvent="getCurrentPage" />
     <UserInfo wx:if="{{currentPage === '我的'}}" bind:customEvent="getCurrentPage"  id="main" />

@@ -21,14 +21,14 @@ Component({
      * 组件生命周期函数-在组件实例刚刚被创建时执行
      */
     created() {
-      console.log('Component created');
+      console.log('Component created11122233');
     },
   
     /**
      * 组件生命周期函数-在组件实例进入页面节点树时执行
      */
     attached() {
-      console.log('Component attached');
+      console.log('Component attached00000000', this.data.info);
     },
   
     /**

@@ -10,6 +10,13 @@ Component({
         info: {
             type: Object,
             value: null,
+            observer(newVal, oldVal) {
+              console.log(11112222, newVal, oldVal);
+              // 参数变化时触发更新
+              // this.setData({
+              //   propA: newVal
+              // });
+            }
         },
         isDisable: {
           type: Boolean,
@@ -50,7 +57,7 @@ Component({
      * 组件生命周期函数-在组件实例进入页面节点树时执行
      */
     attached() {
-        console.log("Component attached");
+        console.log("Component attached", this.data.info);
     },
 
     /**
@@ -85,8 +92,8 @@ Component({
         },
         onMapTap: function(event) {
           console.log('地图被点击了:', event);
-          const latitude = event.detail.latitude;
-          const longitude = event.detail.longitude;
+          const latitude = event.detail.latitude + '';
+          const longitude = event.detail.longitude + '';
           console.log('点击位置的经度:', longitude);
           console.log('点击位置的纬度:', latitude);
           const params = {

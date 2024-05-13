@@ -16,10 +16,11 @@ Page({
   onLoad(options) {
     let status = false;
     let name = '审核中'
-    if(options.state === 2) {
+    console.log(12321312312, options)
+    if(options.state == 2) {
       name = '审核通过'
     }
-    if(options.state === 3) {
+    if(options.state == 3) {
       name = '审核拒绝'
       status = true;
     }

@@ -56,7 +56,9 @@
 .time{
   color: #999999;
   font-size: 13px;
-  width: 75px;
+  /* width: 75px; */
+  display: flex;
+  justify-content: flex-end;
 }
 .num {
   margin-top: 6px;

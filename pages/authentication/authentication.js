@@ -1,5 +1,5 @@
 // pages/authentication/authentication.js
-import { fileUpLoadUrl, merchantUrl } from "../../utils/api";
+import { fileUpLoadUrl, aduitUrl } from "../../utils/api";
 const { fetch } = require("../../utils/util");
 
 Page({
@@ -115,6 +115,7 @@ Page({
     },
 
     submit() {
+      console.log(222222)
         let card = wx.getStorageSync("card");
         if(!card) {
           this.setData({
@@ -122,6 +123,7 @@ Page({
           })
         }
         if (!this.checkForm()) return;
+        console.log(11111)
         const params = {
             audit_type: 2,
             name: this.data.name,
@@ -129,7 +131,7 @@ Page({
             image_desc: this.data.fileList.map((item) => item.id),
         };
         fetch
-            .post(merchantUrl, params)
+            .post(aduitUrl, params)
             .then((res) => {
                 wx.showToast({
                     title: "提交成功",

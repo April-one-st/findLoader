@@ -6,5 +6,6 @@
     "Information": "/pages/components/information/information",
     "UserInfo":"/pages/components/main/main"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true
 }

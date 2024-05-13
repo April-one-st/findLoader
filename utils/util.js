@@ -7,6 +7,16 @@ const fetch = {
         console.log("请求参数--->：", data);
         return new Promise((resolve, reject) => {
             let token = wx.getStorageSync("token");
+            if(!token) {
+              wx.showToast({
+                title: '登陆失效！',
+                icon: 'error'
+              })
+              wx.navigateTo({
+                url: '/pages/logs/logs',
+              })
+              return
+            }
             wx.request({
                 url: baseUrl + url,
                 method: method,
@@ -51,6 +61,16 @@ const fetch = {
     ) {
         return new Promise((resolve, reject) => {
           let token = wx.getStorageSync("token");
+          if(!token) {
+            wx.showToast({
+              title: '登陆失效！',
+              icon: 'error'
+            })
+            wx.navigateTo({
+              url: '/pages/logs/logs',
+            })
+            return
+          }
             wx.uploadFile({
                 url: baseUrl + url, // 上传接口地址
                 filePath: data.filePath, // 要上传的文件路径

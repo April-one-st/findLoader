@@ -1,8 +1,7 @@
 // pages/components/buyCard/buyCard.js
 import {
     getHomeListUrl,
-    fileUpLoadUrl,
-    publishUrl,
+    auditInfoUrl,
     getBrandCodeUrl,
 } from "../../../utils/api";
 const { fetch } = require("../../../utils/util");
@@ -61,6 +60,7 @@ Component({
     attached() {
         this.getDataList();
         this.getBrand("one");
+        this.getAuditInfo()
     },
 
     /**
@@ -88,6 +88,14 @@ Component({
      * 组件的方法列表
      */
     methods: {
+      getAuditInfo() {
+        fetch.get(auditInfoUrl, {audit_type: 1}).then(res => {
+          wx.setStorageSync('card', res.data?.data?.card)
+          wx.setStorageSync('cardState', res.data?.data?.state)
+        }).catch(err => {
+          console.log(err);
+        })
+      },
       toCurrentPage(value) {
         console.log(value.detail)
         this.triggerEvent('customEvent', value.detail);

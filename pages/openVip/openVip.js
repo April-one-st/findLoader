@@ -10,7 +10,8 @@ Page({
         active: 3,
         timeList: [3, 6, 9, 12],
         price: '',
-        discount: ''
+        discount: '',
+        danjia: ''
     },
 
     /**
@@ -26,13 +27,15 @@ Page({
         const data = e.currentTarget.dataset.item;
         this.setData({
             active: data,
+            price: this.data.danjia / 10 * data
         });
     },
     getPrice() {
       fetch.get(priceUrl).then(res => {
         this.setData({
-          price: res.data.data.unit_price / 100 * this.data.active,
-          discount: res.data.data.vip_discount
+          price: res.data.data.unit_price / 10 * this.data.active,
+          discount: res.data.data.vip_discount,
+          danjia: res.data.data.unit_price
         })
       })
     },
