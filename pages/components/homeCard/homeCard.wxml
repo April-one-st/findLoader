@@ -3,7 +3,7 @@
     <image
         catchtap="toUserInfo"
         class="avatar"
-        src="/images/background.png"
+        src="{{info.account.avatar || '/images/logo.png'}}"
         mode=""
     />
     <view class="content">

@@ -50,7 +50,7 @@ Page({
             .then((res) => {
                 if (res.statusCode === 200) {
                     const _data = this.data.btnList.map(item => {
-                        if(item.className === 'add' && !res.data.data.is_follow){
+                        if(item.className === 'add' && res.data.data.is_follow){
                             return {label: "取消关注", className: "add", icon: "" }
                         }else{
                             return item
@@ -117,21 +117,21 @@ Page({
         const name = data.id;
         const phone = data.phpne;
         if (name === "消息") {
-            wx.redirectTo({
-                url: "/pages/home/home?page=消息",
+            wx.navigateTo({
+              url: `/pages/leave/leave?id=${this.data.userInfo.id}`
             });
         }
         if (name === "关注" || name==="取消关注") {
             fetch.post(setFollowStateUrl, {
                 target_account_id: this.data.userInfo.id,
-                state: this.data.userInfo.is_follow ? 1 : 2,
+                state: this.data.userInfo.is_follow ? 2 : 1,
             }).then(res => {
                 console.log(res);
                 if(res.statusCode === 200) {
                     Toast({
                       context: this,
                       type: 'success',
-                      message: res.data.data
+                      message: "操作成功"
                     });
                     if(res.data.data === '已取消关注') {
                         const _data = this.data.btnList.map(item => {

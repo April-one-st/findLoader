@@ -5,6 +5,6 @@
     <view class="main-card-title">找铲车</view>
     <view class="main-card-tag">#求购需求</view>
     <view class="main-card-text">{{info.text}}</view>
-    <view class="main-card-time">{{info.updated_at}}</view>
+    <view class="main-card-time">{{info.created_at_str}}</view>
   </view>
 </view>

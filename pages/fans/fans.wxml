@@ -15,14 +15,14 @@
     <view></view>
   </view>
   <view class="fans-list">
-    <view wx:if="{{!list.length}}" style="text-align: center; color: rgba(102, 102, 102, 1);">没有更多数据啦！</view>
+    <view wx:if="{{!list.length}}" style="text-align: center; color: rgba(102, 102, 102, 1); margin-top: 10px;">没有更多数据啦！</view>
     <view class="fans-item" wx:for="{{list}}" wx:key="{{index}}">
-      <image class="fans-avatar" src="{{item.avatar}}" mode=""/>
+      <image class="fans-avatar" src="{{item.avatar || '/images/logo.png'}}" mode=""/>
       <view class="fans-name">{{item.nick_name}}</view>
-      <view class="fans-icon" wx:if="{{active == 0 || item.is_follow}}">
+      <view class="fans-icon" wx:if="{{active == 0}}" bind:tap="cancelFllow" data-id="{{item.follow_id}}">
         已关注
       </view>
-      <view class="fans-icon" wx:else>回关</view>
+      <view class="fans-icon" data-id="{{item.follow_id}}" wx:else bind:tap="onFllow">回关</view>
     </view>
   </view>
 </view>
