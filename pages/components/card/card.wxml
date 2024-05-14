@@ -3,7 +3,7 @@
   <swiper class="card-avater" indicator-dots autoplay interval="{{3000}}" duration="{{1000}}" circular vertical="{{fasle}}">
     <block wx:for="{{info.image_files}}" wx:key="index">
       <swiper-item>
-        <image src="{{'http://118.24.150.23:9000/car/' +item.file_path}}" class="slide-image" />
+        <image lazy-load src="{{'http://118.24.150.23:9000/car/' +item.file_path}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>

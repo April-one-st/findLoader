@@ -5,7 +5,7 @@
   </view>
   <view class="list">
     <view wx:for="{{list}}" wx:key="index"  class="list-item">
-      <image class="avater" src="{{item.chat_account.avatar || '/images/logo.png'}}" mode=""/>
+      <image class="avater" src="{{item.chat_account.avatar || '/images/logo.png'}}" mode="" lazy-load/>
       <view class="content">
        <view class="name">{{item.chat_account.nick_name}}</view>
        <view class="text">{{item.news_list[0].text}}</view>

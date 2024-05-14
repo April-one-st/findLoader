@@ -12,7 +12,7 @@
         <van-dropdown-item title="年限" value="{{ yearValue }}" options="{{ yearOptions }}" bind:change="yearValueChange" />
     </van-dropdown-menu>
     <view class="screen" wx:if="{{tagList.length}}">
-        <image class="screen-image" src="/images/screen.png" mode=""/>
+        <image class="screen-image" lazy-load src="/images/screen.png" lazy-load mode=""/>
         <view class="screen-item">
             <van-tag
                 style="margin: 0 5px;"

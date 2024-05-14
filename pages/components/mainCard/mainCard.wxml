@@ -1,6 +1,6 @@
 <!--pages/components/mianCard/mainCard.wxml-->
 <view class="main-card-page">
-  <image class="main-card-avater" src="{{info.account.avatar}}" mode=""/>
+  <image lazy-load class="main-card-avater" src="{{info.account.avatar}}" mode=""/>
   <view class="main-card-content">
     <view class="main-card-title">找铲车</view>
     <view class="main-card-tag">#求购需求</view>

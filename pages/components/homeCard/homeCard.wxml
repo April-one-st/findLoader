@@ -5,6 +5,7 @@
         class="avatar"
         src="{{info.account.avatar || '/images/logo.png'}}"
         mode=""
+        lazy-load
     />
     <view class="content">
         <view class="name">{{info.account.nick_name}}</view>
@@ -20,6 +21,7 @@
                 class="photo-item"
                 src="{{'http://118.24.150.23:9000/car/' + item.file_path}}"
                 mode=""
+                lazy-load
             />
         </view>
         <view class="Instructions"> {{info.desc}} </view>
@@ -37,8 +39,9 @@
                     mode=""
                     bindtap="toCallPhone"
                     data-phonenum="{{ info.phone }}"
+                    lazy-load
                 />
-                <image class="card-leave" src="/images/leave.png" bindtap="toInformation" mode="" />
+                <image class="card-leave" src="/images/leave.png" bindtap="toInformation" lazy-load mode="" />
             </view>
         </view>
     </view>

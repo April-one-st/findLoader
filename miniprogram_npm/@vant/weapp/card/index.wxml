@@ -4,6 +4,7 @@
   <view class="{{ utils.bem('card__header', { center: centered }) }}">
     <view class="van-card__thumb" bind:tap="onClickThumb">
       <image
+        lazy-load
         wx:if="{{ thumb }}"
         src="{{ thumb }}"
         mode="{{ thumbMode }}"

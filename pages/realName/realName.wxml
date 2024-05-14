@@ -57,7 +57,7 @@
         />
     </view>
     <view class="remark" wx:if="{{!isReal}}">
-        <image class="icon" src="/images/secure.png" mode=""/>
+        <image lazy-load class="icon" src="/images/secure.png" mode=""/>
         仅用于认证您的身份，保护您的信息安全
     </view>
     <view class="bottom" wx:if="{{!isReal}}">

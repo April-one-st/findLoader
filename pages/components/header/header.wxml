@@ -1,4 +1,4 @@
 <view class="header">
-<image class="background" src="/images/background.png" mode=""/>
-<van-search bind:focus="focus" placeholder="请输入搜索关键词" />
+<image class="background" lazy-load src="/images/background.png" mode=""/>
+<van-search bind:tap="focus" placeholder="请输入搜索关键词" />
 </view>

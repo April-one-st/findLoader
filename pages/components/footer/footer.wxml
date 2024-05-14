@@ -2,7 +2,7 @@
 <view class="footer">
   <view class="footer-conter">
     <view class="list-item" wx:for="{{list}}" wx:key="name" data-item="{{item}}" bindtap="change">  
-      <image class="icon" src="{{item.isTrue?item.urlTrue:item.url}}" mode=""/>
+      <image class="icon" src="{{item.isTrue?item.urlTrue:item.url}}" lazy-load mode=""/>
       <view>{{item.name}}</view>
     </view>
   </view>

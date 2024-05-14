@@ -1,7 +1,7 @@
 <!--pages/userData/userData.wxml-->
 <view class="user-info-page">
   <view class="user-info-header">
-    <image class="user-back" src="/images/user-info-back.png" mode="" />
+    <image class="user-back" lazy-load src="/images/user-info-back.png" mode="" />
     <view class="nav">
       <view class="back">
       </view>
@@ -9,16 +9,16 @@
       <view class="nav-right"></view>
     </view>
     <view class="user-info">
-      <image class="user-header" src="{{userInfo.avatar}}" mode="" bind:tap="toPersonal" />
+      <image class="user-header" lazy-load src="{{userInfo.avatar}}" mode="" bind:tap="toPersonal" />
       <view class="info">
         <view class="user-name">
           {{userInfo.nick_name}}
         </view>
         <view class="user-tag">
           <image class="tag-vip" wx:if="{{userInfo.is_vip}}" src="/images/vip-true.png" alt=""/>
-          <image class="tag-vip"  wx:else src="/images/vip-false.png" alt=""/>
-          <image class="tag-merchant"  wx:if="{{userInfo.merchant}}" src="/images/merchant-true.png" alt=""/>
-          <image class="tag-merchant"  wx:else src="/images/merchant-false.png" alt=""/>
+          <image  lazy-load class="tag-vip"  wx:else src="/images/vip-false.png" alt=""/>
+          <image  lazy-load class="tag-merchant"  wx:if="{{userInfo.merchant}}" src="/images/merchant-true.png" alt=""/>
+          <image  lazy-load class="tag-merchant"  wx:else src="/images/merchant-false.png" alt=""/>
         </view>
       </view>
     </view>
@@ -40,7 +40,7 @@
     <view class="vip">
       <view class="vip-left">
         <view class="open-vip">
-           <image class="vip-icon" src="/images/vip-icon.png" mode=""/>
+           <image  lazy-load class="vip-icon" src="/images/vip-icon.png" mode=""/>
            <view class="vip-title">{{userInfo.is_vip ? "续费会员" :"开通会员"}}</view>
         </view>
         <view class="vip-text" wx:if="{{true}}">{{userInfo.is_vip? "会员到期时间" + userInfo.vip_time_str :"开通会员享更多服务"}}</view>
@@ -53,12 +53,12 @@
   <view class="shop-card">
     <view class="shop">
       <view class="shop-item" bind:tap="toAuthentication">
-        <image class="shop-icon" src="/images/shop-icon.png" mode=""/>
+        <image  lazy-load class="shop-icon" src="/images/shop-icon.png" mode=""/>
         <view class="shop-text">成为商家</view>
       </view>
       <view class="shop-left"></view>
       <view class="shop-item" bind:tap="toRealName">
-        <image class="shop-icon" src="/images/id-icon.png" mode=""/>
+        <image lazy-load class="shop-icon" src="/images/id-icon.png" mode=""/>
         <view class="shop-text">实名认证</view>
       </view>
     </view>

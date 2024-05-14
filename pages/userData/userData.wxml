@@ -1,7 +1,7 @@
 <!--pages/userData/userData.wxml-->
 <view class="user-data-page">
     <view class="user-data-header">
-        <image class="user-back" src="/images/user-info-back.png" mode=""/>
+        <image lazy-load class="user-back" src="/images/user-info-back.png" mode=""/>
         <view class="nav">
             <view class="back" catchtap="toBack">
                 <van-icon name="arrow-left" />
@@ -9,16 +9,16 @@
             <view class="title">用户资料</view>
         </view>
         <view class="user-data">
-            <image class="user-header" src="/images/background.png" mode=""/>
+            <image lazy-load class="user-header" src="/images/background.png" mode=""/>
             <view class="info">
                 <view class="user-name">
                     {{userInfo.nick_name}}
                 </view>
                 <view class="user-tag">
-                    <image class="tag-vip" wx:if="{{userInfo.is_vip}}" src="/images/vip-true.png" alt=""/>
-          <image class="tag-vip"  wx:else src="/images/vip-false.png" alt=""/>
-          <image class="tag-merchant"  wx:if="{{userInfo.merchant}}" src="/images/merchant-true.png" alt=""/>
-          <image class="tag-merchant"  wx:else src="/images/merchant-false.png" alt=""/>
+                    <image lazy-load class="tag-vip" wx:if="{{userInfo.is_vip}}" src="/images/vip-true.png" alt=""/>
+          <image lazy-load class="tag-vip"  wx:else src="/images/vip-false.png" alt=""/>
+          <image lazy-load class="tag-merchant"  wx:if="{{userInfo.merchant}}" src="/images/merchant-true.png" alt=""/>
+          <image lazy-load class="tag-merchant"  wx:else src="/images/merchant-false.png" alt=""/>
                 </view>
             </view>
         </view>

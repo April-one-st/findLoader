@@ -21,6 +21,7 @@
         style="{{ computed.sizeStyle({ previewSize }) }}"
         data-index="{{ index }}"
         bindtap="onPreviewImage"
+        lazy-load
       />
       <video
         wx:elif="{{ item.isVideo }}"

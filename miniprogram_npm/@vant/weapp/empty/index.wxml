@@ -6,7 +6,7 @@
     <slot name="image"></slot>
   </view>
   <view class="van-empty__image">
-    <image wx:if="{{ image }}" class="van-empty__image__img" src="{{ computed.imageUrl(image) }}" />
+    <image wx:if="{{ image }}" class="van-empty__image__img" src="{{ computed.imageUrl(image) }}" lazy-load />
   </view>
 
   <view class="van-empty__description">
