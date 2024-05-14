@@ -44,7 +44,7 @@ Component({
         cardList: [],
         areaList: areaList,
         areaTitle: "全国",
-        tagList: [],
+        tagList: []
     },
 
     /**
@@ -60,7 +60,7 @@ Component({
     attached() {
         this.getDataList();
         this.getBrand("one");
-        this.getAuditInfo()
+        this.getAuditInfo();
     },
 
     /**
@@ -88,18 +88,31 @@ Component({
      * 组件的方法列表
      */
     methods: {
-      getAuditInfo() {
-        fetch.get(auditInfoUrl, {audit_type: 1}).then(res => {
-          wx.setStorageSync('card', res.data?.data?.card)
-          wx.setStorageSync('cardState', res.data?.data?.state)
-        }).catch(err => {
-          console.log(err);
-        })
-      },
-      toCurrentPage(value) {
-        console.log(value.detail)
-        this.triggerEvent('customEvent', value.detail);
-      },
+        handleScroll(e) {
+          const hei = this.data.cardList.length * 300;
+          if(hei - e.detail.scrollTop < 500) {
+            // 下拉加载
+            // console.log(hei - e.detail.scrollTop)
+            // this.setData({
+            //   cardList: [...this.data.cardList, ...this.data.cardList]
+            // })
+          }
+        },
+        getAuditInfo() {
+            fetch
+                .get(auditInfoUrl, { audit_type: 1 })
+                .then((res) => {
+                    wx.setStorageSync("card", res.data?.data?.card);
+                    wx.setStorageSync("cardState", res.data?.data?.state);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        toCurrentPage(value) {
+            console.log(value.detail);
+            this.triggerEvent("customEvent", value.detail);
+        },
         // 重置
         reset() {
             this.setData({
@@ -127,8 +140,9 @@ Component({
             fetch
                 .get(getHomeListUrl, params)
                 .then((res) => {
+                  const list = res.data.data.list
                     this.setData({
-                        cardList: res.data.data.list,
+                        cardList: [...this.data.cardList, ...list],
                     });
                 })
                 .catch((err) => {

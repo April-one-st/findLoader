@@ -57,6 +57,17 @@ Component({
         attached() {
             this.getUserInfo();
             this.getAuditInfo();
+            wx.getLocation({
+              type: 'wgs84', // 返回 GPS 坐标，可以使用 gcj02 返回可用于 wx.openLocation 的坐标
+              success(res) {
+                const latitude = res.latitude; // 纬度
+                const longitude = res.longitude; // 经度
+                console.log('当前位置:', latitude, longitude);
+              },
+              fail(err) {
+                console.error('获取位置信息失败:', err);
+              }
+            });
         },
     },
 

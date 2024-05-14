@@ -8,18 +8,10 @@ Page({
     },
     onPullDownRefresh() {
         wx.stopPullDownRefresh(); //这句也很重要
-        let _This = this;
-        let oUInfo = _This.data.oUInfo;
-        !oUInfo.unionId &&
-            getApp().getUserData(function (result) {
-                _This.fGetCUserInfo(result.unionId);
-                _This.setData({
-                    oUInfo: result,
-                });
-            });
+        const home = this.selectComponent(".buy-current");
         setTimeout(function () {
             // 这里写刷新要调用的函数，比如：
-            _This.pullRefresh();
+            home.getDataList();
         }, 500);
     },
     getCurrentPage(e) {
@@ -72,7 +64,9 @@ Page({
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom() {},
+    onReachBottom() {
+      console.log(12132)
+    },
 
     /**
      * 用户点击右上角分享

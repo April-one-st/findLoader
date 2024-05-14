@@ -6,5 +6,11 @@
     "Card": "/pages/components/card/card",
     "MainCard":"/pages/components/mainCard/mainCard",
     "briefIntroduction":"/pages/components/briefIntroduction/briefIntroduction"
+  },
+  "requiredPermissions": {
+    "scope.userLocation": {
+      "desc": "获取您的地理位置信息"
+    },
+    "userLocation": true
   }
 }

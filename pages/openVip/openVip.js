@@ -33,7 +33,7 @@ Page({
     getPrice() {
       fetch.get(priceUrl).then(res => {
         this.setData({
-          price: res.data.data.unit_price / 10 * this.data.active,
+          price: (res.data.data.unit_price / 10000) * this.data.active,
           discount: res.data.data.vip_discount,
           danjia: res.data.data.unit_price
         })

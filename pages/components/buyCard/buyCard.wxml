@@ -1,36 +1,33 @@
 <!--pages/components/buyCard/buyCard.wxml-->
 <view class="buy-card-page">
-    <Header></Header>
-    <van-dropdown-menu >
-        <van-dropdown-item title="{{areaTitle}}" toggle="{{false}}" id="gender">
-            <view style="padding-top: 20px;">
-                <van-area area-list="{{ areaList }}" bind:cancel="addressCancel" bind:confirm="addressOk" />
-            </view>
-        </van-dropdown-item>
-        <van-dropdown-item title="品牌" value="{{ brandValue }}" options="{{ brandOptions }}" bind:change="brandChange"/>
-        <van-dropdown-item title="型号" value="{{ modelValue }}" options="{{ modelOptions}}" bind:change="modelChange" />
-        <van-dropdown-item title="年限" value="{{ yearValue }}" options="{{ yearOptions }}" bind:change="yearValueChange" />
-    </van-dropdown-menu>
-    <view class="screen" wx:if="{{tagList.length}}">
-        <image class="screen-image" lazy-load src="/images/screen.png" lazy-load mode=""/>
-        <view class="screen-item">
-            <van-tag
-                style="margin: 0 5px;"
-                wx:for="{{tagList}}"
-                wx:key="{{item.id}}"
-                plain
-                closeable
-                size="medium"
-                type="primary"
-                id="{{item.id}}"
-                bind:close="tagClose"
-                >
-                {{item.name}}
-            </van-tag>
-        </view>
-        <span class="reset" bind:tap="reset">重置</span>
+  <Header></Header>
+  <van-dropdown-menu>
+    <van-dropdown-item title="{{areaTitle}}" toggle="{{false}}" id="gender">
+      <view style="padding-top: 20px;">
+        <van-area area-list="{{ areaList }}" bind:cancel="addressCancel" bind:confirm="addressOk" />
+      </view>
+    </van-dropdown-item>
+    <van-dropdown-item title="品牌" value="{{ brandValue }}" options="{{ brandOptions }}" bind:change="brandChange" />
+    <van-dropdown-item title="型号" value="{{ modelValue }}" options="{{ modelOptions}}" bind:change="modelChange" />
+    <van-dropdown-item title="年限" value="{{ yearValue }}" options="{{ yearOptions }}" bind:change="yearValueChange" />
+  </van-dropdown-menu>
+  <view class="screen" wx:if="{{tagList.length}}">
+    <image class="screen-image" lazy-load src="/images/screen.png" lazy-load mode="" />
+    <view class="screen-item">
+      <van-tag style="margin: 0 5px;" wx:for="{{tagList}}" wx:key="{{item.id}}" plain closeable size="medium" type="primary" id="{{item.id}}" bind:close="tagClose">
+        {{item.name}}
+      </van-tag>
     </view>
-    <view class="buycard-content">
+    <span class="reset" bind:tap="reset">重置</span>
+  </view>
+  <!-- <view class="buycard-content" id="content">
+        <HomeCard wx:for="{{ cardList }}" wx:key="index" bind:customEvent="toCurrentPage" info="{{ item }}"/>
+      </view> -->
+  <scroll-view scroll-y="true" class="buycard-content" bindscroll="handleScroll">
+    <view class="content">
+      <!-- 这里放置你的内容 -->
       <HomeCard wx:for="{{ cardList }}" wx:key="index" bind:customEvent="toCurrentPage" info="{{ item }}"/>
     </view>
+  </scroll-view>
+  <view style="height: 80px;"></view>
 </view>

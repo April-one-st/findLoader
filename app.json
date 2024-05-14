@@ -24,5 +24,11 @@
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "requiredPermissions": {
+    "scope.userLocation": {
+      "desc": "获取您的地理位置信息"
+    },
+    "userLocation": true
+  }
 }
