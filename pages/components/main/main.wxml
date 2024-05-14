@@ -15,10 +15,10 @@
           {{userInfo.nick_name}}
         </view>
         <view class="user-tag">
-          <image class="tag-vip" wx:if="{{userInfo.is_vip}}" src="/images/vip-true.png" alt=""/>
-          <image  lazy-load class="tag-vip"  wx:else src="/images/vip-false.png" alt=""/>
-          <image  lazy-load class="tag-merchant"  wx:if="{{userInfo.merchant}}" src="/images/merchant-true.png" alt=""/>
-          <image  lazy-load class="tag-merchant"  wx:else src="/images/merchant-false.png" alt=""/>
+          <image class="tag-vip" wx:if="{{userInfo.is_vip}}" src="/images/vip-true.png" alt="" />
+          <image lazy-load class="tag-vip" wx:else src="/images/vip-false.png" alt="" />
+          <image lazy-load class="tag-merchant" wx:if="{{userInfo.merchant}}" src="/images/merchant-true.png" alt="" />
+          <image lazy-load class="tag-merchant" wx:else src="/images/merchant-false.png" alt="" />
         </view>
       </view>
     </view>
@@ -33,15 +33,15 @@
         <view class="follow-title">关注</view>
       </view>
       <view class="line"></view>
-      <button  class="share" open-type="share" id="share-btn">分享</button >
+      <button class="share" open-type="share" id="share-btn">分享</button>
     </view>
   </view>
   <view class="vip-card">
     <view class="vip">
       <view class="vip-left">
         <view class="open-vip">
-           <image  lazy-load class="vip-icon" src="/images/vip-icon.png" mode=""/>
-           <view class="vip-title">{{userInfo.is_vip ? "续费会员" :"开通会员"}}</view>
+          <image lazy-load class="vip-icon" src="/images/vip-icon.png" mode="" />
+          <view class="vip-title">{{userInfo.is_vip ? "续费会员" :"开通会员"}}</view>
         </view>
         <view class="vip-text" wx:if="{{true}}">{{userInfo.is_vip? "会员到期时间" + userInfo.vip_time_str :"开通会员享更多服务"}}</view>
       </view>
@@ -53,12 +53,12 @@
   <view class="shop-card">
     <view class="shop">
       <view class="shop-item" bind:tap="toAuthentication">
-        <image  lazy-load class="shop-icon" src="/images/shop-icon.png" mode=""/>
+        <image lazy-load class="shop-icon" src="/images/shop-icon.png" mode="" />
         <view class="shop-text">成为商家</view>
       </view>
       <view class="shop-left"></view>
       <view class="shop-item" bind:tap="toRealName">
-        <image lazy-load class="shop-icon" src="/images/id-icon.png" mode=""/>
+        <image lazy-load class="shop-icon" src="/images/id-icon.png" mode="" />
         <view class="shop-text">实名认证</view>
       </view>
     </view>
@@ -66,9 +66,12 @@
   <view class="user-info-contet">
     <van-tabs active="{{ active }}" bind:change="onChange" color="#003372">
       <van-tab title="首页">
-        <view style="margin-bottom: 92px;height: calc(100vh - 603px); overflow: auto;">
-          <Card wx:for="{{ homeList }}" wx:key="index" info="{{ item }}" />
-        </view>
+        <scroll-view scroll-y="true" style="margin-bottom: 92px;height: calc(100vh - 603px); overflow: auto;" bindscroll="handleScroll">
+          <view class="content">
+            <!-- 这里放置你的内容 -->
+            <Card wx:for="{{ homeList }}" wx:key="index" info="{{ item }}" />
+          </view>
+        </scroll-view>
       </van-tab>
       <van-tab title="求购">
         <view style="padding-bottom: 92px;height: calc(100vh - 603px); overflow: auto;">
@@ -77,7 +80,7 @@
       </van-tab>
       <van-tab title="简介">
         <view style="padding-bottom: 92px;">
-            <briefIntroduction wx:if="{{active == '2'}}" info="{{ userInfo }}" ></briefIntroduction>
+          <briefIntroduction wx:if="{{active == '2'}}" info="{{ userInfo }}"></briefIntroduction>
         </view>
       </van-tab>
     </van-tabs>

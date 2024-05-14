@@ -3,5 +3,6 @@
     "van-search": "@vant/weapp/search/index",
     "Card": "/pages/components/card/card"
   },
-  "navigationBarTitleText": "搜索"
+  "navigationBarTitleText": "搜索",
+  "enablePullDownRefresh": true
 }

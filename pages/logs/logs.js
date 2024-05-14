@@ -91,6 +91,7 @@ Page({
         //获取code
         const code = res.code
         wx.setStorageSync('code', res.code)
+        wx.setStorageSync('isFirst', false)
         console.log('params', { code, nick_name: info.nickName })
         //将code发给后端请求token
         wx.request({

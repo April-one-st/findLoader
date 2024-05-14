@@ -51,6 +51,6 @@
   </view>
   <view style="padding: 0 20px;">
     <view style="padding-bottom: 10px;">{{info.position}}</view>
-    <map id="myMap" latitude="{{info.x}}" longitude="{{info.y}}" style="width:100%;height: 390rpx;" bindtap="onMapTap" />
+    <map id="myMap" latitude="{{x || info.x}}"  longitude="{{y || info.y}}"  style="width:100%;height: 390rpx;" bindtap="onMapTap" />
   </view>
 </view>

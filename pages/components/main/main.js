@@ -43,6 +43,9 @@ Component({
         homeList: [],
         buyCardList: [],
         active: 0,
+        currentPage: 1,
+        pageSize: 10,
+        total: 10
     },
     /**
      * 组件生命周期函数-在组件实例刚刚被创建时执行
@@ -57,17 +60,6 @@ Component({
         attached() {
             this.getUserInfo();
             this.getAuditInfo();
-            wx.getLocation({
-              type: 'wgs84', // 返回 GPS 坐标，可以使用 gcj02 返回可用于 wx.openLocation 的坐标
-              success(res) {
-                const latitude = res.latitude; // 纬度
-                const longitude = res.longitude; // 经度
-                console.log('当前位置:', latitude, longitude);
-              },
-              fail(err) {
-                console.error('获取位置信息失败:', err);
-              }
-            });
         },
     },
 
@@ -121,7 +113,7 @@ Component({
         },
         // 获取用户信息
         getUserInfo() {
-          const that = this
+            const that = this;
             const params = { account_id: "" };
             fetch
                 .get(getUserInfoUrl, params)
@@ -131,13 +123,32 @@ Component({
                         that.setData({
                             userInfo: res.data.data,
                         });
-                        that.getHomeList(res.data.data)
-                        that.getBuyList(res.data.data);
+                        that.getHomeList(res.data.data);
                     }
                 })
                 .catch((err) => {
                     console.log(err);
                 });
+        },
+        handleScroll(e) {
+          let cardHeight = 100;
+          let num = this.data.homeList.length
+          if(this.data.active == 1) {
+            cardHeight = 170
+            num = this.data.buyCardList.length
+          }
+          const hei = this.data.cardList.length * cardHeight;
+          if(hei - e.detail.scrollTop < 200 && this.data.total < num) {
+            this.setData({
+              currentPage: this.data.currentPage + 1
+            })
+            if(this.data.active == 0) {
+              this.getHomeList()
+            }
+            if(this.data.active == 1) {
+              this.getBuyList()
+            }
+          }
         },
         // 获取首页列表
         getHomeList(data) {
@@ -147,9 +158,10 @@ Component({
             fetch
                 .get(getHomeListUrl, params)
                 .then((res) => {
-                  console.log('11111=====>', res)
+                    const list = res.data?.data?.list
                     this.setData({
-                        homeList: res.data?.data?.list,
+                        homeList: [...this.data.homeList, ...list],
+                        total: res.data.data.total
                     });
                 })
                 .catch((err) => {
@@ -164,9 +176,10 @@ Component({
             fetch
                 .get(buyListUrl, params)
                 .then((res) => {
-                  console.log('22222=====>', res)
+                    console.log("22222=====>", res);
                     this.setData({
                         buyCardList: res?.data?.data?.list,
+                        total: res.data.data.total
                     });
                 })
                 .catch((err) => {
@@ -225,6 +238,18 @@ Component({
             });
         },
         onChange(e) {
+          if(e.detail.index == 0) {
+            this.getHomeList(this.data.userInfo)
+            this.setData({
+              homeList: []
+            })
+          }
+          if(e.detail.index == 1) {
+            this.getBuyList(this.data.userInfo);
+            this.setData({
+              buyCardList: []
+            })
+          }
             this.setData({
                 active: e.detail.index,
             });

@@ -25,10 +25,11 @@
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
-  "requiredPermissions": {
+  "enableAutoNpmResolve": true,
+  "enableAutoIsolateNpm": true,
+  "permission": {
     "scope.userLocation": {
-      "desc": "获取您的地理位置信息"
-    },
-    "userLocation": true
+      "desc": "为了给您提供更好的服务，请授权您的地理位置信息"
+    }
   }
 }

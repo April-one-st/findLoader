@@ -1,6 +1,11 @@
 <!--pages/components/buyCard/buyCard.wxml-->
 <view class="buy-card-page">
   <Header></Header>
+  <van-notice-bar
+    wx:if="{{showTips}}"
+    left-icon="volume-o"
+    text="有新帖子未展示"
+/>
   <van-dropdown-menu>
     <van-dropdown-item title="{{areaTitle}}" toggle="{{false}}" id="gender">
       <view style="padding-top: 20px;">
@@ -20,9 +25,6 @@
     </view>
     <span class="reset" bind:tap="reset">重置</span>
   </view>
-  <!-- <view class="buycard-content" id="content">
-        <HomeCard wx:for="{{ cardList }}" wx:key="index" bind:customEvent="toCurrentPage" info="{{ item }}"/>
-      </view> -->
   <scroll-view scroll-y="true" class="buycard-content" bindscroll="handleScroll">
     <view class="content">
       <!-- 这里放置你的内容 -->

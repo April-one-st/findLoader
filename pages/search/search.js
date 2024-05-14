@@ -7,7 +7,10 @@ Page({
      */
     data: {
         value: "",
-        cardList: []
+        cardList: [],
+        total: 10,
+        currentPage: 1,
+        pageSize: 10,
     },
     searchChange(e) {
         this.setData({
@@ -15,18 +18,25 @@ Page({
         });
     },
     onClick() {
-        // const params = {
-        //    value: this.detail.value
-        // };
-        const params = {}
-        fetch
-            .get(getHomeListUrl, params)
-            .then((res) => {
-                this.setData({
-                    cardList: res.data.data.list,
-                });
-            })
-            .catch();
+        this.getDataList()
+    },
+    getDataList() {
+      const params = {
+        desc: this.data.value,
+        per_page: this.data.pageSize,
+        page: this.data.currentPage,
+    };
+    fetch
+        .get(getHomeListUrl, params)
+        .then((res) => {
+            const list = res.data.data.list;
+            console.log(res)
+            this.setData({
+                cardList: [...this.data.cardList, ...list],
+                total: res.data.data.total,
+            });
+        })
+        .catch();
     },
 
     /**
@@ -61,12 +71,21 @@ Page({
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh() {},
+    onPullDownRefresh() {
+    },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom() {},
+    onReachBottom() {
+      console.log(12123123)
+      if(this.data.total < this.data.cardList.length) {
+        this.setData({
+          currentPage: this.data.currentPage + 1
+        })
+        this.getDataList()
+      }
+    },
 
     /**
      * 用户点击右上角分享

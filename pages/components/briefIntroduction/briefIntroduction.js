@@ -44,7 +44,29 @@ Component({
           textAlign: 'center'
         }
       }],
+      x: '',
+      y: ''
     },
+    lifetimes: {
+      /**
+       * 组件生命周期函数-在组件实例进入页面节点树时执行
+       */
+      attached() {
+        wx.getLocation({
+          type: "gcj02", //默认为 wgs84 返回 gps 坐标，gcj02 返回可用于wx.openLocation的坐标
+          success: (res) => {
+              console.log(res);
+              this.setData({
+                x: res.latitude,
+                y: res.longitude
+              })
+          },
+          fail: (err) => {
+              console.log(err);
+          },
+      });
+      },
+  },
 
     /**
      * 组件生命周期函数-在组件实例刚刚被创建时执行

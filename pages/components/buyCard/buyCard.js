@@ -44,7 +44,11 @@ Component({
         cardList: [],
         areaList: areaList,
         areaTitle: "全国",
-        tagList: []
+        tagList: [],
+        total: 10,
+        currentPage: 1,
+        pageSize: 10,
+        showTips: false,
     },
 
     /**
@@ -58,9 +62,27 @@ Component({
      * 组件生命周期函数-在组件实例进入页面节点树时执行
      */
     attached() {
-        this.getDataList();
+        const isTrue = wx.getStorageSync('isFirst')
+        console.log(isTrue);
+        if(!isTrue) {
+          wx.setStorageSync('isFirst', true)
+          this.getDataList();
+        }else{
+          const list = wx.getStorageSync('cardList')
+          this.setData({
+            cardList: list
+          })
+        }
         this.getBrand("one");
         this.getAuditInfo();
+        this.timer = setInterval(() => {
+          this.getDataListNumber()
+        }, 10000)
+    },
+    detached() {
+      // 组件被卸载时触发
+      clearInterval(this.timer)
+      // 在这里执行清理操作
     },
 
     /**
@@ -78,24 +100,16 @@ Component({
     },
 
     /**
-     * 组件生命周期函数-在组件实例被从页面节点树移除时执行
-     */
-    detached() {
-        console.log("Component detached");
-    },
-
-    /**
      * 组件的方法列表
      */
     methods: {
         handleScroll(e) {
           const hei = this.data.cardList.length * 300;
-          if(hei - e.detail.scrollTop < 500) {
-            // 下拉加载
-            // console.log(hei - e.detail.scrollTop)
-            // this.setData({
-            //   cardList: [...this.data.cardList, ...this.data.cardList]
-            // })
+          if(hei - e.detail.scrollTop < 500 && this.data.total < this.data.cardList.length) {
+            this.setData({
+              currentPage: this.data.currentPage + 1
+            })
+            this.getDataList()
           }
         },
         getAuditInfo() {
@@ -120,9 +134,39 @@ Component({
                 brandValue: "",
                 modelValue: "",
                 tagList: [],
+                cardList: []
             });
             this.getDataList();
         },
+        // 获取list数量
+        getDataListNumber() {
+          let province = "";
+          let city = "";
+          if (this.data.districtValue.length) {
+              province = this.data.districtValue[0].name;
+              city = this.data.districtValue[1].name;
+          }
+          const params = {
+              province,
+              city,
+              brand: this.data.brandValue,
+              brand_type: this.data.modelValue,
+              per_page: this.data.pageSize,
+              page: this.data.currentPage,
+          };
+          fetch
+              .get(getHomeListUrl, params)
+              .then((res) => {
+                  if(res.data.data.total > this.data.total) {
+                    this.setData({
+                      showTips: true
+                    })
+                  }
+              })
+              .catch((err) => {
+                  console.log(err);
+              });
+      },
         // 获取list数据
         getDataList() {
             let province = "";
@@ -136,6 +180,8 @@ Component({
                 city,
                 brand: this.data.brandValue,
                 brand_type: this.data.modelValue,
+                per_page: this.data.pageSize,
+                page: this.data.currentPage,
             };
             fetch
                 .get(getHomeListUrl, params)
@@ -143,7 +189,10 @@ Component({
                   const list = res.data.data.list
                     this.setData({
                         cardList: [...this.data.cardList, ...list],
+                        total: res.data.data.total,
+                        showTips: false
                     });
+                    wx.setStorageSync('cardList', [...this.data.cardList])
                 })
                 .catch((err) => {
                     console.log(err);
@@ -206,6 +255,7 @@ Component({
             this.setData({
                 districtValue: _data,
                 areaTitle: _data.map((value) => value.name).join("."),
+                cardList: []
             });
             this.selectComponent("#gender").toggle(false);
             this.getDataList();
@@ -222,6 +272,7 @@ Component({
             });
             this.setData({
                 brandValue: e.detail,
+                cardList: []
             });
             this.getBrand("two", e.detail[0]);
             this.getDataList();
@@ -234,6 +285,7 @@ Component({
             });
             this.setData({
                 modelValue: e.detail,
+                cardList: []
             });
             this.getDataList();
         },
@@ -245,6 +297,7 @@ Component({
             });
             this.setData({
                 yearValue: e.detail,
+                cardList: []
             });
             this.getDataList();
         },

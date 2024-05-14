@@ -6,7 +6,8 @@
     "HomeCard": "/pages/components/homeCard/homeCard",
     "van-tag": "@vant/weapp/tag/index",
     "van-area": "@vant/weapp/area/index",
-    "van-popup": "@vant/weapp/popup/index"
+    "van-popup": "@vant/weapp/popup/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
   },
   "navigationBarTitleText": "",
   "navigationStyle": "custom"
